@@ -56,7 +56,7 @@ bef_ss=None
 
 
 
-def reset_standard():
+def reset_standard(): #基準画像リセット
     global basetop
     global basetop2
     global avg
@@ -163,7 +163,7 @@ def reset_standard():
 #print(basetop)
 # #return
 
-def searching_top():
+def searching_top(): # 頂点検出
     global toplist
     x = list(range(XRANGE))  # list(range(35))  # 15  XRANGE=int(t_range/2)
     toplist = []
