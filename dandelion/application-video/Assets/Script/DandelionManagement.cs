@@ -12,26 +12,26 @@ public class DandelionManagement : MonoBehaviour
     List<string[]> toneDatas = new List<string[]>();
 
     public GameObject DandelionPrefab;
+    public float BlownWidth = 5.0f;
+
     int numSounds = 10;//270;
 
-    public List<GameObject> ObjectList = new List<GameObject>(); //‚½‚ñ‚Û‚Ûlist
-    private int ObjectCount=0;
-
+    public List<GameObject> ObjectList = new List<GameObject>(); //ï¿½ï¿½ï¿½ï¿½ï¿½Û‚ï¿½list
 
     //DandelionManagement
-    //1. SetPosition() ‚½‚ñ‚Û‚Û¶¬
-    //2. ‚½‚ñ‚Û‚ÛƒŠƒXƒg
-    //3. isBlown() ˆÊ’u‚Æ‹­‚³‚ğó‚¯æ‚Á‚Ä‚½‚ñ‚Û‚Û‚ğÁ‚·E‰¹‚ğ–Â‚ç‚·
-    //4. ‰¹‚ğ–Â‚ç‚·ŠÖ”
+    //1. SetPosition() ï¿½ï¿½ï¿½ï¿½ï¿½Û‚Ûï¿½ï¿½ï¿½
+    //2. ï¿½ï¿½ï¿½ï¿½ï¿½Û‚Ûƒï¿½ï¿½Xï¿½g
+    //3. isBlown() ï¿½Ê’uï¿½Æ‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó‚¯ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Û‚Û‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½Â‚ç‚·
+    //4. ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ç‚·ï¿½Öï¿½
 
     // Start is called before the first frame update
     void Start()
     {
         ReadText(toneFile);
 
-        Debug.Log(toneDatas.Count);         // s”(271)
-        Debug.Log(toneDatas[0].Length);       // €–Ú”(4)@0:start.1:end, 2:pitch, 3:velocity
-        Debug.Log(toneDatas[1][2]);        // 2s–Ú3—ñ–Ú(45)
+        Debug.Log(toneDatas.Count);         // ï¿½sï¿½ï¿½(271)
+        Debug.Log(toneDatas[0].Length);       // ï¿½ï¿½ï¿½Úï¿½(4)ï¿½@0:start.1:end, 2:pitch, 3:velocity
+        Debug.Log(toneDatas[1][2]);        // 2ï¿½sï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½(45)
 
         SetPosition(toneDatas);
 
@@ -43,7 +43,7 @@ public class DandelionManagement : MonoBehaviour
         foreach (var line in lines)
         {
             if (line == "") { continue; }
-            toneDatas.Add(line.Split(' '));    // string[]‚ğ’Ç‰Á‚µ‚Ä‚¢‚é
+            toneDatas.Add(line.Split(' '));    // string[]ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
         }
 
     }
@@ -54,14 +54,14 @@ public class DandelionManagement : MonoBehaviour
         float posz = 0f;
         for (int r=0;r<= numSounds; r++)
         {
-            //‰¡‚ÌˆÊ’u c4:60
+            //ï¿½ï¿½ï¿½ÌˆÊ’u c4:60
             //-1:0-11 0:12-23 1:24-35 2:36-47 3:48:59 4:60-71 5:72-83 6:84-95 7:96-107
             float posx = float.Parse(toneDatas[r][2])-60.0f;
-            //c‚ÌˆÊ’u
+            //ï¿½cï¿½ÌˆÊ’u
             //float posz = float.Parse(toneDatas[r][0]);
-            //ŒÂ”
-            float timelength=float.Parse(toneDatas[r][1])-float.Parse(toneDatas[r][0]);//0.25‚²‚Æ‚É1‚Â
-            int quantity = (int)( timelength / 0.25f);//0.25‚²‚Æ‚É1‚Â
+            //ï¿½Âï¿½
+            float timelength=float.Parse(toneDatas[r][1])-float.Parse(toneDatas[r][0]);//0.25ï¿½ï¿½ï¿½Æ‚ï¿½1ï¿½ï¿½
+            int quantity = (int)( timelength / 0.25f);//0.25ï¿½ï¿½ï¿½Æ‚ï¿½1ï¿½ï¿½
 
 
             for (int s = 0; s <= quantity-1; s++)
@@ -69,40 +69,39 @@ public class DandelionManagement : MonoBehaviour
                 Vector3 pos = new Vector3(posx, 0f, posz);
                 Instantiate(DandelionPrefab, pos, Quaternion.identity);
                 ObjectList.Add(DandelionPrefab);
-                ObjectCount += 1;
                 posz += 0.5f;
             }
 
             //To Do
-            //1: ˜A‘±‚·‚éê‡‚Í‚‚³‚ğ•Ï‚¦‚éiŒsj
-            //2: velocity‚²‚Æ‚É‘å‚«‚³‚ğ•Ï‚¦‚éi–È–Ñj
-            //3: F‚Ì•ÏX(’†g)’†‚ÌF‚ª•Ï‚í‚Á‚Ä‚¢‚é‚±‚Æ‚ªŠO‘¤‚©‚ç•ª‚©‚é‚æ‚¤‚É‚·‚é
-            
+            //1: ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï‚ï¿½ï¿½ï¿½ï¿½iï¿½sï¿½j
+            //2: velocityï¿½ï¿½ï¿½Æ‚É‘å‚«ï¿½ï¿½ï¿½ï¿½ï¿½Ï‚ï¿½ï¿½ï¿½ï¿½iï¿½È–Ñj
+            //3: ï¿½Fï¿½Ì•ÏX(ï¿½ï¿½ï¿½g)ï¿½ï¿½ï¿½ÌFï¿½ï¿½ï¿½Ï‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ç•ªï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+
         }
 
 
     }
 
-    public void isBlown(float Posx, float Strength) //Posx:‚¢‚½ˆÊ’u@Strength:‚¢‚½‹­‚³
+    public void isBlown(float Posx, float Strength) //Posx:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’uï¿½@Strength:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
-        float width = 5.0f;
+        if( ObjectList.Count == 0 )
+            return;
         GameObject Dan = ObjectList[0];
-        if (Mathf.Abs(Dan.transform.position.x-Posx) <width)
+        if (Mathf.Abs(Dan.transform.position.x-Posx) < BlownWidth)
         {
             Debug.Log("isblown");
-            Destroy(ObjectList[0]);// ƒŠƒXƒg‚Ì0”Ô–Ú‚ÌƒIƒuƒWƒFƒNƒg‚ğÁ‚·
-            ObjectList.RemoveAt(0);// ƒŠƒXƒg‚Ì0”Ô–Ú‚ğíœ‚·‚é
-            ObjectCount -= 1;// ƒvƒŒƒtƒ@ƒu‚Ì”‚ğ1Œ¸‚ç‚·
+            Destroy(ObjectList[0]);// ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½0ï¿½Ô–Ú‚ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            ObjectList.RemoveAt(0);// ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½0ï¿½Ô–Ú‚ï¿½ï¿½íœï¿½ï¿½ï¿½ï¿½
         }
     }
 
-    public void notBlown(float Posz) //Posz:ƒJƒƒ‰‚ÌˆÊ’u
+    public void notBlown(float Posz) //Posz:ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ÌˆÊ’u
     {
         GameObject Dan = ObjectList[0];
         if(Dan.transform.position.z < Posz)
         {
             Debug.Log("notblown");
-            ObjectList.RemoveAt(0);// ƒŠƒXƒg‚Ì0”Ô–Ú‚ğíœ‚·‚é
+            ObjectList.RemoveAt(0);// ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½0ï¿½Ô–Ú‚ï¿½ï¿½íœï¿½ï¿½ï¿½ï¿½
         }
     }
 
