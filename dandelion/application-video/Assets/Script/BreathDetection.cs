@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BreathDetection : MonoBehaviour
 {
-    public bool breathflag = false;
+    //public bool breathflag = false;
+
     //DandelionManegimen BreScript;
 
     // Start is called before the first frame update
@@ -27,12 +28,12 @@ public class BreathDetection : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            breathflag = true;
+            //breathflag = true;
             Debug.Log("true");
         }
         else
         {
-            breathflag = false;
+            //breathflag = false;
             //Debug.Log("false");
         }
     }
