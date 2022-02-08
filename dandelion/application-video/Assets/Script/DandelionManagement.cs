@@ -12,11 +12,10 @@ public class DandelionManagement : MonoBehaviour
     List<string[]> toneDatas = new List<string[]>();
 
     public GameObject DandelionPrefab;
+    public float BlownWidth = 5.0f;
+
     int numSounds = 10;//270;
-
     public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
-    private int ObjectCount=0;
-
 
     //DandelionManagement
     //1. SetPosition() たんぽぽ生成
@@ -69,7 +68,6 @@ public class DandelionManagement : MonoBehaviour
                 Vector3 pos = new Vector3(posx, 0f, posz);
                 Instantiate(DandelionPrefab, pos, Quaternion.identity);
                 ObjectList.Add(DandelionPrefab);
-                ObjectCount += 1;
                 posz += 0.5f;
             }
 
@@ -77,7 +75,7 @@ public class DandelionManagement : MonoBehaviour
             //1: 連続する場合は高さを変える（茎）
             //2: velocityごとに大きさを変える（綿毛）
             //3: 色の変更(中身)中の色が変わっていることが外側から分かるようにする
-            
+
         }
 
 
@@ -85,14 +83,14 @@ public class DandelionManagement : MonoBehaviour
 
     public void isBlown(float Posx, float Strength) //Posx:吹いた位置　Strength:吹いた強さ
     {
-        float width = 5.0f;
+        if( ObjectList.Count == 0 )
+            return;
         GameObject Dan = ObjectList[0];
-        if (Mathf.Abs(Dan.transform.position.x-Posx) <width)
+        if (Mathf.Abs(Dan.transform.position.x-Posx) < BlownWidth)
         {
             Debug.Log("isblown");
             Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
             ObjectList.RemoveAt(0);// リストの0番目を削除する
-            ObjectCount -= 1;// プレファブの数を1減らす
         }
     }
 

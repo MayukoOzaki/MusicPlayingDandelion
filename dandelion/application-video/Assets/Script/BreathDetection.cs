@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class BreathDetection : MonoBehaviour
 {
-    //public bool breathflag = false;
-
+    public DandelionManagement dandelionManagement;
     //DandelionManegimen BreScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,22 +18,25 @@ public class BreathDetection : MonoBehaviour
     {
         KeyDetection();
     }
+
     void FixedUpdate()
     {
-        
+
     }
 
     void KeyDetection()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            //breathflag = true;
-            Debug.Log("true");
+            dandelionManagement.isBlown(-1.0f, 1.0f);
         }
-        else
+        else if (Input.GetKeyDown(KeyCode.S))
         {
-            //breathflag = false;
-            //Debug.Log("false");
+            dandelionManagement.isBlown( 0.0f, 1.0f);
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            dandelionManagement.isBlown( 1.0f, 1.0f);
         }
     }
 }
