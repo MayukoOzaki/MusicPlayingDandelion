@@ -4,10 +4,18 @@ import numpy as np
 import statistics
 import math
 import time
+import random
 
 #from PIL import Image, ImageDraw
 
-
+# 検出した頂点のうちどのくらいの割合を揺らぎ検出点に使うか
+POINT_RATIO = 0.001
+# 二次曲線フィッティングに使う点の数
+XRANGE = 3
+# 画面内の検出エリアの横方向の割合
+W_RATIO = 0.5
+# 画面内の検出エリアの縦方向の割合
+H_RATIO = 0.8
 
 #画面録画
 #fps = 30
@@ -24,11 +32,18 @@ import time
 
 #print("a")
 
+p =1228800#921600 #2073600 #312664
+#1280×960
+wide=1280
+#1280
+high=960
+#720
+#p = 1228800
 
 cap = cv2.VideoCapture(0)
 
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280) # カメラ画像の横幅を1920#1280に設定#646
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 960) # カメラ画像の縦幅を1080720に設定#484
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, wide) # カメラ画像の横幅を1920#1280に設定#646
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, high) # カメラ画像の縦幅を1080720に設定#484
 
 
 avg=None
@@ -39,13 +54,6 @@ bef_ss=None
 #threshold = 100
 
 
-p =1228800#921600 #2073600 #312664
-#1280×960
-wide=1280
-#1280
-high=960
-#720
-#p = 1228800
 
 
 def reset_standard():
@@ -57,19 +65,19 @@ def reset_standard():
 
     base = np.asarray(avg)
     base = base.flatten()  # 元データ
-    
+
     p = len(base)
     basedata = []  # 移動平均
     basetop = []  # 頂点位置
-    
-    for a in range(p):
 
+    bef_sum = 0
+    for a in range(p):
         if a==0:
             now_sum=sum(base[0:3])
             d=now_sum/3
         elif a==1 or a==2:
             now_sum=bef_sum+base[a+2]
-            d = now_sum/(a+3)            
+            d = now_sum/(a+3)
         elif a==p-2 or a==p-1:
             now_sum=bef_sum-base[a-3]
             if a==p-2:
@@ -83,35 +91,33 @@ def reset_standard():
         basedata.append(d)
         bef_sum = now_sum
 
-       
+
     #print("basedata")
 
     count = 1
     start = 0
     before = -999999
-    trend = 0  # 上がっていたら１下がっていたら０     
+    trend = 0  # 上がっていたら１下がっていたら０
     for e in range(p):
         now = basedata[e]
         if before == now:
             count += 1
         elif before > now:
             if trend == 1:
-                if count > 1:
-                    if (start+e-1)/2 >= 3 and (start+e-1)/2 <= (p-1)-3:
-                        basetop.append(int((start+e-1)/2))#
-                else:
-                    if e-1 >= 3 and e-1 <= (p-1)-3:
-                        basetop.append(e-1)
+                px = e % wide
+                py = e // wide
+                if abs(px - wide//2) < wide*W_RATIO/2 and abs(py - high//2) < high*H_RATIO/2:
+                    basetop.append(int((start+e-1)/2))#
             trend = 0
             count = 1
-            start = 0
+            start = e
         elif before < now and before >= 100:
             trend = 1
             count = 1
             start = e
 
         before = now
-    
+
     #print("basetop")
 
     ql = []
@@ -121,7 +127,10 @@ def reset_standard():
         #print(set(ql))
         #print(sum(ql)/len(ql))
     #print("ql")
-    basetop2 = basetop[::111]#79#50
+    basetop2 = []
+    for p in basetop:
+        if random.random()<POINT_RATIO:
+            basetop2.append(p)
     #print("basetop2")
     #print(len(basetop))
 
@@ -156,35 +165,34 @@ def reset_standard():
 
 def searching_top():
     global toplist
-    xrange = 7
-    x = list(range(xrange))  # list(range(35))  # 15  xrange=int(t_range/2)
+    x = list(range(XRANGE))  # list(range(35))  # 15  XRANGE=int(t_range/2)
     toplist = []
     #print(p)
     p = len(data1)
     #print(p)
     #print("data1", len(data1))
-    
+
     for top in basetop2:
         top=int(top)
-        if top<=int(xrange/2):
-            y = data1[:xrange]
-        elif top >= (p-1)-int(xrange/2):  
-            y = data1[(p-1)-(xrange-1):]  
+        if top<=int(XRANGE/2):
+            y = data1[:XRANGE]
+        elif top >= (p-1)-int(XRANGE/2):
+            y = data1[(p-1)-(XRANGE-1):]
             #print("x", len(x))
             #print("y", len(y))
         else:
-            y = data1[top-int(xrange/2):top+int(xrange/2)+1]  # int(xrange/2),int(xrange/2)+1
+            y = data1[top-int(XRANGE/2):top+int(XRANGE/2)+1]  # int(XRANGE/2),int(XRANGE/2)+1
         #print("x",x)
         #print("y",y)
         z = np.polyfit(x, y, 2)
         d = (-z[1]) / (2 * z[0])
-    
-        if top <= int(xrange/2):  # int(xrange/2)
+
+        if top <= int(XRANGE/2):  # int(XRANGE/2)
             toplist.append(d)
-        elif top >= (p-1)-int(xrange/2):  # int(xrange/2)
-            toplist.append(d+(p-1)-xrange-1)  # xrange-1
+        elif top >= (p-1)-int(XRANGE/2):  # int(XRANGE/2)
+            toplist.append(d+(p-1)-XRANGE-1)  # XRANGE-1
         else:
-            toplist.append(d+top-int(xrange/2))  # int(xrange/2)
+            toplist.append(d+top-int(XRANGE/2))  # int(XRANGE/2)
 
 
 count1 = 0
@@ -203,7 +211,7 @@ while(True):
             xx = int(tyouten-(wide*(yy-1)))
             #print(xx,yy)
             cv2.circle(img=avg, center=(xx, yy), radius=5,color=color1, thickness=2, lineType=cv2.LINE_AA)
-    
+
     if key == ord('b'):
         print("なし",count1,count2,count1/count2)
         print("吹いた")
@@ -232,7 +240,7 @@ while(True):
     #skeleton1 = cv2.ximgproc.thinning(skeleton1, thinningType=cv2.ximgproc.THINNING_GUOHALL )
 
     # 前フレームを保存
-  
+
 
     if avg is None:
         reset_standard()
@@ -252,16 +260,16 @@ while(True):
         continue
 
     now_toplist=toplist
-    
+
 
     #print(basedata)
     #print(basetop)
     #basetop2=basetop[::50]
 
-    
+
 
     #print(toplist)
-    
+
     #result = np.array(basetop)-np.array(toplist)
     #averesult = np.average(result)
     #pvaresult = statistics.pvariance(result)
@@ -271,7 +279,7 @@ while(True):
     #print("averesult",averesult)
     #print("pvasesult",pvaresult)
     #print(sorted(result)[0:10])
-    
+
     color2 = np.array([255., 255., 255.])
     sa_x=0
     sa_xx=0
@@ -303,7 +311,7 @@ while(True):
         #n=880,880
         #分子の自由度879,分母の自由度879
         #
-        #パーセント点 
+        #パーセント点
         #https://keisan.casio.jp/exec/system/1161228871
         #1%基準
         #1.17006201074148931468
@@ -329,6 +337,7 @@ while(True):
                 #print("違う")
                 count1+=1
     except:
+        now_ss = 1
         pass
 
 
@@ -349,7 +358,7 @@ while(True):
     # http://opencv.jp/opencv-2svn/cpp/imgproc_motion_analysis_and_object_tracking.html
     # 小さくしないと前のフレームの残像が残る
     # 重みは蓄積し続ける。
-    
+
     #cv2.imshow("image2",  cv2.convertScaleAbs(avg))#前
 
     #frameDelta = cv2.absdiff(gray, cv2.convertScaleAbs(avg))#差
@@ -370,7 +379,7 @@ while(True):
     #cv2.imshow("binarization", gray2)#2値化
     #cv2.imshow("fibrillation", skeleton1)# 細線化
     #cv2.imshow("diff", frameDelta_diff)#差
-    
+
     #video.write(gray)  # 画面録画
     #key = cv2.waitKey(1)
     #if key == 27:
