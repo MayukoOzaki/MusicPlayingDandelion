@@ -48,7 +48,7 @@ high=960
 #p = 1228800
 
 
-def reset_standard():
+def reset_standard(): #基準画像リセット
     global basetop
     global basetop2
     global avg
@@ -154,7 +154,7 @@ def reset_standard():
 #print(basetop)
 # #return
 
-def searching_top():
+def searching_top(): # 頂点検出
     global toplist
     xrange = 7
     x = list(range(xrange))  # list(range(35))  # 15  xrange=int(t_range/2)
