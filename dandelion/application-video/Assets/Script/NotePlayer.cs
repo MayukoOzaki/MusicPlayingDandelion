@@ -41,18 +41,15 @@ public class NotePlayer : MonoBehaviour
         
     }
 
-    void NoteOn(byte Pitch, byte Velocity, byte ToneColor)//吹いたときに呼び出される　Pitch:ピッチ Velocity:強さ ToneColor:音色
+    void NoteOn(uint Pitch, uint Velocity, uint ToneColor)//吹いたときに呼び出される　Pitch:ピッチ Velocity:強さ ToneColor:音色
     {
 
 
         //▼音色選択
 
         uint ch = 0xc0;
-        uint TC_data = ch << 0 + ToneColor << 16;
-        midiOutShortMsg(hMidiOut, TC_data);   // 音色を定義 アコースティックピアノ0x0(0)
-
-
-
+        uint TC_data = (ch << 0) + (ToneColor << 8);
+        NotePlayer.midiOutShortMsg(hMidiOut, TC_data);   // 音色を定義 アコースティックピアノ0x0(0)
 
 
         // midiOutShortMsg(h, 0xc0);   
@@ -75,8 +72,8 @@ public class NotePlayer : MonoBehaviour
 
         //▼演奏
         uint on = 0x90;
-        uint data = on <<0 +Pitch << 16 + Velocity << 24;
-        NotePlayer.midiOutShortMsg(hMidiOut, data);
+        uint on_data = (on << 0) + (Pitch << 8) + (Velocity << 16);
+        NotePlayer.midiOutShortMsg(hMidiOut, on_data);
 
         //NotePlayer.midiOutShortMsg(hMidiOut,0x7f0090);
 
@@ -88,25 +85,12 @@ public class NotePlayer : MonoBehaviour
         //	0x7f 2byte目 データーバイト2 ベロシティ 127
 
 
-        //ド
-        //NotePlayer.midiOutShortMsg(hMidiOut, 0x7F3C90);
-        //Task.Delay(800).Wait();
-        //NotePlayer.midiOutShortMsg(hMidiOut, 0x003C90);
-
-        //レ
-        //NotePlayer.midiOutShortMsg(hMidiOut, 0x7F3E90);
-        //Task.Delay(800).Wait();
-        //NotePlayer.midiOutShortMsg(hMidiOut, 0x003E90);
-
-        //ミ
-        //NotePlayer.midiOutShortMsg(hMidiOut, 0x7F4090);
-        //Task.Delay(800).Wait();
-        //NotePlayer.midiOutShortMsg(hMidiOut, 0x004090);
     }
 
-    void NoteOff(float Pitch)//strengthが０の時に呼び出される
+    void NoteOff(uint Pitch, uint Velocity)//strengthが０の時に呼び出される
     {
-
+        uint off = 0x80;
+        uint off_data = (off << 0) + (Pitch << 8) + (Velocity << 16);
     }
 
     void EndPerformance()
