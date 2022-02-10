@@ -91,6 +91,7 @@ public class NotePlayer : MonoBehaviour
     {
         uint off = 0x80;
         uint off_data = (off << 0) + (Pitch << 8) + (Velocity << 16);
+        NotePlayer.midiOutShortMsg(hMidiOut, off_data);
     }
 
     void EndPerformance()

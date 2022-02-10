@@ -17,6 +17,8 @@ public class DandelionManagement : MonoBehaviour
     int numSounds = 10;//270;
     public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
+    public NotePlayer notePlayer;
+
     //DandelionManagement
     //1. SetPosition() たんぽぽ生成
     //2. たんぽぽリスト
@@ -107,7 +109,9 @@ public class DandelionManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Vector3 camPos = GameObject.Find("MainCamera").transform.position;
+        float z = camPos.z;
+        notBlown(z);
     }
 
 }
