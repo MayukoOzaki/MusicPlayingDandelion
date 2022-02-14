@@ -5545,6 +5545,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4821440824863355326, guid: 4bea71f781f853a4ba7410de386b3daf, type: 3}
   m_PrefabInstance: {fileID: 4821440825820846798}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1192618865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192618864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581497409e9a3374f9eaa4898fe2c69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pitch: 0
 --- !u!1001 &1193533903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9741,6 +9754,7 @@ MonoBehaviour:
   DandelionPrefab: {fileID: 1192618864}
   BlownWidth: 5
   ObjectList: []
+  notePlayer: {fileID: 0}
 --- !u!4 &2131401524
 Transform:
   m_ObjectHideFlags: 0
