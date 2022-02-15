@@ -34,6 +34,7 @@ public class NotePlayer : MonoBehaviour
 
         //▼MIDIデバイスオープン
         NotePlayer.midiOutOpen(out hMidiOut, MIDI_MAPPER, IntPtr.Zero, IntPtr.Zero, uint.MinValue);
+        NoteOn(50, 100, 0);
     }
     // Update is called once per frame
     void Update()
@@ -87,9 +88,18 @@ public class NotePlayer : MonoBehaviour
 
     }
 
-    void NoteOff(uint Pitch, uint Velocity)//strengthが０の時に呼び出される
+
+   // public void NoteOff(uint Pitch, uint Velocity)//strengthが０の時に呼び出される
+   // {
+        //uint off = 0x80;
+        //uint off_data = (off << 0) + (Pitch << 8) + (Velocity << 16);
+        //NotePlayer.midiOutShortMsg(hMidiOut, off_data);
+    //}
+
+    public void NoteOff(uint Pitch)//strengthが０の時に呼び出される
     {
-        uint off = 0x80;
+        uint Velocity = 0x0;
+        uint off = 0x90;
         uint off_data = (off << 0) + (Pitch << 8) + (Velocity << 16);
         NotePlayer.midiOutShortMsg(hMidiOut, off_data);
     }
@@ -100,4 +110,9 @@ public class NotePlayer : MonoBehaviour
         NotePlayer.midiOutReset(hMidiOut);
         NotePlayer.midiOutClose(hMidiOut);
     }
+    private void OnDestroy()
+    {
+        EndPerformance();
+    }
+
 }

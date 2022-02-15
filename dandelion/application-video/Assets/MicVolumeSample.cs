@@ -23,7 +23,7 @@ public class MicVolumeSample : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(m_volumeRate);
+        //Debug.Log(m_volumeRate);
     }
 
     // オーディオが読まれるたびに実行される

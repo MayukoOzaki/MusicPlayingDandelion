@@ -41,9 +41,11 @@ public class BreathDetection : MonoBehaviour
         }
         else
         {
-            Vector3 camPos = GameObject.Find("MainCamera").transform.position;
+            Vector3 camPos = GameObject.FindWithTag("MainCamera").transform.position;
             float z = camPos.z;
             dandelionManagement.CheckPassingDandelion(z);
         }
     }
+
+    
 }
