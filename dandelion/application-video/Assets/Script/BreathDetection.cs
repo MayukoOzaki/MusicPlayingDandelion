@@ -5,6 +5,7 @@ using UnityEngine;
 public class BreathDetection : MonoBehaviour
 {
     public DandelionManagement dandelionManagement;
+    public NotePlayer noteplayer;
 
     //DandelionManegimen BreScript;
 
@@ -44,6 +45,8 @@ public class BreathDetection : MonoBehaviour
             Vector3 camPos = GameObject.FindWithTag("MainCamera").transform.position;
             float z = camPos.z;
             dandelionManagement.CheckPassingDandelion(z);
+            noteplayer.NoteOff(noteplayer.nowPitch);
+
         }
     }
 
