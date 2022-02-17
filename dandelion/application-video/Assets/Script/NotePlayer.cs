@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public class NotePlayer : MonoBehaviour
 {
-    
+     
 
     [DllImport("winmm.dll")]
     public static extern uint midiOutOpen(out IntPtr lphMidiOut, int uDeviceID, IntPtr dwCallback, IntPtr dwInstance, uint dwFlags);
@@ -24,6 +24,8 @@ public class NotePlayer : MonoBehaviour
 
     IntPtr hMidiOut;
     const int MIDI_MAPPER = -1;
+
+    public uint nowPitch;//今音を出したピッチ
 
 
 
@@ -44,6 +46,7 @@ public class NotePlayer : MonoBehaviour
 
     public void NoteOn(uint Pitch, uint Velocity, uint ToneColor)//吹いたときに呼び出される　Pitch:ピッチ Velocity:強さ ToneColor:音色
     {
+        nowPitch = Pitch;
 
 
         //▼音色選択
