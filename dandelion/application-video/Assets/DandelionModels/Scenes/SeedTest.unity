@@ -465,6 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56a1aee94b669941808c195a3bd82fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowPitch: 0
 --- !u!4 &86580233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
@@ -1232,6 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dandelionManagement: {fileID: 2131401523}
+  noteplayer: {fileID: 81642999}
 --- !u!4 &254352105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
