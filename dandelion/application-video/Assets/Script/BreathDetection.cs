@@ -5,6 +5,7 @@ using UnityEngine;
 public class BreathDetection : MonoBehaviour
 {
     public DandelionManagement dandelionManagement;
+
     //DandelionManegimen BreScript;
 
     // Start is called before the first frame update
@@ -38,5 +39,13 @@ public class BreathDetection : MonoBehaviour
         {
             dandelionManagement.isBlown( 1.0f, 1.0f);
         }
+        else
+        {
+            Vector3 camPos = GameObject.FindWithTag("MainCamera").transform.position;
+            float z = camPos.z;
+            dandelionManagement.CheckPassingDandelion(z);
+        }
     }
+
+    
 }
