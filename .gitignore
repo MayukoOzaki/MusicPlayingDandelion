@@ -365,3 +365,5 @@ FodyWeavers.xsd
 
 # idehara
 sound/
+!dandelion/application-video/Assets/Oculus/Spatializer/Plugins/x86_64/AudioPluginOculusSpatializer.dll
+!dandelion/application-video/Assets/Oculus/VR/Plugins/1.69.0/Win64OpenXR/OVRPlugin.dll
