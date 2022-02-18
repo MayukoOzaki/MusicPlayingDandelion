@@ -47,6 +47,7 @@ public class MicVolumeSample : MonoBehaviour
             {
                 if  (Input.GetKeyDown(KeyCode.P))
                 {
+                    Debug.Log("P‚ð—£‚µ‚½");
                     float fHz = i;
                     string hz = fHz.ToString();
                     float fNum = spectrum[i];
@@ -73,7 +74,7 @@ public class MicVolumeSample : MonoBehaviour
                 string text = datalist[i][0] + " " + datalist[i][1];
                 File.WriteAllText(path, text);
             }
-                    
+            Debug.Log("P‚ð—£‚µ‚½");
 
         }
 
