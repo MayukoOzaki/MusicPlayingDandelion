@@ -29,10 +29,10 @@ public class MicVolumeSample : MonoBehaviour
         aud = GetComponent<AudioSource>();
         if ((aud != null) && (Microphone.devices.Length > 0)) // オーディオソースとマイクがある
         {
-            string devName = Microphone.devices[0]; // 複数見つかってもとりあえず0番目のマイクを使用
+            string devName = Microphone.devices[0]; // 0番目のマイクを使用
             int minFreq, maxFreq;
             Microphone.GetDeviceCaps(devName, out minFreq, out maxFreq); // 最大最小サンプリング数を得る
-            aud.clip = Microphone.Start(devName, true, 2, minFreq); // 音の大きさを取るだけなので最小サンプリングで十分
+            aud.clip = Microphone.Start(devName, true, 2, minFreq); // 音の大きさを取るだけなので最小サンプリング
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
         }
         CreateFile1();
@@ -73,8 +73,7 @@ public class MicVolumeSample : MonoBehaviour
                 string text = datalist[i][0] + " " + datalist[i][1];
                 File.WriteAllText(path, text);
             }
-                    
-
+            File.WriteAllText(path, "END");
         }
 
 
