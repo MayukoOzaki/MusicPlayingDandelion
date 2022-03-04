@@ -20,7 +20,9 @@ public class MicVolumeSample : MonoBehaviour
 
     private List<List<string>> datalist = new List<List<string>>();
     private int count = 0;
-   
+
+    private StreamWriter sw;
+
 
 
     // Use this for initialization
@@ -36,6 +38,8 @@ public class MicVolumeSample : MonoBehaviour
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
         }
         CreateFile1();
+        Debug.Log("AAA");
+        
     }
 
     // Update is called once per frame
@@ -43,16 +47,20 @@ public class MicVolumeSample : MonoBehaviour
     {
         aud.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
         for(int i=0;i<256;i++)
-            if(spectrum[i]>0.01f)
+            if(spectrum[i]>0.01f||true)
             {
                 if  (Input.GetKeyDown(KeyCode.P))
                 {
                     float fHz = i;
-                    string hz = fHz.ToString();
+                    string hz = fHz.ToString();//周波数
                     float fNum = spectrum[i];
-                    string num = fNum.ToString();
-                    datalist[count].Add(hz);
-                    datalist[count].Add(num);
+                    string num = fNum.ToString();//数
+
+                    SaveData(hz, num);
+
+
+                    //datalist[count].Add(hz);
+                    //datalist[count].Add(num);
                 }
                 //datalist[count].Add(i);
                 //datalist[count].Add(spectrum[i]);
@@ -62,24 +70,32 @@ public class MicVolumeSample : MonoBehaviour
                 count += 1;
             }
 
-        if (Input.GetKeyUp(KeyCode.P))
+
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            int a = datalist.Count;
+            sw.Close();
+            Debug.Log("CCC");
 
-            string path = Application.persistentDataPath + "/sample1.txt";
-
-            for  (int i = 0; i < a; i++)
-            {
-                string text = datalist[i][0] + " " + datalist[i][1];
-                File.WriteAllText(path, text);
-            }
-            File.WriteAllText(path, "END");
         }
 
+        //if (Input.GetKeyUp(KeyCode.P))
+        //{
+        //  int a = datalist.Count;
+        //
+        //string path = Application.persistentDataPath + "/sample1.txt";
 
-            //Debug.Log(spectrum);
-            //Debug.Log(m_volumeRate);
-        }
+        //for  (int i = 0; i < a; i++)
+        //{
+        //  string text = datalist[i][0] + " " + datalist[i][1];
+        //File.WriteAllText(path, text);
+        //}
+        //File.WriteAllText(path, "END");
+        //}
+
+
+        //Debug.Log(spectrum);
+        //Debug.Log(m_volumeRate);
+    }
 
     // オーディオが読まれるたびに実行される
     private void OnAudioFilterRead(float[] data, int channels)
@@ -98,8 +114,24 @@ public class MicVolumeSample : MonoBehaviour
 
     private void CreateFile1()
     {
-        var path = "sample1.txt";
-        var fileStream = File.Create(path);
-        fileStream.Close();
+        sw = new StreamWriter(@"SaveData.csv", true, Encoding.GetEncoding("Shift_JIS"));
+        string[] s1 = { "frequency", "quantity"};
+        string s2 = string.Join(",", s1);
+        sw.WriteLine(s2);
+        Debug.Log("BBB");
+
     }
+
+
+    public void SaveData(string hz, string num)
+    {
+        string[] s1 = { hz, num};
+        Debug.Log("DDD");
+        string s2 = string.Join(",", s1);
+        Debug.Log("DDD");
+        sw.WriteLine(s2);
+        Debug.Log("DDD");
+
+    }
+
 }
