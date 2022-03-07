@@ -51,7 +51,7 @@ public class MicVolumeSample : MonoBehaviour
             {
                 if  (Input.GetKeyDown(KeyCode.P))
                 {
-                    Debug.Log("Pを離した");
+                    Debug.Log("Pを押した");
                     float fHz = i;
                     string hz = fHz.ToString();//周波数
                     float fNum = spectrum[i];
@@ -84,19 +84,13 @@ public class MicVolumeSample : MonoBehaviour
         //  int a = datalist.Count;
         //
         //string path = Application.persistentDataPath + "/sample1.txt";
-
-            for  (int i = 0; i < a; i++)
-            {
-                string text = datalist[i][0] + " " + datalist[i][1];
-                File.WriteAllText(path, text);
-            }
-            Debug.Log("Pを離した");
+        //Debug.Log("Pを離した");
 
 
         //for  (int i = 0; i < a; i++)
         //{
         //  string text = datalist[i][0] + " " + datalist[i][1];
-        //File.WriteAllText(path, text);
+        //  File.WriteAllText(path, text);
         //}
         //File.WriteAllText(path, "END");
         //}
@@ -123,7 +117,8 @@ public class MicVolumeSample : MonoBehaviour
 
     private void CreateFile1()
     {
-        sw = new StreamWriter(@"SaveData.csv", true, Encoding.GetEncoding("Shift_JIS"));
+        Encoding utf8 = System.Text.Encoding.UTF8;
+        sw = new StreamWriter(@"SaveData002.csv", false, utf8);//false　すでにファイルが存在する場合そのファイルは消去され上書き保存される。
         string[] s1 = { "frequency", "quantity"};
         string s2 = string.Join(",", s1);
         sw.WriteLine(s2);
@@ -134,6 +129,8 @@ public class MicVolumeSample : MonoBehaviour
 
     public void SaveData(string hz, string num)
     {
+        Encoding utf8 = System.Text.Encoding.UTF8;
+        sw = new StreamWriter(@"SaveData002.csv", true, utf8);//true 追記
         string[] s1 = { hz, num};
         Debug.Log("DDD");
         string s2 = string.Join(",", s1);
