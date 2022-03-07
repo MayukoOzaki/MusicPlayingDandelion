@@ -56,8 +56,10 @@ public class MicVolumeSample : MonoBehaviour
                     string hz = fHz.ToString();//周波数
                     float fNum = spectrum[i];
                     string num = fNum.ToString();//数
-
+                    Debug.Log(hz+" "+num);
                     SaveData(hz, num);
+
+                    //sw.Close();
 
 
                     //datalist[count].Add(hz);
@@ -118,25 +120,30 @@ public class MicVolumeSample : MonoBehaviour
     private void CreateFile1()
     {
         Encoding utf8 = System.Text.Encoding.UTF8;
-        sw = new StreamWriter(@"SaveData002.csv", false, utf8);//false　すでにファイルが存在する場合そのファイルは消去され上書き保存される。
+        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\SaveData001.csv", true, utf8);///true 追記 ,false　すでにファイルが存在する場合そのファイルは消去され上書き保存される。
         string[] s1 = { "frequency", "quantity"};
         string s2 = string.Join(",", s1);
         sw.WriteLine(s2);
-        Debug.Log("BBB");
+        Debug.Log("ファイルを作成");
+        sw.Close();
+
 
     }
 
 
     public void SaveData(string hz, string num)
     {
+        Debug.Log("Save-2");
         Encoding utf8 = System.Text.Encoding.UTF8;
-        sw = new StreamWriter(@"SaveData002.csv", true, utf8);//true 追記
-        string[] s1 = { hz, num};
-        Debug.Log("DDD");
+        Debug.Log("Save-1");
+        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\SaveData001.csv", true, utf8);//true 追記
+        Debug.Log("Save0");
+        string[] s1 = {hz, num};
+        Debug.Log("Save1"+" "+s1);
         string s2 = string.Join(",", s1);
-        Debug.Log("DDD");
+        Debug.Log("Save2"+" "+s2);
         sw.WriteLine(s2);
-        Debug.Log("DDD");
+        Debug.Log("Save3"+" "+s2);
 
     }
 
