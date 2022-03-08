@@ -74,12 +74,12 @@ public class MicVolumeSample : MonoBehaviour
             }
 
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            sw.Close();
-            Debug.Log("CCC");
+        //if (Input.GetKeyDown(KeyCode.Return))
+        //{
+            //sw.Close();
+        //    Debug.Log("CCC");
 
-        }
+        //}
 
         //if (Input.GetKeyUp(KeyCode.P))
         //{
@@ -133,17 +133,18 @@ public class MicVolumeSample : MonoBehaviour
 
     public void SaveData(string hz, string num)
     {
-        Debug.Log("Save-2");
+        //Debug.Log("Save-2");
         Encoding utf8 = System.Text.Encoding.UTF8;
-        Debug.Log("Save-1");
+        //Debug.Log("Save-1");
         sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\SaveData001.csv", true, utf8);//true ’Ç‹L
-        Debug.Log("Save0");
+        //Debug.Log("Save0");
         string[] s1 = {hz, num};
-        Debug.Log("Save1"+" "+s1);
+        //Debug.Log("Save1"+" "+s1);
         string s2 = string.Join(",", s1);
-        Debug.Log("Save2"+" "+s2);
+        //Debug.Log("Save2"+" "+s2);
         sw.WriteLine(s2);
-        Debug.Log("Save3"+" "+s2);
+        //Debug.Log("Save3"+" "+s2);
+        sw.Close();
 
     }
 
