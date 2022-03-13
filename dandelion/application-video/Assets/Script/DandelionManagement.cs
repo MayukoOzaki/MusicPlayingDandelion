@@ -104,6 +104,7 @@ public class DandelionManagement : MonoBehaviour
             uint velocity = (uint)i_velocity;
             uint ToneColor = 0x0;
             notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+            //同じ音番号の時はリターン音を再生しない。
 
             //音の再生を止める条件は、息が止まった時と、endの範囲外になったとき。
         }
@@ -129,5 +130,7 @@ public class DandelionManagement : MonoBehaviour
         float z = camPos.z;
         CheckPassingDandelion(z);
     }
+
+    //位置はゴーグルからとる。
 
 }
