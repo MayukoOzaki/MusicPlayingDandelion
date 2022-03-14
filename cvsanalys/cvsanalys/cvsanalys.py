@@ -27,4 +27,3 @@ avesqsum=sqsum/256 #2乗合計の平均
 
 variance= avesqsum-avesum #分散
 print("variance",variance)
-
