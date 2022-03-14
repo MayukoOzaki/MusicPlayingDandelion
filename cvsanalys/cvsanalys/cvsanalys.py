@@ -2,7 +2,7 @@ import csv
 
 
 csvfile = open(
-    r"C:\Users\mayuk\source\repos\MusicPlayingDandelion\cvsdata\masukuCVS013.csv", 'r', encoding="utf-8")
+    r"C:\Users\mayuk\source\repos\MusicPlayingDandelion\cvsdata\masukuCVS013.csv", 'r')
 reader = csv.reader(csvfile)
 
 #print(reader)
