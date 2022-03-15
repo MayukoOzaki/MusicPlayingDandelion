@@ -53,23 +53,24 @@ public class BreathDetection : MonoBehaviour
             }
             if (i >= 17 && i < 33)
             {
-                float sqnum = Mathf.Pow(fNum, 2);
+                float sqnum = Mathf.Pow(fNum, 2.0f);
                 eH += sqnum;
             }
             
             //array[i] = num;
         }
 
-        //Debug.Log(eH + " " + eL);
+        
         r = eH / eL;
         if (Input.GetKey(KeyCode.P))
         {
-            Debug.Log(r);
+            //Debug.Log(eH + " " + eL);
+            //Debug.Log(r);
         }
-            
+
         if (r >= 1.993)
         {
-            Debug.Log("息を吹いている");
+            //Debug.Log("息を吹いている");
 
         }
         else
