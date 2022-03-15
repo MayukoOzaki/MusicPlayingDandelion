@@ -1,0 +1,49 @@
+<<<<<<< HEAD
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "cvsanalys", "cvsanalys\cvsanalys.pyproj", "{924A1302-081D-416A-8D9A-490C0E20551D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{924A1302-081D-416A-8D9A-490C0E20551D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924A1302-081D-416A-8D9A-490C0E20551D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4529E100-D2B1-47B4-8396-A8328D00C835}
+	EndGlobalSection
+EndGlobal
+=======
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "cvsanalys", "cvsanalys\cvsanalys.pyproj", "{924A1302-081D-416A-8D9A-490C0E20551D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{924A1302-081D-416A-8D9A-490C0E20551D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924A1302-081D-416A-8D9A-490C0E20551D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4529E100-D2B1-47B4-8396-A8328D00C835}
+	EndGlobalSection
+EndGlobal
+>>>>>>> a281ac08ad1ad89ddc1aebc9e566386f8f615d9d
