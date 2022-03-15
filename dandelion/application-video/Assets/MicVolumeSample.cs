@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 public class MicVolumeSample : MonoBehaviour
 {
 
-    [SerializeField, Range(0f, 10f)] float m_gain = 1f; // ‰¹—Ê‚ÉŠ|‚¯‚é”{—¦
-    float m_volumeRate; // ‰¹—Ê(0-1)
+    [SerializeField, Range(0f, 10f)] float m_gain = 1f; // éŸ³é‡ã«æ›ã‘ã‚‹å€ç‡
+    float m_volumeRate; // éŸ³é‡(0-1)
     //public List<float> volumeList = new List<float>();
 
     private AudioSource aud;
@@ -29,13 +29,13 @@ public class MicVolumeSample : MonoBehaviour
     void Start()
     {
         aud = GetComponent<AudioSource>();
-        if ((aud != null) && (Microphone.devices.Length > 0)) // ƒI[ƒfƒBƒIƒ\[ƒX‚Æƒ}ƒCƒN‚ª‚ ‚é
+        if ((aud != null) && (Microphone.devices.Length > 0)) // ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚½ãƒ¼ã‚¹ã¨ãƒã‚¤ã‚¯ãŒã‚ã‚‹
         {
-            string devName = Microphone.devices[0]; // 0”Ô–Ú‚Ìƒ}ƒCƒN‚ğg—p
+            string devName = Microphone.devices[0]; // 0ç•ªç›®ã®ãƒã‚¤ã‚¯ã‚’ä½¿ç”¨
             int minFreq, maxFreq;
-            Microphone.GetDeviceCaps(devName, out minFreq, out maxFreq); // Å‘åÅ¬ƒTƒ“ƒvƒŠƒ“ƒO”‚ğ“¾‚é
-            aud.clip = Microphone.Start(devName, true, 2, minFreq); // ‰¹‚Ì‘å‚«‚³‚ğæ‚é‚¾‚¯‚È‚Ì‚ÅÅ¬ƒTƒ“ƒvƒŠƒ“ƒO
-            aud.Play(); //ƒ}ƒCƒN‚ğƒI[ƒfƒBƒIƒ\[ƒX‚Æ‚µ‚ÄÀs(Play)ŠJn
+            Microphone.GetDeviceCaps(devName, out minFreq, out maxFreq); // æœ€å¤§æœ€å°ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æ•°ã‚’å¾—ã‚‹
+            aud.clip = Microphone.Start(devName, true, 2, minFreq); // éŸ³ã®å¤§ãã•ã‚’å–ã‚‹ã ã‘ãªã®ã§æœ€å°ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
+            aud.Play(); //ãƒã‚¤ã‚¯ã‚’ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚½ãƒ¼ã‚¹ã¨ã—ã¦å®Ÿè¡Œ(Play)é–‹å§‹
         }
         CreateFile1();
         Debug.Log("AAA");
@@ -51,11 +51,11 @@ public class MicVolumeSample : MonoBehaviour
             {
                 if  (Input.GetKeyDown(KeyCode.P))
                 {
-                    Debug.Log("P‚ğ‰Ÿ‚µ‚½");
+                    Debug.Log("Pã‚’æŠ¼ã—ãŸ");
                     float fHz = i;
-                    string hz = fHz.ToString();//ü”g”
+                    string hz = fHz.ToString();//å‘¨æ³¢æ•°
                     float fNum = spectrum[i];
-                    string num = fNum.ToString();//”
+                    string num = fNum.ToString();//æ•°
                     Debug.Log(hz+" "+num);
                     SaveData(hz, num);
 
@@ -86,7 +86,7 @@ public class MicVolumeSample : MonoBehaviour
         //  int a = datalist.Count;
         //
         //string path = Application.persistentDataPath + "/sample1.txt";
-        //Debug.Log("P‚ğ—£‚µ‚½");
+        //Debug.Log("Pã‚’é›¢ã—ãŸ");
 
 
         //for  (int i = 0; i < a; i++)
@@ -102,16 +102,16 @@ public class MicVolumeSample : MonoBehaviour
         //Debug.Log(m_volumeRate);
     }
 
-    // ƒI[ƒfƒBƒI‚ª“Ç‚Ü‚ê‚é‚½‚Ñ‚ÉÀs‚³‚ê‚é
+    // ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãŒèª­ã¾ã‚Œã‚‹ãŸã³ã«å®Ÿè¡Œã•ã‚Œã‚‹
     private void OnAudioFilterRead(float[] data, int channels)
     {
         
         float sum = 0f;
         for (int i = 0; i < data.Length; ++i)
         {
-            sum += Mathf.Abs(data[i]); // ƒf[ƒ^i”gŒ`j‚Ìâ‘Î’l‚ğ‘«‚·
+            sum += Mathf.Abs(data[i]); // ãƒ‡ãƒ¼ã‚¿ï¼ˆæ³¢å½¢ï¼‰ã®çµ¶å¯¾å€¤ã‚’è¶³ã™
         }
-        // ƒf[ƒ^”‚ÅŠ„‚Á‚½‚à‚Ì‚É”{—¦‚ğ‚©‚¯‚Ä‰¹—Ê‚Æ‚·‚é
+        // ãƒ‡ãƒ¼ã‚¿æ•°ã§å‰²ã£ãŸã‚‚ã®ã«å€ç‡ã‚’ã‹ã‘ã¦éŸ³é‡ã¨ã™ã‚‹
         m_volumeRate = Mathf.Clamp01(sum * m_gain / (float)data.Length);
 
         //volumeList.Add(m_volumeRate);
@@ -120,11 +120,11 @@ public class MicVolumeSample : MonoBehaviour
     private void CreateFile1()
     {
         Encoding utf8 = System.Text.Encoding.UTF8;
-        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\SaveData001.csv", true, utf8);///true ’Ç‹L ,false@‚·‚Å‚Éƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚éê‡‚»‚Ìƒtƒ@ƒCƒ‹‚ÍÁ‹‚³‚êã‘‚«•Û‘¶‚³‚ê‚éB
+        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\SaveData001.csv", true, utf8);///true è¿½è¨˜ ,falseã€€ã™ã§ã«ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹å ´åˆãã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯æ¶ˆå»ã•ã‚Œä¸Šæ›¸ãä¿å­˜ã•ã‚Œã‚‹ã€‚
         string[] s1 = { "frequency", "quantity"};
         string s2 = string.Join(",", s1);
         sw.WriteLine(s2);
-        Debug.Log("ƒtƒ@ƒCƒ‹‚ğì¬");
+        Debug.Log("ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆ");
         sw.Close();
 
 
@@ -136,7 +136,7 @@ public class MicVolumeSample : MonoBehaviour
         Debug.Log("Save-2");
         Encoding utf8 = System.Text.Encoding.UTF8;
         Debug.Log("Save-1");
-        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\SaveData001.csv", true, utf8);//true ’Ç‹L
+        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\SaveData001.csv", true, utf8);//true è¿½è¨˜
         Debug.Log("Save0");
         string[] s1 = {hz, num};
         Debug.Log("Save1"+" "+s1);
