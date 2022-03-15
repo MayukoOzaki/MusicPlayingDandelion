@@ -37,7 +37,7 @@ public class MicVolumeSample : MonoBehaviour
             aud.clip = Microphone.Start(devName, true, 2, minFreq); // 音の大きさを取るだけなので最小サンプリング
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
         }
-        CreateFile1();
+        //CreateFile1();
         Debug.Log("AAA");
         
     }
@@ -75,9 +75,11 @@ public class MicVolumeSample : MonoBehaviour
                 //Debug.Log(spectrum[i]);
                 count += 1;
             }
+
         if (Input.GetKey(KeyCode.P))
         {
-            SaveData2(array);
+            
+            //SaveData2(array);
         }
 
 
