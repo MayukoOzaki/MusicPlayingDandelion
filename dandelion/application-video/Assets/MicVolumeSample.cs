@@ -56,11 +56,12 @@ public class MicVolumeSample : MonoBehaviour
                     float fHz = i;
                     string hz = fHz.ToString();//周波数
                     float fNum = spectrum[i];
-                    string num = fNum.ToString();//
+                    string num = fNum.ToString();//数
                     array[i] = num;
 
                     //Debug.Log(hz+" "+num);
                     //SaveData(hz, num);
+
 
                     //sw.Close();
 
@@ -131,6 +132,7 @@ public class MicVolumeSample : MonoBehaviour
        // string[] s1 = { "frequency", "quantity"};
         //string s2 = string.Join(",", s1);
         //sw.WriteLine(s2);
+
         Debug.Log("ファイルを作成");
         sw.Close();
 
@@ -164,6 +166,7 @@ public class MicVolumeSample : MonoBehaviour
         //Debug.Log("Save0");
         //Debug.Log("Save1"+" "+s1);
         string s2 = string.Join(",", num);
+
         Debug.Log("Save2"+" "+s2);
         sw.WriteLine(s2);
         //Debug.Log("Save3"+" "+s2);
