@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BreathDetection : MonoBehaviour
 {
@@ -18,10 +19,10 @@ public class BreathDetection : MonoBehaviour
         if ((aud != null) && (Microphone.devices.Length > 0)) // オーディオソースとマイクがある
         {
             string devName = Microphone.devices[0]; // 0番目のマイクを使用
-            Debug.Log("Input Device: " + devName);
+            //Debug.Log("Input Device: " + devName);
             int minFreq, maxFreq;
             Microphone.GetDeviceCaps(devName, out minFreq, out maxFreq); // 最大最小サンプリング数を得る
-            Debug.Log("Sampling Rates: " + minFreq.ToString() + " / " + maxFreq.ToString());
+            //Debug.Log("Sampling Rates: " + minFreq.ToString() + " / " + maxFreq.ToString());
             aud.clip = Microphone.Start(devName, true, 2, minFreq); // 音の大きさを取るだけなので最小サンプリング
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
         }
@@ -33,7 +34,50 @@ public class BreathDetection : MonoBehaviour
         aud.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
         // Call DandelionManagement::isBlown based on spectrum data
 
-        KeyDetection();
+        //string[] array = new string[256];
+        float eL = 0;
+        float eH = 0;
+        float r = 0;
+
+        for (int i = 0; i < 256; i++)
+        {
+            float fHz = i;
+            float fNum = spectrum[i];
+            string hz = fHz.ToString();//周波数
+            string num = fNum.ToString();//数
+            //Debug.Log(hz + " " + num);
+            if (i >= 1 && i < 17)
+            {
+                float sqnum = Mathf.Pow(fNum, 2.0f);
+                eL += sqnum;
+            }
+            if (i >= 17 && i < 33)
+            {
+                float sqnum = Mathf.Pow(fNum, 2);
+                eH += sqnum;
+            }
+            
+            //array[i] = num;
+        }
+
+        //Debug.Log(eH + " " + eL);
+        r = eH / eL;
+        if (Input.GetKey(KeyCode.P))
+        {
+            Debug.Log(r);
+        }
+            
+        if (r >= 1.993)
+        {
+            Debug.Log("息を吹いている");
+
+        }
+        else
+        {
+            //Debug.Log("息が吹かれていない");
+        }
+
+
     }
 
     void KeyDetection()

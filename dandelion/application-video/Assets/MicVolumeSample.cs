@@ -38,7 +38,7 @@ public class MicVolumeSample : MonoBehaviour
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
         }
         //CreateFile1();
-        Debug.Log("AAA");
+        //Debug.Log("AAA");
         
     }
 
@@ -135,7 +135,7 @@ public class MicVolumeSample : MonoBehaviour
         //string s2 = string.Join(",", s1);
         //sw.WriteLine(s2);
 
-        Debug.Log("ファイルを作成");
+        //Debug.Log("ファイルを作成");
         sw.Close();
 
 
@@ -169,7 +169,7 @@ public class MicVolumeSample : MonoBehaviour
         //Debug.Log("Save1"+" "+s1);
         string s2 = string.Join(",", num);
 
-        Debug.Log("Save2"+" "+s2);
+        //Debug.Log("Save2"+" "+s2);
         sw.WriteLine(s2);
         //Debug.Log("Save3"+" "+s2);
         sw.Close();
