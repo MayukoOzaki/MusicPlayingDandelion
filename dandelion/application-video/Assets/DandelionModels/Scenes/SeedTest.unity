@@ -1235,6 +1235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dandelionManagement: {fileID: 2131401523}
   noteplayer: {fileID: 81642999}
+  noSoundThreshold: 0
+  voiceDetectionThreshold: 0
 --- !u!82 &250053275
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9665,7 +9667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2056076768
 MonoBehaviour:
   m_ObjectHideFlags: 0
