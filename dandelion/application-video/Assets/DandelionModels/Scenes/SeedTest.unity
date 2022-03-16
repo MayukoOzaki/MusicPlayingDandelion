@@ -1236,7 +1236,7 @@ MonoBehaviour:
   dandelionManagement: {fileID: 2131401523}
   noteplayer: {fileID: 81642999}
   noSoundThreshold: 0.00000008
-  breathDetectionThreshold: 0.3
+  breathDetectionThreshold: 3.1
 --- !u!82 &250053275
 AudioSource:
   m_ObjectHideFlags: 0
