@@ -10105,6 +10105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toneFile: {fileID: 4900000, guid: 5fdc1dcb51a498748b8a381ea380b72e, type: 3}
   DandelionPrefab: {fileID: 1192618864}
+  isWidth: 0
   BlownWidth: 5
   ObjectList: []
   notePlayer: {fileID: 0}

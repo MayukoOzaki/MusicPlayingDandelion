@@ -95,7 +95,7 @@ public class DandelionManagement : MonoBehaviour
         GameObject dandelion = ObjectList[0];
         if (isWidth==false)
         {
-            BlownWidth = 999999;
+            BlownWidth = 999999.0f;
         }
         if (Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
