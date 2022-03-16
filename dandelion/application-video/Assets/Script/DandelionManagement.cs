@@ -12,6 +12,7 @@ public class DandelionManagement : MonoBehaviour
     List<string[]> toneDatas = new List<string[]>();
 
     public GameObject DandelionPrefab;
+    public bool isWidth = true;
     public float BlownWidth = 5.0f;
 
     int numSounds = 10;//270;
@@ -92,6 +93,10 @@ public class DandelionManagement : MonoBehaviour
         if (ObjectList.Count == 0)
             return;
         GameObject dandelion = ObjectList[0];
+        if (isWidth==false)
+        {
+            BlownWidth = 999999;
+        }
         if (Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
             Debug.Log("isblown");
