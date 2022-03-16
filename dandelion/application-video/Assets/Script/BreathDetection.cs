@@ -36,7 +36,7 @@ public class BreathDetection : MonoBehaviour
 
             Debug.Log("Sampling Rates: " + minFreq.ToString() + " / " + maxFreq.ToString());
 
-            aud.clip = Microphone.Start(devName, true, 2, 48000);
+            aud.clip = Microphone.Start(devName, true, 3599, 48000);
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
 
             //CreateFile1();
@@ -67,7 +67,7 @@ public class BreathDetection : MonoBehaviour
             if (r > breathDetectionThreshold)
             {
                 Debug.Log("BREATH");
-                dandelionManagement.isBlown(1.0f, eH);
+                dandelionManagement.isBlown(1.0f, 127.0f);
             }
                 
 

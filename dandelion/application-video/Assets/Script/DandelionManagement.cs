@@ -54,7 +54,7 @@ public class DandelionManagement : MonoBehaviour
     {
 
         float posz = 0f;
-        for (int r=0;r<= numSounds; r++)
+        for (int r=0;r<= numSounds; r++)//音の数
         {
             //横の位置 c4:60
             //-1:0-11 0:12-23 1:24-35 2:36-47 3:48:59 4:60-71 5:72-83 6:84-95 7:96-107
@@ -74,7 +74,7 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().start = float.Parse(toneDatas[r][0]);
                 dandelion.GetComponent<NoteInfo>().end = float.Parse(toneDatas[r][1]);
                 dandelion.GetComponent<NoteInfo>().soundLength = float.Parse(toneDatas[r][1])- float.Parse(toneDatas[r][0]);
-                ObjectList.Add(DandelionPrefab);
+                ObjectList.Add(dandelion);
                 posz += 0.5f;
             }
 
@@ -91,8 +91,8 @@ public class DandelionManagement : MonoBehaviour
     public void isBlown(float Posx, float Strength) //Posx:吹いた位置　Strength:吹いた強さ
     {
         
-        int count = ObjectList.Count;
-        Debug.Log("count"+count);
+        //int count = ObjectList.Count;
+        //Debug.Log("count"+count);
         if (ObjectList.Count == 0)
             return;
         GameObject dandelion = ObjectList[0];

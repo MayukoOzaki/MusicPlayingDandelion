@@ -79,6 +79,9 @@ public class NotePlayer : MonoBehaviour
         uint on_data = (on << 0) + (Pitch << 8) + (Velocity << 16);
         NotePlayer.midiOutShortMsg(hMidiOut, on_data);
 
+        Debug.Log("音を鳴らした");
+
+
         //NotePlayer.midiOutShortMsg(hMidiOut,0x7f0090);
 
         //midiOutShortMsg(h, 0x7f0090);   
