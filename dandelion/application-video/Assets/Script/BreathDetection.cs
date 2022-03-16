@@ -14,8 +14,13 @@ public class BreathDetection : MonoBehaviour
     private AudioSource aud;
     private readonly float[] spectrum = new float[256];
 
-    //private int nocou = 0;
-    //private int brecou = 0;
+    private int nocou = 0;
+    private int brecou = 0;
+    private int all = 0;
+    //private int rcou = 0;
+    //private int eHcou = 0;
+    private bool isEH = true;
+    
 
     void Start()
     {
@@ -31,6 +36,8 @@ public class BreathDetection : MonoBehaviour
 
             aud.clip = Microphone.Start(devName, true, 2, 48000);
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
+
+            //CreateFile1();
         }
     }
 
@@ -54,34 +61,40 @@ public class BreathDetection : MonoBehaviour
 
         if (eH > noSoundThreshold)
         {
-            Debug.Log(eH + "/" + eL + "/" + r);
-            if (r > breathDetectionThreshold)
-                Debug.Log("BREATH");
+            //Debug.Log(eH + "/" + eL + "/" + r);
+            //if (r > breathDetectionThreshold)
+                //Debug.Log("BREATH");
         }
 
         if (Input.GetKey(KeyCode.P))
         {
-            //brecou += 1;
+            all += 1;
 
             if (eH > noSoundThreshold)
             {
+                isEH = true;
+                //eHcou += 1;
                 //Debug.Log(eH + "/" + eL + "/" + r);
-                //if (r > breathDetectionThreshold)
+                if (r > breathDetectionThreshold)
+                    isEH = false;
+                    //rcou += 1;
                     //Debug.Log("BREATH");
             }
             else
             {
-                //nocou += 1;
-                Debug.Log(eH + "/" + eL + "/" + r);
+                nocou += 1;
+                Debug.Log(eH + "/" + eL + "/" + r + "/" + isEH);
                 Debug.Log("誤");
+                
             }
 
         }
         if (Input.GetKey(KeyCode.O))
         {
-            //Debug.Log("誤判定" + nocou + "/" + brecou + "/" + nocou / brecou);
-            //brecou = 0;
-            //nocou = 0;
+            Debug.Log("誤判定" + nocou + "/" + brecou + "/" + nocou / brecou);
+
+            brecou = 0;
+            nocou = 0;
 
         }
     }
@@ -110,4 +123,24 @@ public class BreathDetection : MonoBehaviour
         }
         */
     }
+
+    /*
+
+    private void CreateFile1()
+    {
+        Encoding utf8 = System.Text.Encoding.UTF8;
+        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\missCVS001.csv", true, utf8);///true 追記 ,false　すでにファイルが存在する場合そのファイルは消去され上書き保存される。
+        sw.Close();
+    }
+
+    public void SaveData2(string[] num)
+    {
+        Encoding utf8 = System.Text.Encoding.UTF8;
+        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\missCVS001.csv", true, utf8);//true 追記
+        string s2 = string.Join(",", num);
+        sw.WriteLine(s2);
+        sw.Close();
+
+    
+    */
 }
