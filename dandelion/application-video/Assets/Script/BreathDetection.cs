@@ -8,8 +8,8 @@ public class BreathDetection : MonoBehaviour
     public DandelionManagement dandelionManagement;
     public NotePlayer noteplayer;
 
-    public float noSoundThreshold;
-    public float voiceDetectionThreshold;
+    public float noSoundThreshold = 0.000001f;
+    public float breathDetectionThreshold = 0.07f;
 
     private AudioSource aud;
     private readonly float[] spectrum = new float[256];
@@ -19,7 +19,7 @@ public class BreathDetection : MonoBehaviour
         aud = GetComponent<AudioSource>();
         if ((aud != null) && (Microphone.devices.Length > 0)) // オーディオソースとマイクがある
         {
-            string devName = Microphone.devices[1]; // 0番目のマイクを使用
+            string devName = Microphone.devices[0]; // 0番目のマイクを使用
             Debug.Log("Input Device: " + devName);
             int minFreq, maxFreq;
             Microphone.GetDeviceCaps(devName, out minFreq, out maxFreq); // 最大最小サンプリング数を得る
@@ -49,7 +49,13 @@ public class BreathDetection : MonoBehaviour
 
         r = eH / eL;
 
-        Debug.Log(eH + "/" + eL + "/" + r);
+
+        if(eH > noSoundThreshold)
+        {
+            Debug.Log(eH + "/" + eL + "/" + r);
+            if( r > breathDetectionThreshold )
+                Debug.Log("BREATH");
+        }
 
         if (Input.GetKey(KeyCode.P))
         {
