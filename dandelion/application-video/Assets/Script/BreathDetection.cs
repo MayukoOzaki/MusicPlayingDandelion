@@ -62,18 +62,6 @@ public class BreathDetection : MonoBehaviour
             //Debug.Log(eH + " " + eL);
             //Debug.Log(r);
         }
-
-        if (r >= 1.993)
-        {
-            //Debug.Log("息を吹いている");
-
-        }
-        else
-        {
-            //Debug.Log("息が吹かれていない");
-        }
-
-
     }
 
     void KeyDetection()
