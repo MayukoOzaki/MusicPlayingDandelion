@@ -14,6 +14,7 @@ public class BreathDetection : MonoBehaviour
     private AudioSource aud;
     private readonly float[] spectrum = new float[256];
 
+    /*
     private int nocou = 0;
     private int brecou = 0;
     private int all = 0;
@@ -21,7 +22,7 @@ public class BreathDetection : MonoBehaviour
     private int eHcou = 0;
     private bool isEH = false;
     private bool isR = false;
-    
+    */
 
     void Start()
     {
