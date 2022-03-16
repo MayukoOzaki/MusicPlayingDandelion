@@ -14,6 +14,9 @@ public class BreathDetection : MonoBehaviour
     private AudioSource aud;
     private readonly float[] spectrum = new float[256];
 
+    //private int nocou = 0;
+    //private int brecou = 0;
+
     void Start()
     {
         aud = GetComponent<AudioSource>();
@@ -41,25 +44,45 @@ public class BreathDetection : MonoBehaviour
         float eH = 0;
         float r;
 
-        for(int i=1; i<=16; i++)
-            eL += spectrum[i]*spectrum[i];
+        for (int i = 1; i <= 16; i++)
+            eL += spectrum[i] * spectrum[i];
 
-        for(int i=17; i<=32; i++)
-            eH += spectrum[i]*spectrum[i];
+        for (int i = 17; i <= 32; i++)
+            eH += spectrum[i] * spectrum[i];
 
         r = eH / eL;
 
-        if(eH > noSoundThreshold)
+        if (eH > noSoundThreshold)
         {
             Debug.Log(eH + "/" + eL + "/" + r);
-            if( r > breathDetectionThreshold )
+            if (r > breathDetectionThreshold)
                 Debug.Log("BREATH");
         }
 
         if (Input.GetKey(KeyCode.P))
         {
-            //Debug.Log(eH + " " + eL);
-            //Debug.Log(r);
+            //brecou += 1;
+
+            if (eH > noSoundThreshold)
+            {
+                //Debug.Log(eH + "/" + eL + "/" + r);
+                //if (r > breathDetectionThreshold)
+                    //Debug.Log("BREATH");
+            }
+            else
+            {
+                //nocou += 1;
+                Debug.Log(eH + "/" + eL + "/" + r);
+                Debug.Log("誤");
+            }
+
+        }
+        if (Input.GetKey(KeyCode.O))
+        {
+            //Debug.Log("誤判定" + nocou + "/" + brecou + "/" + nocou / brecou);
+            //brecou = 0;
+            //nocou = 0;
+
         }
     }
 
