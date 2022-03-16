@@ -1,11 +1,11 @@
 import csv
 
 
-csvfile = open(r"C:\Users\mayuk\source\repos\MusicPlayingDandelion\cvsdata\nothingCVS001.csv", 'r')
+csvfile = open(r"C:\Users\mayuk\source\repos\MusicPlayingDandelion\cvsdata\breathCVS001.csv", 'r')
 reader = csv.reader(csvfile)
 
 rlist = []
-
+eHlist=[]
 for row in reader:
     eL = 0
     eH = 0
@@ -16,6 +16,7 @@ for row in reader:
     for b in row[17:33]:
         eH += float(b)**2
 
+    eHlist.append(eH)
     r = eH/eL
     rlist.append(r)
 print(rlist)
@@ -28,7 +29,26 @@ for c in rlist:
     sqsum +=c**2
 
 
-cou=len(rlist)
+#cou=len(rlist)
+#print("cou",cou)
+#ave=sum/cou #平均値
+#avesum = (sum/cou)**2  # 合計の平均の２乗
+#avesqsum = sqsum/cou  # 2乗合計の平均
+
+#variance = avesqsum-avesum  # 分散
+#deviation = variance**0.5
+#print("平均値",ave)
+#print("分散", variance)
+#print("標準偏差",deviation)
+
+print("eH")
+for d in eHlist:
+    sum +=d
+    sqsum +=d**2
+
+
+cou=len(eHlist)
+print("cou",cou)
 ave=sum/cou #平均値
 avesum = (sum/cou)**2  # 合計の平均の２乗
 avesqsum = sqsum/cou  # 2乗合計の平均
@@ -38,6 +58,7 @@ deviation = variance**0.5
 print("平均値",ave)
 print("分散", variance)
 print("標準偏差",deviation)
+
 
 
 
