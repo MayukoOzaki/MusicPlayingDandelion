@@ -8,8 +8,8 @@ public class BreathDetection : MonoBehaviour
     public DandelionManagement dandelionManagement;
     public NotePlayer noteplayer;
 
-    public float noSoundThreshold = 0.000001f;
-    public float breathDetectionThreshold = 0.07f;
+    public float noSoundThreshold;
+    public float breathDetectionThreshold;
 
     private AudioSource aud;
     private readonly float[] spectrum = new float[256];
@@ -48,7 +48,6 @@ public class BreathDetection : MonoBehaviour
             eH += spectrum[i]*spectrum[i];
 
         r = eH / eL;
-
 
         if(eH > noSoundThreshold)
         {
