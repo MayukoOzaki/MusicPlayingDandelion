@@ -19,7 +19,8 @@ public class BreathDetection : MonoBehaviour
     private int all = 0;
     //private int rcou = 0;
     //private int eHcou = 0;
-    private bool isEH = true;
+    private bool isEH = false;
+    private bool isR = false;
     
 
     void Start()
@@ -75,10 +76,18 @@ public class BreathDetection : MonoBehaviour
                 isEH = true;
                 //eHcou += 1;
                 //Debug.Log(eH + "/" + eL + "/" + r);
+                //Debug.Log(eH + "/" + eL + "/" + r + "/" + isEH);
                 if (r > breathDetectionThreshold)
+                {
                     isEH = false;
-                    //rcou += 1;
+                    isR = true;
+                    //Debug.Log(eH + "/" + eL + "/" + r + "/" + isR);
                     //Debug.Log("BREATH");
+                }
+
+
+                //rcou += 1;
+                //Debug.Log("BREATH");
             }
             else
             {
