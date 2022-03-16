@@ -79,6 +79,8 @@ public class NotePlayer : MonoBehaviour
         uint on_data = (on << 0) + (Pitch << 8) + (Velocity << 16);
         NotePlayer.midiOutShortMsg(hMidiOut, on_data);
 
+
+        Debug.Log(Pitch+"/"+Velocity+"/"+ToneColor);
         Debug.Log("音を鳴らした");
 
 
@@ -115,10 +117,12 @@ public class NotePlayer : MonoBehaviour
         //▼MIDIデバイス開放
         NotePlayer.midiOutReset(hMidiOut);
         NotePlayer.midiOutClose(hMidiOut);
+        //Debug.Log("EndPerformance")
     }
     private void OnDestroy()
     {
         EndPerformance();
+        //Debug.Log("OnDestroy");
     }
 
 }

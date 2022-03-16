@@ -67,7 +67,7 @@ public class BreathDetection : MonoBehaviour
             if (r > breathDetectionThreshold)
             {
                 Debug.Log("BREATH");
-                dandelionManagement.isBlown(1.0f, 127.0f);
+                dandelionManagement.isBlown(1.0f, 100f);
             }
                 
 
