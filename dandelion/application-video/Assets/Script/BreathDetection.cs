@@ -8,7 +8,8 @@ public class BreathDetection : MonoBehaviour
     public DandelionManagement dandelionManagement;
     public NotePlayer noteplayer;
 
-    float m_volumeRate; // 音量(0-1)
+    public float noSoundThreshold;
+    public float breathDetectionThreshold;
 
     private AudioSource aud;
     private readonly float[] spectrum = new float[256];
@@ -19,11 +20,13 @@ public class BreathDetection : MonoBehaviour
         if ((aud != null) && (Microphone.devices.Length > 0)) // オーディオソースとマイクがある
         {
             string devName = Microphone.devices[0]; // 0番目のマイクを使用
-            //Debug.Log("Input Device: " + devName);
+            Debug.Log("Input Device: " + devName);
             int minFreq, maxFreq;
             Microphone.GetDeviceCaps(devName, out minFreq, out maxFreq); // 最大最小サンプリング数を得る
-            //Debug.Log("Sampling Rates: " + minFreq.ToString() + " / " + maxFreq.ToString());
-            aud.clip = Microphone.Start(devName, true, 2, minFreq); // 音の大きさを取るだけなので最小サンプリング
+
+            Debug.Log("Sampling Rates: " + minFreq.ToString() + " / " + maxFreq.ToString());
+
+            aud.clip = Microphone.Start(devName, true, 2, 48000);
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
         }
     }
@@ -34,51 +37,30 @@ public class BreathDetection : MonoBehaviour
         aud.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
         // Call DandelionManagement::isBlown based on spectrum data
 
-        //string[] array = new string[256];
         float eL = 0;
         float eH = 0;
-        float r = 0;
+        float r;
 
-        for (int i = 0; i < 256; i++)
+        for(int i=1; i<=16; i++)
+            eL += spectrum[i]*spectrum[i];
+
+        for(int i=17; i<=32; i++)
+            eH += spectrum[i]*spectrum[i];
+
+        r = eH / eL;
+
+        if(eH > noSoundThreshold)
         {
-            float fHz = i;
-            float fNum = spectrum[i];
-            string hz = fHz.ToString();//周波数
-            string num = fNum.ToString();//数
-            //Debug.Log(hz + " " + num);
-            if (i >= 1 && i < 17)
-            {
-                float sqnum = Mathf.Pow(fNum, 2.0f);
-                eL += sqnum;
-            }
-            if (i >= 17 && i < 33)
-            {
-                float sqnum = Mathf.Pow(fNum, 2.0f);
-                eH += sqnum;
-            }
-            
-            //array[i] = num;
+            Debug.Log(eH + "/" + eL + "/" + r);
+            if( r > breathDetectionThreshold )
+                Debug.Log("BREATH");
         }
 
-        
-        r = eH / eL;
         if (Input.GetKey(KeyCode.P))
         {
             //Debug.Log(eH + " " + eL);
             //Debug.Log(r);
         }
-
-        if (r >= 1.993)
-        {
-            //Debug.Log("息を吹いている");
-
-        }
-        else
-        {
-            //Debug.Log("息が吹かれていない");
-        }
-
-
     }
 
     void KeyDetection()
