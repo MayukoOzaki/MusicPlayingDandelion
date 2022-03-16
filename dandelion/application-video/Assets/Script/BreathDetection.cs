@@ -67,7 +67,7 @@ public class BreathDetection : MonoBehaviour
             if (r > breathDetectionThreshold)
             {
                 Debug.Log("BREATH");
-                dandelionManagement.isBlown(-1.0f, eH);
+                dandelionManagement.isBlown(1.0f, eH);
             }
                 
 
@@ -117,20 +117,21 @@ public class BreathDetection : MonoBehaviour
         */
     }
 
-    void KeyDetection()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            dandelionManagement.isBlown(-1.0f, 1.0f);
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            dandelionManagement.isBlown( 0.0f, 1.0f);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            dandelionManagement.isBlown( 1.0f, 1.0f);
-        }
+    
+    //void KeyDetection()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.A))
+    //    {
+    //        dandelionManagement.isBlown(-1.0f, 1.0f);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.S))
+    //    {
+    //        dandelionManagement.isBlown( 0.0f, 1.0f);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.D))
+   //     {
+   //         dandelionManagement.isBlown( 1.0f, 1.0f);
+        //}
         /* // ここで音を止めるコードを書くと、実際のマイクからの制御に悪影響がある
         else
         {
@@ -140,7 +141,7 @@ public class BreathDetection : MonoBehaviour
             noteplayer.NoteOff(noteplayer.nowPitch);
         }
         */
-    }
+    //}
 
     /*
 

@@ -90,6 +90,9 @@ public class DandelionManagement : MonoBehaviour
 
     public void isBlown(float Posx, float Strength) //Posx:吹いた位置　Strength:吹いた強さ
     {
+        
+        int count = ObjectList.Count;
+        Debug.Log("count"+count);
         if (ObjectList.Count == 0)
             return;
         GameObject dandelion = ObjectList[0];
