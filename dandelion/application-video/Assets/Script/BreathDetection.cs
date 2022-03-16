@@ -17,8 +17,8 @@ public class BreathDetection : MonoBehaviour
     private int nocou = 0;
     private int brecou = 0;
     private int all = 0;
-    //private int rcou = 0;
-    //private int eHcou = 0;
+    private int rcou = 0;
+    private int eHcou = 0;
     private bool isEH = false;
     private bool isR = false;
     
@@ -63,9 +63,16 @@ public class BreathDetection : MonoBehaviour
         if (eH > noSoundThreshold)
         {
             //Debug.Log(eH + "/" + eL + "/" + r);
-            //if (r > breathDetectionThreshold)
-                //Debug.Log("BREATH");
+            if (r > breathDetectionThreshold)
+            {
+                Debug.Log("BREATH");
+                andelionManagement.isBlown(-1.0f, 1.0f);
+            }
+                
+
         }
+
+        /*
 
         if (Input.GetKey(KeyCode.P))
         {
@@ -81,8 +88,8 @@ public class BreathDetection : MonoBehaviour
                 {
                     isEH = false;
                     isR = true;
-                    //Debug.Log(eH + "/" + eL + "/" + r + "/" + isR);
-                    //Debug.Log("BREATH");
+                    Debug.Log(eH + "/" + eL + "/" + r + "/" + isR);
+                    Debug.Log("BREATH");
                 }
 
 
@@ -106,6 +113,7 @@ public class BreathDetection : MonoBehaviour
             nocou = 0;
 
         }
+        */
     }
 
     void KeyDetection()
