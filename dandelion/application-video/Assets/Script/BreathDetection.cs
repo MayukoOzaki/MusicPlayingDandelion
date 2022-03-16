@@ -23,8 +23,10 @@ public class BreathDetection : MonoBehaviour
             Debug.Log("Input Device: " + devName);
             int minFreq, maxFreq;
             Microphone.GetDeviceCaps(devName, out minFreq, out maxFreq); // 最大最小サンプリング数を得る
+
             Debug.Log("Sampling Rates: " + minFreq.ToString() + " / " + maxFreq.ToString());
-            aud.clip = Microphone.Start(devName, true, 2, minFreq); // 音の大きさを取るだけなので最小サンプリング
+
+            aud.clip = Microphone.Start(devName, true, 2, 48000);
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
         }
     }
@@ -37,7 +39,7 @@ public class BreathDetection : MonoBehaviour
 
         float eL = 0;
         float eH = 0;
-        float r = 0;
+        float r;
 
         for(int i=1; i<=16; i++)
             eL += spectrum[i]*spectrum[i];
