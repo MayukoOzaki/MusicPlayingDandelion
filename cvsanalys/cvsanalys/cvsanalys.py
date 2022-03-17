@@ -1,55 +1,99 @@
 import csv
 
 
-csvfile = open(
-    r"C:\Users\mayuk\source\repos\MusicPlayingDandelion\cvsdata\masukuCVS013.csv", 'r')
+csvfile = open(r"C:\Users\mayuk\source\repos\MusicPlayingDandelion\cvsdata\breathCVS001.csv", 'r')
 reader = csv.reader(csvfile)
 
-#print(reader)
-
-#全体の平均(マスクあり)　24.71064217
-
-#全体の平均(マスクなし)　35.97260743
-
-withmask = 24.71064217**2
-
-nomask = 35.97260743**2
-
-
+rlist = []
+eHlist=[]
 for row in reader:
-    # print(row)
-    frequency = float(row[0])
-    quantity = float(row[1])
+    eL = 0
+    eH = 0
+    r = 0
+    for a in row[1:17]:
+        eL += float(a)**2
+
+    for b in row[17:33]:
+        eH += float(b)**2
+
+    eHlist.append(eH)
+    r = eH/eL
+    rlist.append(r)
+print(rlist)
+
+sum = 0
+sqsum = 0
+
+for c in rlist:
+    sum +=c
+    sqsum +=c**2
+
+
+#cou=len(rlist)
+#print("cou",cou)
+#ave=sum/cou #平均値
+#avesum = (sum/cou)**2  # 合計の平均の２乗
+#avesqsum = sqsum/cou  # 2乗合計の平均
+
+#variance = avesqsum-avesum  # 分散
+#deviation = variance**0.5
+#print("平均値",ave)
+#print("分散", variance)
+#print("標準偏差",deviation)
+
+print("eH")
+for d in eHlist:
+    sum +=d
+    sqsum +=d**2
+
+
+cou=len(eHlist)
+print("cou",cou)
+ave=sum/cou #平均値
+avesum = (sum/cou)**2  # 合計の平均の２乗
+avesqsum = sqsum/cou  # 2乗合計の平均
+
+variance = avesqsum-avesum  # 分散
+deviation = variance**0.5
+print("平均値",ave)
+print("分散", variance)
+print("標準偏差",deviation)
+
+
+
+
+
+
+#def analys():
+    #frequency = float(row[0])
+    #quantity = float(row[1])
     #print(frequency)
 
-    sum = 0
-    sqsum = 0
+    #sum = 0
+    #sqsum = 0
 
-    cou = 0
+    #cou = 0
 
-    for row in reader:
-        print(row)
-        frequency = float(row[0])
-        quantity = float(row[1])
-        sum += frequency
-        sqsum += frequency**2
-        print("cou", cou)
-        cou += 1
+    #for row in reader:
+        #print(row)
+        #frequency = float(row[0])
+        #quantity = float(row[1])
+        #sum += frequency
+        #sqsum += frequency**2
+        #print("cou", cou)
+        #cou += 1
 
     #print("できた")
     #print("cou",cou)
     #print("sum",sum)
-    avesum = (sum/cou)**2  # 合計の平均の２乗
+    #avesum = (sum/cou)**2  # 合計の平均の２乗
 
-    avesqsum = sqsum/cou  # 2乗合計の平均
+    #avesqsum = sqsum/cou  # 2乗合計の平均
 
-    print("二乗の合計", sqsum)
+    #print("二乗の合計", sqsum)
 
-    variance = avesqsum-avesum  # 分散
-    print("variance", variance)
+    #variance = avesqsum-avesum  # 分散
+    #print("variance", variance)
 
-    deviation = variance**0.5
-    print("standerd deviation", deviation)
-
-
-#analys(reader)
+    #deviation = variance**0.5
+    #print("standerd deviation", deviation)

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44658822, g: 0.49642307, b: 0.5748253, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -416,7 +416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81642993}
   m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
-  m_LocalPosition: {x: 0, y: 0.5, z: -4}
+  m_LocalPosition: {x: 0, y: -0, z: -13.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 720031636}
@@ -1235,6 +1235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dandelionManagement: {fileID: 2131401523}
   noteplayer: {fileID: 81642999}
+  noSoundThreshold: 0.00000008
+  breathDetectionThreshold: 3.1
 --- !u!82 &250053275
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1244,12 +1246,12 @@ AudioSource:
   m_GameObject: {fileID: 250053272}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5094870001971851194, guid: 114cd2c049469cc4489b5b08b3426990, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -9665,7 +9667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2056076768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10103,9 +10105,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toneFile: {fileID: 4900000, guid: 5fdc1dcb51a498748b8a381ea380b72e, type: 3}
   DandelionPrefab: {fileID: 1192618864}
+  isWidth: 0
   BlownWidth: 5
   ObjectList: []
-  notePlayer: {fileID: 0}
+  notePlayer: {fileID: 81642999}
 --- !u!4 &2131401524
 Transform:
   m_ObjectHideFlags: 0
@@ -10118,7 +10121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2137284651
 PrefabInstance:
@@ -10459,7 +10462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4821440824863355322, guid: 4bea71f781f853a4ba7410de386b3daf, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4821440824863355322, guid: 4bea71f781f853a4ba7410de386b3daf, type: 3}
       propertyPath: m_LocalPosition.x
