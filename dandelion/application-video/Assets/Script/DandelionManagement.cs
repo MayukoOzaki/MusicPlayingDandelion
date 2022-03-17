@@ -15,7 +15,7 @@ public class DandelionManagement : MonoBehaviour
     public bool isWidth = true;
     public float BlownWidth = 5.0f;
 
-    int numSounds = 10;//270;
+    int numSounds = 0;//10;//270;
     public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
     public NotePlayer notePlayer;
@@ -65,7 +65,18 @@ public class DandelionManagement : MonoBehaviour
             float timelength=float.Parse(toneDatas[r][1])-float.Parse(toneDatas[r][0]);//0.25ごとに1つ
             int quantity = (int)( timelength / 0.25f);//0.25ごとに1つ
 
+            //１つのオブジェクトだけ生成
+            Vector3 pos = new Vector3(posx, 0f, posz);
+            GameObject dandelion = Instantiate(DandelionPrefab, pos, Quaternion.identity);
+            dandelion.GetComponent<NoteInfo>().pitch = int.Parse(toneDatas[r][2]);
+            dandelion.GetComponent<NoteInfo>().start = float.Parse(toneDatas[r][0]);
+            dandelion.GetComponent<NoteInfo>().end = float.Parse(toneDatas[r][1]);
+            dandelion.GetComponent<NoteInfo>().soundLength = float.Parse(toneDatas[r][1]) - float.Parse(toneDatas[r][0]);
+            ObjectList.Add(dandelion);
+            posz += 0.5f;
 
+
+            /*
             for (int s = 0; s <= quantity-1; s++)
             {
                 Vector3 pos = new Vector3(posx, 0f, posz);
@@ -77,6 +88,8 @@ public class DandelionManagement : MonoBehaviour
                 ObjectList.Add(dandelion);
                 posz += 0.5f;
             }
+            */
+
 
             //To Do
             //1: 連続する場合は高さを変える（茎）
@@ -111,7 +124,10 @@ public class DandelionManagement : MonoBehaviour
             int i_velocity = (int)Strength;
             uint velocity = (uint)i_velocity;
             uint ToneColor = 0x0;
-            notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+            //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+
+            notePlayer.NoteOn(50, 100, 0);
+
             //同じ音番号の時はリターン音を再生しない。
 
             //音の再生を止める条件は、息が止まった時と、endの範囲外になったとき。
