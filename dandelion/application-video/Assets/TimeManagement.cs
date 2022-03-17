@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +35,6 @@ public class TimeManagement : MonoBehaviour
         //noteplayer.NoteOn(pitch, 100, 0);
         yield return new WaitForSeconds(delay);
         noteplayer.NoteOff(pitch);
-        Debug.Log(pitch);
+        //Debug.Log(pitch);
     }
 }
