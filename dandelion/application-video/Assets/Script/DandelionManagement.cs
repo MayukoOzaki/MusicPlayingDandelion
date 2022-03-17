@@ -14,6 +14,7 @@ public class DandelionManagement : MonoBehaviour
     public GameObject DandelionPrefab;
     public bool isWidth = true;
     public float BlownWidth = 5.0f;
+    public float ZDistance = 0.1f;
 
     int numSounds = 10;//270;
     public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
@@ -120,7 +121,31 @@ public class DandelionManagement : MonoBehaviour
         }
         if (Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
-            
+            if(Math.Abs(dandelion.transform.position.z-camPosz)<ZDistance)
+            {
+                Debug.Log("isblown");
+                //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
+                //ObjectList.RemoveAt(0);// リストの0番目を削除する
+
+                int i_pitch = dandelion.GetComponent<NoteInfo>().pitch;
+                uint pitch = (uint)i_pitch;
+                int i_velocity = (int)Strength;
+                uint velocity = (uint)i_velocity;
+                uint ToneColor = 0x0;
+
+                notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+
+                //notePlayer.NoteOn(50, 100, 0);//テスト用
+
+                Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
+                ObjectList.RemoveAt(0);// リストの0番目を削除する
+
+                //同じ音番号の時はリターン音を再生しない。
+
+                //音の再生を止める条件は、息が止まった時と、endの範囲外になったとき。
+            }
+
+            /*
             Debug.Log("isblown");
             //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
             //ObjectList.RemoveAt(0);// リストの0番目を削除する
@@ -131,9 +156,9 @@ public class DandelionManagement : MonoBehaviour
             uint velocity = (uint)i_velocity;
             uint ToneColor = 0x0;
 
-            //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+            notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
 
-            notePlayer.NoteOn(50, 100, 0);//テスト用
+            //notePlayer.NoteOn(50, 100, 0);//テスト用
 
             Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
             ObjectList.RemoveAt(0);// リストの0番目を削除する
@@ -141,6 +166,7 @@ public class DandelionManagement : MonoBehaviour
             //同じ音番号の時はリターン音を再生しない。
 
             //音の再生を止める条件は、息が止まった時と、endの範囲外になったとき。
+            */
         }
         
     }
