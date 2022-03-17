@@ -20,6 +20,8 @@ public class DandelionManagement : MonoBehaviour
 
     public NotePlayer notePlayer;
 
+
+
     //DandelionManagement
     //1. SetPosition() たんぽぽ生成
     //2. たんぽぽリスト
@@ -115,18 +117,23 @@ public class DandelionManagement : MonoBehaviour
         }
         if (Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
+            
             Debug.Log("isblown");
-            Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-            ObjectList.RemoveAt(0);// リストの0番目を削除する
+            //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
+            //ObjectList.RemoveAt(0);// リストの0番目を削除する
 
             int i_pitch = dandelion.GetComponent<NoteInfo>().pitch;
             uint pitch = (uint)i_pitch;
             int i_velocity = (int)Strength;
             uint velocity = (uint)i_velocity;
             uint ToneColor = 0x0;
+
             //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
 
-            notePlayer.NoteOn(50, 100, 0);
+            notePlayer.NoteOn(50, 100, 0);//テスト用
+
+            Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
+            ObjectList.RemoveAt(0);// リストの0番目を削除する
 
             //同じ音番号の時はリターン音を再生しない。
 
