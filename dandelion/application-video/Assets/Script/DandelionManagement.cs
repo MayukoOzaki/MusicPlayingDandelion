@@ -15,10 +15,12 @@ public class DandelionManagement : MonoBehaviour
     public bool isWidth = true;
     public float BlownWidth = 5.0f;
 
-    int numSounds = 0;//10;//270;
+    int numSounds = 10;//270;
     public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
     public NotePlayer notePlayer;
+
+    private float camPosz;
 
 
 
@@ -67,6 +69,7 @@ public class DandelionManagement : MonoBehaviour
             float timelength=float.Parse(toneDatas[r][1])-float.Parse(toneDatas[r][0]);//0.25ごとに1つ
             int quantity = (int)( timelength / 0.25f);//0.25ごとに1つ
 
+            /*
             //１つのオブジェクトだけ生成
             Vector3 pos = new Vector3(posx, 0f, posz);
             GameObject dandelion = Instantiate(DandelionPrefab, pos, Quaternion.identity);
@@ -76,9 +79,9 @@ public class DandelionManagement : MonoBehaviour
             dandelion.GetComponent<NoteInfo>().soundLength = float.Parse(toneDatas[r][1]) - float.Parse(toneDatas[r][0]);
             ObjectList.Add(dandelion);
             posz += 0.5f;
+            */
 
-
-            /*
+            
             for (int s = 0; s <= quantity-1; s++)
             {
                 Vector3 pos = new Vector3(posx, 0f, posz);
@@ -90,7 +93,7 @@ public class DandelionManagement : MonoBehaviour
                 ObjectList.Add(dandelion);
                 posz += 0.5f;
             }
-            */
+            
 
 
             //To Do
@@ -158,8 +161,8 @@ public class DandelionManagement : MonoBehaviour
     void Update()
     {
         Vector3 camPos = GameObject.FindWithTag("MainCamera").transform.position;
-        float z = camPos.z;
-        CheckPassingDandelion(z);
+        camPosz = camPos.z;
+        CheckPassingDandelion(camPosz);
     }
 
     //位置はゴーグルからとる。
