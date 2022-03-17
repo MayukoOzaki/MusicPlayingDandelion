@@ -22,6 +22,7 @@ public class DandelionManagement : MonoBehaviour
     public NotePlayer notePlayer;
 
     private float camPosz;
+    private int nowNotenumber=0;
 
 
 
@@ -59,8 +60,10 @@ public class DandelionManagement : MonoBehaviour
     {
 
         float posz = 0f;
+        int notenum = 0;//note number 
         for (int r=0;r<= numSounds; r++)//音の数
         {
+            
             //横の位置 c4:60
             //-1:0-11 0:12-23 1:24-35 2:36-47 3:48:59 4:60-71 5:72-83 6:84-95 7:96-107
             float posx = float.Parse(toneDatas[r][2])-60.0f;
@@ -82,7 +85,8 @@ public class DandelionManagement : MonoBehaviour
             posz += 0.5f;
             */
 
-            
+            notenum += 1;
+           
             for (int s = 0; s <= quantity-1; s++)
             {
                 Vector3 pos = new Vector3(posx, 0f, posz);
@@ -91,6 +95,7 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().start = float.Parse(toneDatas[r][0]);
                 dandelion.GetComponent<NoteInfo>().end = float.Parse(toneDatas[r][1]);
                 dandelion.GetComponent<NoteInfo>().soundLength = float.Parse(toneDatas[r][1])- float.Parse(toneDatas[r][0]);
+                dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
                 ObjectList.Add(dandelion);
                 posz += 0.5f;
             }
@@ -133,7 +138,17 @@ public class DandelionManagement : MonoBehaviour
                 uint velocity = (uint)i_velocity;
                 uint ToneColor = 0x0;
 
-                notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
+
+                int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
+
+                if (notenum > nowNotenumber)
+                {
+                    notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                    nowNotenumber = notenum;
+                }
+
+                //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
 
                 //notePlayer.NoteOn(50, 100, 0);//テスト用
 
