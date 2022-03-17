@@ -26,7 +26,7 @@ public class TimeManagement : MonoBehaviour
             int i_pitch = collision.gameObject.GetComponent<NoteInfo>().pitch;
             uint pitch = (uint)i_pitch;
 
-            //StartCoroutine(StopNote(pitch, soundLength));
+            StartCoroutine(StopNote(pitch, soundLength));
         }
     }   
 
