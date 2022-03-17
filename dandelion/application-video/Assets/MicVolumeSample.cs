@@ -37,8 +37,8 @@ public class MicVolumeSample : MonoBehaviour
             aud.clip = Microphone.Start(devName, true, 2, minFreq); // 音の大きさを取るだけなので最小サンプリング
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
         }
-        CreateFile1();
-        Debug.Log("AAA");
+        //CreateFile1();
+        //Debug.Log("AAA");
         
     }
 
@@ -52,7 +52,7 @@ public class MicVolumeSample : MonoBehaviour
             {
                 if  (Input.GetKey(KeyCode.P)) //(Input.GetKeyDown(KeyCode.P))
                 {
-                    Debug.Log("Pを押した");
+                    //Debug.Log("Pを押した");
                     float fHz = i;
                     string hz = fHz.ToString();//周波数
                     float fNum = spectrum[i];
@@ -76,15 +76,60 @@ public class MicVolumeSample : MonoBehaviour
                 //Debug.Log(spectrum[i]);
                 count += 1;
             }
+
         if (Input.GetKey(KeyCode.P))
         {
-            SaveData2(array);
+            
+            //SaveData2(array);
+        }
+
+        float eL = 0;
+        float eH = 0;
+        float r = 0;
+
+        for (int i = 0; i < 256; i++)
+        {
+            float fHz = i;
+            float fNum = spectrum[i];
+            string hz = fHz.ToString();//周波数
+            string num = fNum.ToString();//数
+            //Debug.Log(hz + " " + num);
+            if (i >= 1 && i < 17)
+            {
+                float sqnum = Mathf.Pow(fNum, 2.0f);
+                eL += sqnum;
+            }
+            if (i >= 17 && i < 33)
+            {
+                float sqnum = Mathf.Pow(fNum, 2.0f);
+                eH += sqnum;
+            }
+
+            //array[i] = num;
+        }
+
+
+        r = eH / eL;
+        if (Input.GetKey(KeyCode.P))
+        {
+            //Debug.Log(eH + " " + eL);
+            //Debug.Log(r);
+        }
+
+        if (r >= 1.993)
+        {
+            Debug.Log("息を吹いている");
+
+        }
+        else
+        {
+            Debug.Log("息が吹かれていない");
         }
 
 
         //if (Input.GetKeyDown(KeyCode.Return))
         //{
-            //sw.Close();
+        //sw.Close();
         //    Debug.Log("CCC");
 
         //}
@@ -133,7 +178,7 @@ public class MicVolumeSample : MonoBehaviour
         //string s2 = string.Join(",", s1);
         //sw.WriteLine(s2);
 
-        Debug.Log("ファイルを作成");
+        //Debug.Log("ファイルを作成");
         sw.Close();
 
 
@@ -167,7 +212,7 @@ public class MicVolumeSample : MonoBehaviour
         //Debug.Log("Save1"+" "+s1);
         string s2 = string.Join(",", num);
 
-        Debug.Log("Save2"+" "+s2);
+        //Debug.Log("Save2"+" "+s2);
         sw.WriteLine(s2);
         //Debug.Log("Save3"+" "+s2);
         sw.Close();
