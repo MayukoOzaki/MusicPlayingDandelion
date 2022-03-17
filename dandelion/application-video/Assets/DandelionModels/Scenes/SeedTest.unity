@@ -5677,6 +5677,7 @@ MonoBehaviour:
   start: 0
   end: 0
   soundLength: 0
+  noteNumber: 0
 --- !u!54 &1192618866
 Rigidbody:
   m_ObjectHideFlags: 0

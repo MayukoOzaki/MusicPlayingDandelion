@@ -69,7 +69,21 @@ public class BreathDetection : MonoBehaviour
                 //Debug.Log("BREATH");
                 dandelionManagement.isBlown(1.0f, 100f);
             }
+            else
+            {
+                uint pitch = noteplayer.nowPitch;
+                noteplayer.NoteOff(pitch);
+                Debug.Log("止めた");
+            }
                 
+
+        }
+        else
+        {
+        
+            uint pitch=noteplayer.nowPitch;
+            noteplayer.NoteOff(pitch);
+            Debug.Log("止めた");
 
         }
 

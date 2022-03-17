@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DandelionModels/Scenes/SeedTest.unity
     guid: 17905c9a9f8ba2f358ab333e699346c7
+  - enabled: 1
+    path: Assets/DandelionModels/Scenes/EndScene.unity
+    guid: e7b2d519a1c794cc18b53c0d2705c246
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: df6bcc99e4f8a9442994273ead741249, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8496ccae15a05a140aa3de5c0a18c5e4, type: 2}
