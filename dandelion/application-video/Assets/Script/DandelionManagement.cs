@@ -23,6 +23,7 @@ public class DandelionManagement : MonoBehaviour
 
     private float camPosz;
     private int nowNotenumber=0;
+    
 
 
 
@@ -87,6 +88,7 @@ public class DandelionManagement : MonoBehaviour
             posz += 0.5f;
             */
 
+            //toneColor 24, 32, 
             notenum += 1;
            
             for (int s = 0; s <= quantity-1; s++)
@@ -98,6 +100,7 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().end = float.Parse(toneDatas[r][1]);
                 dandelion.GetComponent<NoteInfo>().soundLength = float.Parse(toneDatas[r][1])- float.Parse(toneDatas[r][0]);
                 dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
+                //dandelion.GetComponent<NoteInfo>().toneColor = tonecloler;
                 ObjectList.Add(dandelion);
                 posz += 0.5f;
             }
@@ -140,11 +143,13 @@ public class DandelionManagement : MonoBehaviour
                 uint velocity = (uint)i_velocity;
                 uint ToneColor = 0x0;
 
+
                 Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
 
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
+                bool nowOn = notePlayer.nowOn;
 
-                if (notenum > nowNotenumber)
+                if (notenum > nowNotenumber || nowOn==false)
                 {
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
                     nowNotenumber = notenum;

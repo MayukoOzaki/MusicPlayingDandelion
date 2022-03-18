@@ -9,6 +9,8 @@ public class NoteInfo : MonoBehaviour
     public float end;
     public float soundLength;
     public int noteNumber;
+    public int toneColoer;
+
     // Start is called before the first frame update
     void Start()
     {

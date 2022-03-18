@@ -26,6 +26,7 @@ public class NotePlayer : MonoBehaviour
     const int MIDI_MAPPER = -1;
 
     public uint nowPitch;//今音を出したピッチ
+    public bool nowOn = false;
 
     private int otocou = 0;
 
@@ -86,7 +87,8 @@ public class NotePlayer : MonoBehaviour
 
         otocou += 1;
         Debug.Log("音を鳴らした"+otocou);
-        
+        nowOn = true;
+
 
 
 
@@ -116,6 +118,7 @@ public class NotePlayer : MonoBehaviour
         uint off = 0x90;
         uint off_data = (off << 0) + (Pitch << 8) + (Velocity << 16);
         NotePlayer.midiOutShortMsg(hMidiOut, off_data);
+        nowOn = false;
     }
 
     void EndPerformance()
