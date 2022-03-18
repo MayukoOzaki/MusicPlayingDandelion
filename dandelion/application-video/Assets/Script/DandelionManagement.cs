@@ -16,7 +16,7 @@ public class DandelionManagement : MonoBehaviour
     public float BlownWidth = 5.0f;
     public float ZDistance = 0.1f;
 
-    int numSounds = 58;//270;
+    int numSounds = 10;//270;
     public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
     public NotePlayer notePlayer;
@@ -121,7 +121,7 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().pitch = int.Parse(toneDatas[r][2]);
                 dandelion.GetComponent<NoteInfo>().start = float.Parse(toneDatas[r][0]);
                 dandelion.GetComponent<NoteInfo>().end = float.Parse(toneDatas[r][1]);
-                dandelion.GetComponent<NoteInfo>().soundLength = float.Parse(toneDatas[r][1])- float.Parse(toneDatas[r][0]);
+                dandelion.GetComponent<NoteInfo>().soundLength = (float.Parse(toneDatas[r][1])- float.Parse(toneDatas[r][0]))-(0.25f*s);
                 dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
                 ObjectList.Add(dandelion);
@@ -173,7 +173,14 @@ public class DandelionManagement : MonoBehaviour
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
                 bool nowOn = notePlayer.nowOn;
 
-                if (notenum > nowNotenumber || nowOn==false)
+                if (notenum > nowNotenumber)
+                {
+                    //nowpitch
+                    //noteplayer.NoteOff(pitch);
+                    notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                    nowNotenumber = notenum;
+                }
+                else if(nowOn == false)
                 {
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
                     nowNotenumber = notenum;
