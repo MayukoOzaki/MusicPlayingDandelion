@@ -69,20 +69,20 @@ public class BreathDetection : MonoBehaviour
             {
                 Debug.Log("BREATH");
                 Debug.Log(eH + "/" + eL + "/" + r);
-                float strength = 19.14f*Mathf.Log10(eH) * 184.86f;
+                float strength = 19.14f*Mathf.Log10(eH) +184.86f;
                 if (strength > 127.0f)
                 {
                     strength = 127.0f;
                 }
-
+                Debug.Log("strength" + strength);
                 dandelionManagement.isBlown(1.0f, strength);
                 //dandelionManagement.isBlown(1.0f, 100f);
             }
             else
             {
-                uint pitch = noteplayer.nowPitch;
-                noteplayer.NoteOff(pitch);
-                Debug.Log("止めた");
+                //uint pitch = noteplayer.nowPitch;
+                //noteplayer.NoteOff(pitch);
+                //Debug.Log("止めた");
             }
                 
 
@@ -90,9 +90,9 @@ public class BreathDetection : MonoBehaviour
         else
         {
         
-            uint pitch=noteplayer.nowPitch;
-            noteplayer.NoteOff(pitch);
-            Debug.Log("止めた");
+            //uint pitch=noteplayer.nowPitch;
+            //noteplayer.NoteOff(pitch);
+            //Debug.Log("止めた");
 
         }
         
