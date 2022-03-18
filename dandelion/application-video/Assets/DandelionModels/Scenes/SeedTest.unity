@@ -466,6 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nowPitch: 0
+  nowOn: 0
 --- !u!4 &86580233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
@@ -1279,7 +1280,7 @@ MonoBehaviour:
   dandelionManagement: {fileID: 2131401523}
   noteplayer: {fileID: 81642999}
   noSoundThreshold: 0.00000008
-  breathDetectionThreshold: 3.1
+  breathDetectionThreshold: 0.4
 --- !u!82 &250053275
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5678,6 +5679,7 @@ MonoBehaviour:
   end: 0
   soundLength: 0
   noteNumber: 0
+  toneColoer: 0
 --- !u!54 &1192618866
 Rigidbody:
   m_ObjectHideFlags: 0

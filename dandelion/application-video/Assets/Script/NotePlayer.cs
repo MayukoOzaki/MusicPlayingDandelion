@@ -26,7 +26,7 @@ public class NotePlayer : MonoBehaviour
     const int MIDI_MAPPER = -1;
 
     public uint nowPitch;//今音を出したピッチ
-    public bool nowOn = false;
+    public bool nowOn = false;//音を出した
 
     private int otocou = 0;
 
