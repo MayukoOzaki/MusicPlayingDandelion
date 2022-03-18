@@ -15,7 +15,11 @@ public class GameLoop : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.Return)){
-            SceneManager.LoadScene("EndScene");
+            ChangeToEndScene();
         }
+    }
+    public void ChangeToEndScene()
+    {
+        SceneManager.LoadScene("EndScene");
     }
 }
