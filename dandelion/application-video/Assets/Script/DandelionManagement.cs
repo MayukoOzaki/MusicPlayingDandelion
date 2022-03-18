@@ -16,7 +16,7 @@ public class DandelionManagement : MonoBehaviour
     public float BlownWidth = 5.0f;
     public float ZDistance = 0.1f;
 
-    int numSounds = 10;//270;
+    int numSounds = 58;//270;
     public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
     public NotePlayer notePlayer;
