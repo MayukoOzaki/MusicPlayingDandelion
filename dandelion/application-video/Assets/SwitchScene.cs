@@ -14,7 +14,7 @@ public class SwitchScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Return)){
+        if (Input.GetKey(KeyCode.Space)){
             SceneManager.LoadScene("TitleScene");
         }
     }
