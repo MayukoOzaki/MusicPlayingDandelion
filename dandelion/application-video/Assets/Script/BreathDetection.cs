@@ -36,7 +36,7 @@ public class BreathDetection : MonoBehaviour
 
             Debug.Log("Sampling Rates: " + minFreq.ToString() + " / " + maxFreq.ToString());
 
-            aud.clip = Microphone.Start(devName, true, 3599, 48000);
+            aud.clip = Microphone.Start(devName, true, 3599, 48000);//16000);//48000);
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
 
             //CreateFile1();
@@ -61,76 +61,118 @@ public class BreathDetection : MonoBehaviour
 
         r = eH / eL;
 
+        
         if (eH > noSoundThreshold)
         {
             //Debug.Log(eH + "/" + eL + "/" + r);
             if (r > breathDetectionThreshold)
             {
-                //Debug.Log("BREATH");
-                dandelionManagement.isBlown(1.0f, 100f);
-            }
-                
-
-        }
-
-        /*
-
-        if (Input.GetKey(KeyCode.P))
-        {
-            all += 1;
-
-            if (eH > noSoundThreshold)
-            {
-                isEH = true;
-                //eHcou += 1;
+                ////Debug.Log("BREATH");
                 //Debug.Log(eH + "/" + eL + "/" + r);
-                //Debug.Log(eH + "/" + eL + "/" + r + "/" + isEH);
-                if (r > breathDetectionThreshold)
+                float strength = 19.14f*Mathf.Log10(eH) +184.86f;
+                if (strength > 127.0f)
                 {
-                    isEH = false;
-                    isR = true;
-                    Debug.Log(eH + "/" + eL + "/" + r + "/" + isR);
-                    Debug.Log("BREATH");
+                    strength = 127.0f;
                 }
-
-
-                //rcou += 1;
-                //Debug.Log("BREATH");
+                //Debug.Log("strength" + strength);
+                dandelionManagement.isBlown(1.0f, strength);
+                //dandelionManagement.isBlown(1.0f, 100f);
             }
             else
             {
-                nocou += 1;
-                Debug.Log(eH + "/" + eL + "/" + r + "/" + isEH);
-                Debug.Log("誤");
-                
+                //Debug.Log(eH + "/" + eL + "/" + r);
+                uint pitch = noteplayer.nowPitch;
+                noteplayer.NoteOff(pitch);
+                //Debug.Log("1止めた11111111111111111111");
             }
+                
 
         }
-        if (Input.GetKey(KeyCode.O))
+        else
         {
-            Debug.Log("誤判定" + nocou + "/" + brecou + "/" + nocou / brecou);
+        
+            uint pitch=noteplayer.nowPitch;
+            noteplayer.NoteOff(pitch);
+            //Debug.Log("2止めた222222222222222222222");
 
-            brecou = 0;
-            nocou = 0;
+        }
+        
+        /*
+        if (Input.GetKey(KeyCode.P))
+        {
+            //Debug.Log("BREATH");
+            dandelionManagement.isBlown(1.0f, 127f);
+            //最低50, 最高127
+        }
+        else
+        {
 
+            uint pitch = noteplayer.nowPitch;
+            noteplayer.NoteOff(pitch);
+            //Debug.Log("止めた");
         }
         */
-    }
 
-    
-    //void KeyDetection()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.A))
-    //    {
-    //        dandelionManagement.isBlown(-1.0f, 1.0f);
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.S))
-    //    {
-    //        dandelionManagement.isBlown( 0.0f, 1.0f);
-    //    }
-    //    else if (Input.GetKeyDown(KeyCode.D))
-   //     {
-   //         dandelionManagement.isBlown( 1.0f, 1.0f);
+
+
+            /*
+
+            if (Input.GetKey(KeyCode.P))
+            {
+                all += 1;
+
+                if (eH > noSoundThreshold)
+                {
+                    isEH = true;
+                    //eHcou += 1;
+                    //Debug.Log(eH + "/" + eL + "/" + r);
+                    //Debug.Log(eH + "/" + eL + "/" + r + "/" + isEH);
+                    if (r > breathDetectionThreshold)
+                    {
+                        isEH = false;
+                        isR = true;
+                        Debug.Log(eH + "/" + eL + "/" + r + "/" + isR);
+                        Debug.Log("BREATH");
+                    }
+
+
+                    //rcou += 1;
+                    //Debug.Log("BREATH");
+                }
+                else
+                {
+                    nocou += 1;
+                    Debug.Log(eH + "/" + eL + "/" + r + "/" + isEH);
+                    Debug.Log("誤");
+
+                }
+
+            }
+            if (Input.GetKey(KeyCode.O))
+            {
+                Debug.Log("誤判定" + nocou + "/" + brecou + "/" + nocou / brecou);
+
+                brecou = 0;
+                nocou = 0;
+
+            }
+            */
+        }
+
+
+        //void KeyDetection()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.A))
+        //    {
+        //        dandelionManagement.isBlown(-1.0f, 1.0f);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.S))
+        //    {
+        //        dandelionManagement.isBlown( 0.0f, 1.0f);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.D))
+        //     {
+        //         dandelionManagement.isBlown( 1.0f, 1.0f);
         //}
         /* // ここで音を止めるコードを書くと、実際のマイクからの制御に悪影響がある
         else
@@ -141,25 +183,25 @@ public class BreathDetection : MonoBehaviour
             noteplayer.NoteOff(noteplayer.nowPitch);
         }
         */
-    //}
+        //}
 
-    /*
+        /*
 
-    private void CreateFile1()
-    {
-        Encoding utf8 = System.Text.Encoding.UTF8;
-        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\missCVS001.csv", true, utf8);///true 追記 ,false　すでにファイルが存在する場合そのファイルは消去され上書き保存される。
-        sw.Close();
+        private void CreateFile1()
+        {
+            Encoding utf8 = System.Text.Encoding.UTF8;
+            sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\missCVS001.csv", true, utf8);///true 追記 ,false　すでにファイルが存在する場合そのファイルは消去され上書き保存される。
+            sw.Close();
+        }
+
+        public void SaveData2(string[] num)
+        {
+            Encoding utf8 = System.Text.Encoding.UTF8;
+            sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\missCVS001.csv", true, utf8);//true 追記
+            string s2 = string.Join(",", num);
+            sw.WriteLine(s2);
+            sw.Close();
+
+
+        */
     }
-
-    public void SaveData2(string[] num)
-    {
-        Encoding utf8 = System.Text.Encoding.UTF8;
-        sw = new StreamWriter(@"D:\ozaki\MusicPlayingDandelion\dandelion\application-video\missCVS001.csv", true, utf8);//true 追記
-        string s2 = string.Join(",", num);
-        sw.WriteLine(s2);
-        sw.Close();
-
-    
-    */
-}

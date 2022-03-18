@@ -23,6 +23,10 @@ public class DandelionManagement : MonoBehaviour
 
     private float camPosz;
     private int nowNotenumber=0;
+    private uint tonecolor=0x0;
+    
+
+
 
 
 
@@ -85,8 +89,31 @@ public class DandelionManagement : MonoBehaviour
             posz += 0.5f;
             */
 
+            //toneColor 24, 32,32,112,40,31 
             notenum += 1;
-           
+            if (notenum == 25)
+            {
+                tonecolor = 0x38;//トランペット
+            }
+            else if(notenum == 57)
+            {
+                tonecolor = 0x49;//フルート
+            }
+            else if (notenum == 89)
+            {
+                tonecolor = 0x47;//クラリネット
+            }
+            else if (notenum == 201)
+            {
+                tonecolor = 0x41;//アルトサックス
+            }
+            else if (notenum == 241)
+            {
+                tonecolor = 0x44;//オーボエ
+            }
+            
+
+
             for (int s = 0; s <= quantity-1; s++)
             {
                 Vector3 pos = new Vector3(posx, 0f, posz);
@@ -94,8 +121,9 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().pitch = int.Parse(toneDatas[r][2]);
                 dandelion.GetComponent<NoteInfo>().start = float.Parse(toneDatas[r][0]);
                 dandelion.GetComponent<NoteInfo>().end = float.Parse(toneDatas[r][1]);
-                dandelion.GetComponent<NoteInfo>().soundLength = float.Parse(toneDatas[r][1])- float.Parse(toneDatas[r][0]);
+                dandelion.GetComponent<NoteInfo>().soundLength = (float.Parse(toneDatas[r][1])- float.Parse(toneDatas[r][0]))-(0.25f*s);
                 dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
+                dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
                 ObjectList.Add(dandelion);
                 posz += 0.5f;
             }
@@ -136,13 +164,23 @@ public class DandelionManagement : MonoBehaviour
                 uint pitch = (uint)i_pitch;
                 int i_velocity = (int)Strength;
                 uint velocity = (uint)i_velocity;
-                uint ToneColor = 0x0;
+                uint ToneColor=dandelion.GetComponent<NoteInfo>().toneColor;
+                //uint ToneColor = 0x0;
+
 
                 Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
 
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
+                bool nowOn = notePlayer.nowOn;
 
                 if (notenum > nowNotenumber)
+                {
+                    //nowpitch
+                    //noteplayer.NoteOff(pitch);
+                    notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                    nowNotenumber = notenum;
+                }
+                else if(nowOn == false)
                 {
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
                     nowNotenumber = notenum;
