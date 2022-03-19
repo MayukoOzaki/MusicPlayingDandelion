@@ -35,6 +35,7 @@ public class TimeManagement : MonoBehaviour
         //noteplayer.NoteOn(pitch, 100, 0);
         yield return new WaitForSeconds(delay);
         noteplayer.NoteOff(pitch);
+        Debug.Log("コライダーが止めた");
         //Debug.Log()
         //Debug.Log(pitch);
     }

@@ -67,7 +67,7 @@ public class BreathDetection : MonoBehaviour
             //Debug.Log(eH + "/" + eL + "/" + r);
             if (r > breathDetectionThreshold)
             {
-                ////Debug.Log("BREATH");
+                Debug.Log("BREATH");
                 //Debug.Log(eH + "/" + eL + "/" + r);
                 float strength = 19.14f*Mathf.Log10(eH) +184.86f;
                 if (strength > 127.0f)
@@ -83,7 +83,7 @@ public class BreathDetection : MonoBehaviour
                 //Debug.Log(eH + "/" + eL + "/" + r);
                 uint pitch = noteplayer.nowPitch;
                 noteplayer.NoteOff(pitch);
-                //Debug.Log("1止めた11111111111111111111");
+                Debug.Log("1止めた11111111111111111111");
             }
                 
 
