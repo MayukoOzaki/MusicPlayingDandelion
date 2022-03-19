@@ -26,17 +26,20 @@ public class NotePlayer : MonoBehaviour
     const int MIDI_MAPPER = -1;
 
     public uint nowPitch;//今音を出したピッチ
+    public bool nowOn = false;//音を出した
+
+    private int otocou = 0;
 
 
 
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update;
     void Start()
     {
 
         //▼MIDIデバイスオープン
         NotePlayer.midiOutOpen(out hMidiOut, MIDI_MAPPER, IntPtr.Zero, IntPtr.Zero, uint.MinValue);
-        NoteOn(50, 100, 0);
+        //NoteOn(50, 100, 0);
     }
     // Update is called once per frame
     void Update()
@@ -77,7 +80,19 @@ public class NotePlayer : MonoBehaviour
         //▼演奏
         uint on = 0x90;
         uint on_data = (on << 0) + (Pitch << 8) + (Velocity << 16);
+        //Debug.Log("鳴らす"+on_data.ToString("X"));
         NotePlayer.midiOutShortMsg(hMidiOut, on_data);
+        
+        nowOn = true;
+
+        //Debug.Log(Pitch+"/"+Velocity+"/"+ToneColor);
+
+        otocou += 1;
+        //Debug.Log("音を鳴らした"+otocou);
+        
+
+
+
 
         //NotePlayer.midiOutShortMsg(hMidiOut,0x7f0090);
 
@@ -104,7 +119,11 @@ public class NotePlayer : MonoBehaviour
         uint Velocity = 0x0;
         uint off = 0x90;
         uint off_data = (off << 0) + (Pitch << 8) + (Velocity << 16);
+        //Debug.Log("止めた"+off_data.ToString("X"));
         NotePlayer.midiOutShortMsg(hMidiOut, off_data);
+        nowOn = false;
+        //Debug.Log("止めた");
+
     }
 
     void EndPerformance()
@@ -112,10 +131,12 @@ public class NotePlayer : MonoBehaviour
         //▼MIDIデバイス開放
         NotePlayer.midiOutReset(hMidiOut);
         NotePlayer.midiOutClose(hMidiOut);
+        //Debug.Log("EndPerformance")
     }
     private void OnDestroy()
     {
         EndPerformance();
+        //Debug.Log("OnDestroy");
     }
 
 }
