@@ -244,6 +244,7 @@ public class DandelionManagement : MonoBehaviour
         if(dandelion.transform.position.z < Posz)
         {
             //Debug.Log("notblown");
+            
             ObjectList.RemoveAt(0);// リストの0番目を削除する
         }
     }

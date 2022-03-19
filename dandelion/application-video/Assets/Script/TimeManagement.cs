@@ -39,4 +39,12 @@ public class TimeManagement : MonoBehaviour
         //Debug.Log()
         //Debug.Log(pitch);
     }
+
+    void OnTriggerExit(Collider c)
+    {
+        if (c.gameObject.tag == "Dandelion")
+        {
+            Destroy(c.gameObject);
+        }
+    }
 }
