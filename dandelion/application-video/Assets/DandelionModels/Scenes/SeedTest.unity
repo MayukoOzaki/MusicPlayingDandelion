@@ -416,7 +416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81642993}
   m_LocalRotation: {x: 0.026176924, y: 0, z: 0, w: 0.99965733}
-  m_LocalPosition: {x: 0, y: 0.7, z: -3}
+  m_LocalPosition: {x: 0, y: 0.1, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 720031636}
@@ -5998,6 +5998,18 @@ PrefabInstance:
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1912665159664145560, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912665159664145560, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912665159664145560, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912665159664145560, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -6040,6 +6052,10 @@ PrefabInstance:
     - target: {fileID: 1912665159664145561, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_Name
       value: DandelionSugiyama
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912665159664145561, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_TagString
+      value: Dandelion
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 684711175346656329, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
@@ -6967,7 +6983,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 0.1, z: 0.1}
+  m_Size: {x: 50, y: 0.5, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1423324977
 MonoBehaviour:
@@ -6990,7 +7006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423324975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 81642996}
@@ -10220,7 +10236,7 @@ MonoBehaviour:
   DandelionPrefab: {fileID: 204261550}
   isWidth: 0
   BlownWidth: 5
-  ZDistance: 0.25
+  ZDistance: 0
   ObjectList: []
   notePlayer: {fileID: 81642999}
 --- !u!4 &2131401524
