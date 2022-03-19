@@ -29,6 +29,7 @@ public class DandelionController : MonoBehaviour
 
         ps.transform.LookAt(target);
         ps.Play();
+        Debug.Log("Ží‚ð”ò‚Î‚µ‚½");
     }
 
     IEnumerator RemoveTop()

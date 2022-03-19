@@ -83,7 +83,7 @@ public class BreathDetection : MonoBehaviour
                 //Debug.Log(eH + "/" + eL + "/" + r);
                 uint pitch = noteplayer.nowPitch;
                 noteplayer.NoteOff(pitch);
-                Debug.Log("1止めた11111111111111111111");
+                //Debug.Log("1止めた11111111111111111111");
             }
                 
 
