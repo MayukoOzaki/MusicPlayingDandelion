@@ -103,7 +103,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1912665158988907931}
+  - component: {fileID: 5156772800488704510}
   - component: {fileID: 1912665158988907928}
   - component: {fileID: 1912665158988907929}
   m_Layer: 0
@@ -113,7 +113,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1912665158988907931
+--- !u!4 &5156772800488704510
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,7 +372,7 @@ Transform:
   m_Children:
   - {fileID: 1912665159622583240}
   - {fileID: 1912665159124919212}
-  - {fileID: 1912665158988907931}
+  - {fileID: 5156772800488704510}
   - {fileID: 3107789866711683215}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -433,6 +433,8 @@ MonoBehaviour:
   start: 0
   end: 0
   soundLength: 0
+  noteNumber: 0
+  toneColor: 0
 --- !u!1 &2335897917352102453
 GameObject:
   m_ObjectHideFlags: 0

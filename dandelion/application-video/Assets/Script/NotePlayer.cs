@@ -80,9 +80,11 @@ public class NotePlayer : MonoBehaviour
         //▼演奏
         uint on = 0x90;
         uint on_data = (on << 0) + (Pitch << 8) + (Velocity << 16);
-        //Debug.Log("鳴らす"+on_data.ToString("X"));
-        NotePlayer.midiOutShortMsg(hMidiOut, on_data);
+
         
+        NotePlayer.midiOutShortMsg(hMidiOut, on_data);
+        Debug.Log("鳴らす"+on_data.ToString("X"));
+        //Debug.Log("鳴らした");
         nowOn = true;
 
         //Debug.Log(Pitch+"/"+Velocity+"/"+ToneColor);
@@ -124,6 +126,17 @@ public class NotePlayer : MonoBehaviour
         nowOn = false;
         //Debug.Log("止めた");
 
+    }
+
+    public void ExpressionChange(uint Volume)
+    {
+        uint exppression=0xB0;
+        uint byte2 = 0x0b;
+        uint expression_data= (exppression << 0) + (byte2 << 8) + (Volume << 16);
+
+        ///Debug.Log("変えた");
+        NotePlayer.midiOutShortMsg(hMidiOut, expression_data);
+        Debug.Log("変えた" + expression_data.ToString("X"));
     }
 
     void EndPerformance()

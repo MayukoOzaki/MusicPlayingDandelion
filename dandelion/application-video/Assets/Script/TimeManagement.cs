@@ -25,6 +25,8 @@ public class TimeManagement : MonoBehaviour
             float soundLength = collision.gameObject.GetComponent<NoteInfo>().soundLength;
             int i_pitch = collision.gameObject.GetComponent<NoteInfo>().pitch;
             uint pitch = (uint)i_pitch;
+            //notePlayer.NoteOn(50, 100, 0);//テスト用
+
             StartCoroutine(StopNote(pitch, soundLength));
 
         }
@@ -35,7 +37,16 @@ public class TimeManagement : MonoBehaviour
         //noteplayer.NoteOn(pitch, 100, 0);
         yield return new WaitForSeconds(delay);
         noteplayer.NoteOff(pitch);
+        //Debug.Log("コライダーが止めた");
         //Debug.Log()
         //Debug.Log(pitch);
+    }
+
+    void OnTriggerExit(Collider c)
+    {
+        if (c.gameObject.tag == "Dandelion")
+        {
+            Destroy(c.gameObject);
+        }
     }
 }

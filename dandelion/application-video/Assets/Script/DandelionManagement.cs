@@ -23,6 +23,7 @@ public class DandelionManagement : MonoBehaviour
 
     public NotePlayer notePlayer;
 
+    private Vector3 camPos;
     private float camPosz;
     private int nowNotenumber=0;
     private uint tonecolor=0x0;
@@ -72,7 +73,7 @@ public class DandelionManagement : MonoBehaviour
             
             //横の位置 c4:60
             //-1:0-11 0:12-23 1:24-35 2:36-47 3:48:59 4:60-71 5:72-83 6:84-95 7:96-107
-            float posx = (float.Parse(toneDatas[r][2])-60.0f) * 0.5f;
+            float posx = (float.Parse(toneDatas[r][2])-60.0f) * 0.05f;
             //縦の位置
             //float posz = float.Parse(toneDatas[r][0]);
             //個数
@@ -127,7 +128,7 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
                 ObjectList.Add(dandelion);
-                posz += 0.5f;
+                posz += 0.25f;
             }
             
 
@@ -179,21 +180,67 @@ public class DandelionManagement : MonoBehaviour
                 {
                     //nowpitch
                     //noteplayer.NoteOff(pitch);
+                    notePlayer.ExpressionChange(velocity);
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                    //notePlayer.ExpressionChange(velocity);
+
                     nowNotenumber = notenum;
                 }
+                else
+                {
+                    notePlayer.ExpressionChange(velocity);
+                    nowNotenumber = notenum;
+                }
+
+                
+
+                /*
+                else if (nowOn == false)
+                {
+                    //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                    notePlayer.ExpressionChange(velocity);
+                    nowNotenumber = notenum;
+                }
+                else
+                {
+                    //notePlayer.ExpressionChange(velocity);
+                }
+                */
+
+                /*
+                else
+                {
+                        notePlayer.ExpressionChange(0);
+                    
+                        
+                }
+                */
+
+
+                /*
                 else if(nowOn == false)
                 {
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
                     nowNotenumber = notenum;
                 }
+                */
+
 
                 //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
 
                 //notePlayer.NoteOn(50, 100, 0);//テスト用
+                //
+
+
+                Vector3 dir = dandelion.transform.position - camPos;
+                dandelion.GetComponent<DandelionController>().Blow(dir);
+
+
 
                 Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
                 ObjectList.RemoveAt(0);// リストの0番目を削除する
+
+                
 
                 //同じ音番号の時はリターン音を再生しない。
 
@@ -234,6 +281,7 @@ public class DandelionManagement : MonoBehaviour
         if(dandelion.transform.position.z < Posz)
         {
             //Debug.Log("notblown");
+            
             ObjectList.RemoveAt(0);// リストの0番目を削除する
         }
     }
@@ -241,9 +289,10 @@ public class DandelionManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 camPos = GameObject.FindWithTag("MainCamera").transform.position;
+        camPos = GameObject.FindWithTag("MainCamera").transform.position;
         camPosz = camPos.z;
         CheckPassingDandelion(camPosz);
+
     }
 
     //位置はゴーグルからとる。
