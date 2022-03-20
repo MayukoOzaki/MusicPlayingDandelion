@@ -180,17 +180,38 @@ public class DandelionManagement : MonoBehaviour
                 {
                     //nowpitch
                     //noteplayer.NoteOff(pitch);
+                    //notePlayer.ExpressionChange(velocity);
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
           
                     nowNotenumber = notenum;
                 }
                 else
                 {
+                    notePlayer.ExpressionChange(velocity);
+                    nowNotenumber = notenum;
+                }
+                /*
+                else if (nowOn == false)
+                {
+                    //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                    notePlayer.ExpressionChange(velocity);
+                    nowNotenumber = notenum;
+                }
+                else
+                {
+                    //notePlayer.ExpressionChange(velocity);
+                }
+                */
+
+                /*
+                else
+                {
                         notePlayer.ExpressionChange(0);
                     
                         
                 }
-                
+                */
+
 
                 /*
                 else if(nowOn == false)
@@ -206,7 +227,7 @@ public class DandelionManagement : MonoBehaviour
                 //notePlayer.NoteOn(50, 100, 0);//テスト用
                 //
 
-                
+
                 Vector3 dir = dandelion.transform.position - camPos;
                 dandelion.GetComponent<DandelionController>().Blow(dir);
 

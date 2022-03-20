@@ -62,7 +62,6 @@ public class BreathDetection : MonoBehaviour
         r = eH / eL;
 
         
-        /*
         
         if (eH > noSoundThreshold)
         {
@@ -84,31 +83,35 @@ public class BreathDetection : MonoBehaviour
             {
                 //Debug.Log(eH + "/" + eL + "/" + r);
                 uint pitch = noteplayer.nowPitch;
-                noteplayer.NoteOff(pitch);
-                //Debug.Log("1止めた11111111111111111111");
+                noteplayer.ExpressionChange(0);
+                //noteplayer.NoteOff(pitch);
+                Debug.Log("1止めた11111111111111111111");
             }
-                
-
         }
         else
         {
         
             uint pitch=noteplayer.nowPitch;
-            noteplayer.NoteOff(pitch);
-            //Debug.Log("2止めた222222222222222222222");
+            //noteplayer.NoteOff(pitch);
+            noteplayer.ExpressionChange(0);
+            Debug.Log("2止めた222222222222222222222");
 
         }
-        */
 
         
 
-        
+        /*
         
         if (Input.GetKey(KeyCode.P))
         {
             //Debug.Log("BREATH");
+            //noteplayer.ExpressionChange(127);
             dandelionManagement.isBlown(1.0f, 127f);
             //最低50, 最高127
+        }
+        else if(Input.GetKey(KeyCode.O))
+        {
+            noteplayer.ExpressionChange(0);
         }
         else
         {
@@ -117,6 +120,7 @@ public class BreathDetection : MonoBehaviour
             noteplayer.NoteOff(pitch);
             //Debug.Log("止めた");
         }
+        */
         
 
 
