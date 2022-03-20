@@ -129,11 +129,10 @@ public class NotePlayer : MonoBehaviour
     public void ExpressionChange(uint Volume)
     {
         uint exppression=0xB0;
-        uint byte2 = 0x11;
+        uint byte2 = 0x0b;
         uint expression_data= (exppression << 0) + (byte2 << 8) + (Volume << 16);
         Debug.Log("変えた");
-
-
+        NotePlayer.midiOutShortMsg(hMidiOut, expression_data);
     }
 
     void EndPerformance()
