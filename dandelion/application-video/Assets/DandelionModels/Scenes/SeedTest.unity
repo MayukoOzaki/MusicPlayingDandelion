@@ -10236,7 +10236,7 @@ MonoBehaviour:
   DandelionPrefab: {fileID: 204261550}
   isWidth: 0
   BlownWidth: 5
-  ZDistance: 0
+  ZDistance: 0.105
   ObjectList: []
   notePlayer: {fileID: 81642999}
 --- !u!4 &2131401524
