@@ -180,9 +180,10 @@ public class DandelionManagement : MonoBehaviour
                 {
                     //nowpitch
                     //noteplayer.NoteOff(pitch);
-                    //notePlayer.ExpressionChange(velocity);
+                    notePlayer.ExpressionChange(velocity);
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
-          
+                    //notePlayer.ExpressionChange(velocity);
+
                     nowNotenumber = notenum;
                 }
                 else
@@ -190,6 +191,9 @@ public class DandelionManagement : MonoBehaviour
                     notePlayer.ExpressionChange(velocity);
                     nowNotenumber = notenum;
                 }
+
+                
+
                 /*
                 else if (nowOn == false)
                 {
