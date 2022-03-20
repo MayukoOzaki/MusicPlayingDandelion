@@ -181,13 +181,25 @@ public class DandelionManagement : MonoBehaviour
                     //nowpitch
                     //noteplayer.NoteOff(pitch);
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+          
                     nowNotenumber = notenum;
                 }
+                else
+                {
+                        notePlayer.ExpressionChange(0);
+                    
+                        
+                }
+                
+
+                /*
                 else if(nowOn == false)
                 {
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
                     nowNotenumber = notenum;
                 }
+                */
+
 
                 //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
 

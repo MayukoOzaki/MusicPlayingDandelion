@@ -62,6 +62,7 @@ public class BreathDetection : MonoBehaviour
         r = eH / eL;
 
         
+        /*
         
         if (eH > noSoundThreshold)
         {
@@ -97,10 +98,12 @@ public class BreathDetection : MonoBehaviour
             //Debug.Log("2止めた222222222222222222222");
 
         }
+        */
+
         
 
         
-        /*
+        
         if (Input.GetKey(KeyCode.P))
         {
             //Debug.Log("BREATH");
@@ -114,7 +117,7 @@ public class BreathDetection : MonoBehaviour
             noteplayer.NoteOff(pitch);
             //Debug.Log("止めた");
         }
-        */
+        
 
 
 

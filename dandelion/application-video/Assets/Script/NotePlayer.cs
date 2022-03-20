@@ -126,6 +126,16 @@ public class NotePlayer : MonoBehaviour
 
     }
 
+    public void ExpressionChange(uint Volume)
+    {
+        uint exppression=0xB0;
+        uint byte2 = 0x11;
+        uint expression_data= (exppression << 0) + (byte2 << 8) + (Volume << 16);
+        Debug.Log("変えた");
+
+
+    }
+
     void EndPerformance()
     {
         //▼MIDIデバイス開放
