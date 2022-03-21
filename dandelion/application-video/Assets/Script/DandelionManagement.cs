@@ -162,7 +162,7 @@ public class DandelionManagement : MonoBehaviour
             //Debug.Log("制限１");
             if (Math.Abs(dandelion.transform.position.z - camPosz) < ZDistance||true)
             {
-                Debug.Log("制限２");
+                //Debug.Log("制限２");
                 //Debug.Log("isblown");
                 //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
                 //ObjectList.RemoveAt(0);// リストの0番目を削除する

@@ -49,7 +49,7 @@ public class TimeManagement : MonoBehaviour
         if (c.gameObject.tag == "Dandelion")
         {
             Debug.Log("抜けた");
-            Destroy(c.gameObject);
+            //Destroy(c.gameObject);
 
         }
     }

@@ -83,7 +83,7 @@ public class NotePlayer : MonoBehaviour
 
         
         NotePlayer.midiOutShortMsg(hMidiOut, on_data);
-        Debug.Log("強さ" + Velocity);
+        Debug.Log("強さ1" +"/"+ Velocity);
         //Debug.Log("鳴らす"+on_data.ToString("X"));
         //Debug.Log("鳴らした");
         nowOn = true;
@@ -137,7 +137,7 @@ public class NotePlayer : MonoBehaviour
 
         ///Debug.Log("変えた");
         NotePlayer.midiOutShortMsg(hMidiOut, expression_data);
-        Debug.Log("強さ" + Volume);
+        Debug.Log("強さ2" +"/"+ Volume);
         //Debug.Log("変えた" + expression_data.ToString("X"));
     }
 
