@@ -5993,6 +5993,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 910955279267349671, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1912665159664145560, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -6983,7 +6987,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 0.5, z: 0.25}
+  m_Size: {x: 50, y: 0.5, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1423324977
 MonoBehaviour:
@@ -7007,7 +7011,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423324975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.75}
+  m_LocalPosition: {x: 0, y: 0, z: -2.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 81642996}

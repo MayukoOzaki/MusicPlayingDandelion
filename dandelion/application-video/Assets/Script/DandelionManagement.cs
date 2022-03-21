@@ -87,8 +87,8 @@ public class DandelionManagement : MonoBehaviour
             dandelion.GetComponent<NoteInfo>().start = float.Parse(toneDatas[r][0]);
             dandelion.GetComponent<NoteInfo>().end = float.Parse(toneDatas[r][1]);
             dandelion.GetComponent<NoteInfo>().soundLength = float.Parse(toneDatas[r][1]) - float.Parse(toneDatas[r][0]);
-            ObjectList.Add(dandelion);
-            posz += 0.5f;
+            //ObjectList.Add(dandelion);
+            posz += 0.25f;
             */
 
             //toneColor 24, 32,32,112,40,31
@@ -115,7 +115,7 @@ public class DandelionManagement : MonoBehaviour
             }
 
 
-
+            
             for (int s = 0; s <= quantity-1; s++)
             {
                 Vector3 pos = new Vector3(posx, 0f, posz);
@@ -129,6 +129,7 @@ public class DandelionManagement : MonoBehaviour
       //          ObjectList.Add(dandelion);
                 posz += 0.25f;
             }
+            
 
 
 
@@ -178,6 +179,7 @@ public class DandelionManagement : MonoBehaviour
                 if (notenum > nowNotenumber && velocity > 0)
                 {
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                    notePlayer.ExpressionChange(velocity);
                     Vector3 dir = dandelion.transform.position - camPos;
                     dandelion.GetComponent<DandelionController>().Blow(dir);
 
@@ -199,40 +201,14 @@ public class DandelionManagement : MonoBehaviour
                         dandelion.GetComponent<DandelionController>().Blow(dir);
                         //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
                         //ObjectList.RemoveAt(0);// リストの0番目を削除する
-
+                        
                     }
-                    nowNotenumber = notenum;
+                    //nowNotenumber = notenum;
 
                 }
+                
 
 
-
-                /*
-                else if (nowOn == false)
-                {
-                    //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
-                    notePlayer.ExpressionChange(velocity);
-                    nowNotenumber = notenum;
-                }
-                else
-                {
-                    //notePlayer.ExpressionChange(velocity);
-                }
-                */
-
-                /*
-                else
-                {
-                        notePlayer.ExpressionChange(0);
-
-                    nowNotenumber = notenum;
-
-                }
-                notePlayer.ExpressionChange(velocity);
-            }
-        }
-    }
-*/
             }
         }
     }
