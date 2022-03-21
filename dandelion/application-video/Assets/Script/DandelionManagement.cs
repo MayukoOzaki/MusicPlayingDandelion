@@ -27,7 +27,7 @@ public class DandelionManagement : MonoBehaviour
     private float camPosz;
     private int nowNotenumber=0;
     private uint tonecolor=0x0;
-    
+
 
 
 
@@ -67,10 +67,10 @@ public class DandelionManagement : MonoBehaviour
     {
 
         float posz = 0f;
-        int notenum = 0;//note number 
+        int notenum = 0;//note number
         for (int r=0;r<= numSounds; r++)//音の数
         {
-            
+
             //横の位置 c4:60
             //-1:0-11 0:12-23 1:24-35 2:36-47 3:48:59 4:60-71 5:72-83 6:84-95 7:96-107
             float posx = (float.Parse(toneDatas[r][2])-60.0f) * 0.05f;
@@ -92,7 +92,7 @@ public class DandelionManagement : MonoBehaviour
             posz += 0.5f;
             */
 
-            //toneColor 24, 32,32,112,40,31 
+            //toneColor 24, 32,32,112,40,31
             notenum += 1;
             if (notenum == 25)
             {
@@ -114,7 +114,7 @@ public class DandelionManagement : MonoBehaviour
             {
                 tonecolor = 0x44;//オーボエ
             }
-            
+
 
 
             for (int s = 0; s <= quantity-1; s++)
@@ -130,7 +130,7 @@ public class DandelionManagement : MonoBehaviour
                 ObjectList.Add(dandelion);
                 posz += 0.25f;
             }
-            
+
 
 
             //To Do
@@ -145,7 +145,7 @@ public class DandelionManagement : MonoBehaviour
 
     public void isBlown(float Posx, float Strength) //Posx:吹いた位置　Strength:吹いた強さ
     {
-        
+
         //int count = ObjectList.Count;
         //Debug.Log("count"+count);
         if (ObjectList.Count == 0)
@@ -176,20 +176,18 @@ public class DandelionManagement : MonoBehaviour
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
                 bool nowOn = notePlayer.nowOn;
 
-                if (notenum > nowNotenumber)
+                if (notenum > nowNotenumber && velocity > 0)
                 {
                     //nowpitch
                     //noteplayer.NoteOff(pitch);
                     notePlayer.ExpressionChange(velocity);
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
-                    //notePlayer.ExpressionChange(velocity);
-                    if (velocity != 0)
-                    {
-                        Vector3 dir = dandelion.transform.position - camPos;
-                        dandelion.GetComponent<DandelionController>().Blow(dir);
-                        Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-                        ObjectList.RemoveAt(0);// リストの0番目を削除する
-                    }
+
+                    Vector3 dir = dandelion.transform.position - camPos;
+                    dandelion.GetComponent<DandelionController>().Blow(dir);
+                    Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
+                    ObjectList.RemoveAt(0);// リストの0番目を削除する
+
 
                     nowNotenumber = notenum;
 
@@ -210,7 +208,7 @@ public class DandelionManagement : MonoBehaviour
 
                 }
 
-                
+
 
                 /*
                 else if (nowOn == false)
@@ -229,8 +227,8 @@ public class DandelionManagement : MonoBehaviour
                 else
                 {
                         notePlayer.ExpressionChange(0);
-                    
-                        
+
+
                 }
                 */
 
@@ -250,6 +248,7 @@ public class DandelionManagement : MonoBehaviour
                 //
 
 
+
                 /*
                 Vector3 dir = dandelion.transform.position - camPos;
                 dandelion.GetComponent<DandelionController>().Blow(dir);
@@ -260,7 +259,6 @@ public class DandelionManagement : MonoBehaviour
                 ObjectList.RemoveAt(0);// リストの0番目を削除する
                 */
                 
-
                 //同じ音番号の時はリターン音を再生しない。
 
                 //音の再生を止める条件は、息が止まった時と、endの範囲外になったとき。
@@ -289,7 +287,7 @@ public class DandelionManagement : MonoBehaviour
             //音の再生を止める条件は、息が止まった時と、endの範囲外になったとき。
             */
         }
-        
+
     }
 
     public void CheckPassingDandelion(float Posz) //Posz:カメラの位置
@@ -300,7 +298,7 @@ public class DandelionManagement : MonoBehaviour
         if(dandelion.transform.position.z < Posz)
         {
             //Debug.Log("notblown");
-            
+
             ObjectList.RemoveAt(0);// リストの0番目を削除する
         }
     }
