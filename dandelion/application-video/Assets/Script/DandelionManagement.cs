@@ -22,6 +22,7 @@ public class DandelionManagement : MonoBehaviour
 //    public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
     public GameObject targetDandelion;
+    public GameObject lastDandelion;
 
     public NotePlayer notePlayer;
 
@@ -128,8 +129,11 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
       //          ObjectList.Add(dandelion);
                 posz += 0.25f;
+                lastDandelion = dandelion;
             }
+
             
+
 
 
 

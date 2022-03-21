@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -957,6 +957,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1912665159664145561, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
   m_PrefabInstance: {fileID: 1243262703}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &204261551
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204261550}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &207861224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
@@ -6027,7 +6040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1912665159664145560, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -100
+      value: -99.904
       objectReference: {fileID: 0}
     - target: {fileID: 1912665159664145560, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6064,6 +6077,18 @@ PrefabInstance:
     - target: {fileID: 1912665159664145561, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_TagString
       value: Dandelion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107789866711683215, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930335362639709336, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_Radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930335362639709336, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 684711175346656329, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
@@ -7007,6 +7032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteplayer: {fileID: 81642999}
   dandelionManagement: {fileID: 2131401523}
+  gameloop: {fileID: 109299094}
 --- !u!4 &1423324978
 Transform:
   m_ObjectHideFlags: 0
@@ -10264,6 +10290,7 @@ MonoBehaviour:
   BlownWidth: 5
   ZDistance: 5
   targetDandelion: {fileID: 0}
+  lastDandelion: {fileID: 0}
   notePlayer: {fileID: 81642999}
 --- !u!4 &2131401524
 Transform:

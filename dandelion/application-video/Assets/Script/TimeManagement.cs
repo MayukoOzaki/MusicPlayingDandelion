@@ -6,6 +6,7 @@ public class TimeManagement : MonoBehaviour
 {
     public NotePlayer noteplayer;
     public DandelionManagement dandelionManagement;
+    public GameLoop gameloop;
 
     // Start is called before the first frame update
     void Start()
@@ -44,15 +45,16 @@ public class TimeManagement : MonoBehaviour
         //Debug.Log(pitch);
     }
 
-    /*
+    
     void OnTriggerExit(Collider c)
     {
-        if (c.gameObject.tag == "Dandelion")
+        if (c.gameObject == dandelionManagement.lastDandelion)
         {
             //Debug.Log("抜けた");
             //Destroy(c.gameObject);
+            gameloop.ChangeToEndScene();
 
         }
     }
-    */
+    
 }
