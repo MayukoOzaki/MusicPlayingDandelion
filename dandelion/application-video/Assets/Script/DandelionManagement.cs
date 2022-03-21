@@ -19,7 +19,7 @@ public class DandelionManagement : MonoBehaviour
 
     int numSounds = 270;//270;
 
-    public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
+//    public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
     public GameObject targetDandelion;
 
@@ -126,7 +126,7 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().soundLength = (float.Parse(toneDatas[r][1])- float.Parse(toneDatas[r][0]))-(0.25f*s);
                 dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
-                ObjectList.Add(dandelion);
+      //          ObjectList.Add(dandelion);
                 posz += 0.25f;
             }
 
