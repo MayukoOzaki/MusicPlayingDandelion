@@ -5,18 +5,19 @@ using UnityEngine;
 public class TimeManagement : MonoBehaviour
 {
     public NotePlayer noteplayer;
-    
+    public DandelionManagement dandelionManagement;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        
+
+
     }
     void OnTriggerEnter(Collider collision)
     {
@@ -28,9 +29,9 @@ public class TimeManagement : MonoBehaviour
             //notePlayer.NoteOn(50, 100, 0);//テスト用
 
             StartCoroutine(StopNote(pitch, soundLength));
-
+            dandelionManagement.SetTargetDandelion( collision.gameObject );
         }
-    }   
+    }
 
     IEnumerator StopNote(uint pitch,float delay)
     {

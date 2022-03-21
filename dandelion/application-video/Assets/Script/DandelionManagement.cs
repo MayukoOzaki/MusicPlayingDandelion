@@ -21,6 +21,8 @@ public class DandelionManagement : MonoBehaviour
 
     public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
+    public GameObject targetDandelion;
+
     public NotePlayer notePlayer;
 
     private Vector3 camPos;
@@ -49,7 +51,7 @@ public class DandelionManagement : MonoBehaviour
         //Debug.Log(toneDatas[1][2]);        // 2行目3列目(45)
 
         SetPosition(toneDatas);
-
+        targetDandelion = null;
     }
 
     void ReadText(TextAsset fileName)
@@ -60,17 +62,14 @@ public class DandelionManagement : MonoBehaviour
             if (line == "") { continue; }
             toneDatas.Add(line.Split(' '));    // string[]を追加している
         }
-
     }
 
     void SetPosition(List<string[]> data)
     {
-
         float posz = 0f;
         int notenum = 0;//note number
         for (int r=0;r<= numSounds; r++)//音の数
         {
-
             //横の位置 c4:60
             //-1:0-11 0:12-23 1:24-35 2:36-47 3:48:59 4:60-71 5:72-83 6:84-95 7:96-107
             float posx = (float.Parse(toneDatas[r][2])-60.0f) * 0.05f;
@@ -145,12 +144,12 @@ public class DandelionManagement : MonoBehaviour
 
     public void isBlown(float Posx, float Strength) //Posx:吹いた位置　Strength:吹いた強さ
     {
-
         //int count = ObjectList.Count;
         //Debug.Log("count"+count);
-        if (ObjectList.Count == 0)
+        if (targetDandelion == null)
             return;
-        GameObject dandelion = ObjectList[0];
+
+        GameObject dandelion = targetDandelion;
         if (isWidth==false)
         {
             BlownWidth = 999999.0f;
@@ -163,14 +162,9 @@ public class DandelionManagement : MonoBehaviour
                 //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
                 //ObjectList.RemoveAt(0);// リストの0番目を削除する
 
-                int i_pitch = dandelion.GetComponent<NoteInfo>().pitch;
-                uint pitch = (uint)i_pitch;
-                int i_velocity = (int)Strength;
-                uint velocity = (uint)i_velocity;
+                uint pitch = (uint)dandelion.GetComponent<NoteInfo>().pitch;
+                uint velocity = (uint)Strength;
                 uint ToneColor=dandelion.GetComponent<NoteInfo>().toneColor;
-                //uint ToneColor = 0x0;
-
-
                 //Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
 
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
@@ -178,118 +172,16 @@ public class DandelionManagement : MonoBehaviour
 
                 if (notenum > nowNotenumber && velocity > 0)
                 {
-                    //nowpitch
-                    //noteplayer.NoteOff(pitch);
-                    notePlayer.ExpressionChange(velocity);
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
-
                     Vector3 dir = dandelion.transform.position - camPos;
                     dandelion.GetComponent<DandelionController>().Blow(dir);
-                    Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-                    ObjectList.RemoveAt(0);// リストの0番目を削除する
-
-
-                    nowNotenumber = notenum;
-
-
-                }
-                else
-                {
-                    notePlayer.ExpressionChange(velocity);
-                    
-                    if (velocity != 0)
-                    {
-                        Vector3 dir = dandelion.transform.position - camPos;
-                        dandelion.GetComponent<DandelionController>().Blow(dir);
-                        Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-                        ObjectList.RemoveAt(0);// リストの0番目を削除する
-                    }
-                    nowNotenumber = notenum;
-
-                }
-
-
-
-                /*
-                else if (nowOn == false)
-                {
-                    //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
-                    notePlayer.ExpressionChange(velocity);
                     nowNotenumber = notenum;
                 }
-                else
-                {
-                    //notePlayer.ExpressionChange(velocity);
-                }
-                */
-
-                /*
-                else
-                {
-                        notePlayer.ExpressionChange(0);
-
-
-                }
-                */
-
-
-                /*
-                else if(nowOn == false)
-                {
-                    notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
-                    nowNotenumber = notenum;
-                }
-                */
-
-
-                //notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
-
-                //notePlayer.NoteOn(50, 100, 0);//テスト用
-                //
-
-
-
-                /*
-                Vector3 dir = dandelion.transform.position - camPos;
-                dandelion.GetComponent<DandelionController>().Blow(dir);
-
-
-
-                Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-                ObjectList.RemoveAt(0);// リストの0番目を削除する
-                */
-                
-                //同じ音番号の時はリターン音を再生しない。
-
-                //音の再生を止める条件は、息が止まった時と、endの範囲外になったとき。
+                notePlayer.ExpressionChange(velocity);
             }
-
-            /*
-            Debug.Log("isblown");
-            //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-            //ObjectList.RemoveAt(0);// リストの0番目を削除する
-
-            int i_pitch = dandelion.GetComponent<NoteInfo>().pitch;
-            uint pitch = (uint)i_pitch;
-            int i_velocity = (int)Strength;
-            uint velocity = (uint)i_velocity;
-            uint ToneColor = 0x0;
-
-            notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
-
-            //notePlayer.NoteOn(50, 100, 0);//テスト用
-
-            Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-            ObjectList.RemoveAt(0);// リストの0番目を削除する
-
-            //同じ音番号の時はリターン音を再生しない。
-
-            //音の再生を止める条件は、息が止まった時と、endの範囲外になったとき。
-            */
         }
-
     }
-
+/*
     public void CheckPassingDandelion(float Posz) //Posz:カメラの位置
     {
         if (ObjectList.Count == 0)
@@ -302,14 +194,19 @@ public class DandelionManagement : MonoBehaviour
             ObjectList.RemoveAt(0);// リストの0番目を削除する
         }
     }
-
+*/
+    public void SetTargetDandelion(GameObject dandelion)
+    {
+        targetDandelion = dandelion;
+    }
     // Update is called once per frame
     void Update()
     {
+        /*
         camPos = GameObject.FindWithTag("MainCamera").transform.position;
         camPosz = camPos.z;
         CheckPassingDandelion(camPosz);
-
+        */
     }
 
     //位置はゴーグルからとる。
