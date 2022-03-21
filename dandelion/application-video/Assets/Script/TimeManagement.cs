@@ -6,11 +6,7 @@ public class TimeManagement : MonoBehaviour
 {
     public NotePlayer noteplayer;
     public DandelionManagement dandelionManagement;
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 98ebb91cd8a2f0b2547d8173e6973e2a26389314
     // Start is called before the first frame update
     void Start()
     {
