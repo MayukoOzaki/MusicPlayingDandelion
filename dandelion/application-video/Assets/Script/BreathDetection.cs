@@ -61,9 +61,7 @@ public class BreathDetection : MonoBehaviour
 
         r = eH / eL;
 
-
-        
-        
+        float strength = 0;
         if (eH > noSoundThreshold)
         {
             //Debug.Log(eH + "/" + eL + "/" + r);
@@ -71,38 +69,27 @@ public class BreathDetection : MonoBehaviour
             {
                 //Debug.Log("BREATH");
                 //Debug.Log(eH + "/" + eL + "/" + r);
-                float strength = 19.14f*Mathf.Log10(eH) +184.86f;
+                strength = 19.14f*Mathf.Log10(eH) +184.86f;
                 if (strength > 127.0f)
                 {
                     strength = 127.0f;
                 }
-                //Debug.Log("strength" + strength);
-                dandelionManagement.isBlown(1.0f, strength);
-                //dandelionManagement.isBlown(1.0f, 100f);
+                else if (strength < 0)
+                {
+                    strength = 0;
+                }
             }
             else
             {
-                dandelionManagement.isBlown(1.0f, 0);
-                //Debug.Log(eH + "/" + eL + "/" + r);
-                //uint pitch = noteplayer.nowPitch;
-                //dandelionManagement.isBlown(1.0f, 0);
-                //noteplayer.NoteOff(pitch);
-                //Debug.Log("1止めた11111111111111111111");
+                Debug.Log("1止めた11111111111111111111");
             }
         }
         else
         {
-            dandelionManagement.isBlown(1.0f, 0);
-            //uint pitch=noteplayer.nowPitch;
-            //noteplayer.NoteOff(pitch);
-            //dandelionManagement.isBlown(1.0f, 0);
-            //noteplayer.ExpressionChange(0);
-            //Debug.Log("2止めた222222222222222222222");
-
+            Debug.Log("2止めた222222222222222222222");
         }
-        
-        
-       
+
+        dandelionManagement.isBlown(1.0f, strength);
 
         /*//テスト１
         if (Input.GetKey(KeyCode.P))
@@ -119,7 +106,6 @@ public class BreathDetection : MonoBehaviour
         }
        */
 
-        
         if (Input.GetKey(KeyCode.P))
         {
             dandelionManagement.isBlown(1.0f, 127f);
@@ -132,11 +118,6 @@ public class BreathDetection : MonoBehaviour
         {
             dandelionManagement.isBlown(1.0f, 0);
         }
-        
-
-
-
-
 
         /*
         if (Input.GetKey(KeyCode.P))
