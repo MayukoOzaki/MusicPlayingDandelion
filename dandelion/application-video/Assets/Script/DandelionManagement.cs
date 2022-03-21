@@ -159,7 +159,7 @@ public class DandelionManagement : MonoBehaviour
         }
         if (Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
-            Debug.Log("制限１");
+            //Debug.Log("制限１");
             if (Math.Abs(dandelion.transform.position.z - camPosz) < ZDistance||true)
             {
                 Debug.Log("制限２");
