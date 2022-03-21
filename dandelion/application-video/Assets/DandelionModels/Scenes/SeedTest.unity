@@ -5698,6 +5698,7 @@ MonoBehaviour:
   soundLength: 0
   noteNumber: 0
   toneColor: 0
+  velocity: 0
 --- !u!54 &1192618866
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6078,9 +6079,33 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Dandelion
       objectReference: {fileID: 0}
+    - target: {fileID: 1912665160506810157, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912665160506810157, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912665160506810157, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3107789866711683215, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5156772800488704510, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5156772800488704510, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5156772800488704510, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930335362639709336, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_Radius
@@ -10292,6 +10317,7 @@ MonoBehaviour:
   targetDandelion: {fileID: 0}
   lastDandelion: {fileID: 0}
   notePlayer: {fileID: 81642999}
+  headSizeChange: {fileID: 1526942931}
 --- !u!4 &2131401524
 Transform:
   m_ObjectHideFlags: 0

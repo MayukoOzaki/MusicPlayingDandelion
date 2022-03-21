@@ -10,7 +10,7 @@ public class NoteInfo : MonoBehaviour
     public float soundLength;
     public int noteNumber;
     public uint toneColor;
-
+    public float velocity;
     // Start is called before the first frame update
     void Start()
     {
