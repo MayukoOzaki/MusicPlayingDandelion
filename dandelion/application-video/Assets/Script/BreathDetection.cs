@@ -87,7 +87,7 @@ public class BreathDetection : MonoBehaviour
                 //uint pitch = noteplayer.nowPitch;
                 //dandelionManagement.isBlown(1.0f, 0);
                 //noteplayer.NoteOff(pitch);
-                Debug.Log("1止めた11111111111111111111");
+                //Debug.Log("1止めた11111111111111111111");
             }
         }
         else
@@ -97,7 +97,7 @@ public class BreathDetection : MonoBehaviour
             //noteplayer.NoteOff(pitch);
             //dandelionManagement.isBlown(1.0f, 0);
             //noteplayer.ExpressionChange(0);
-            Debug.Log("2止めた222222222222222222222");
+            //Debug.Log("2止めた222222222222222222222");
 
         }
         

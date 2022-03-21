@@ -27,6 +27,7 @@ public class DandelionManagement : MonoBehaviour
     private float camPosz;
     private int nowNotenumber=0;
     private uint tonecolor=0x0;
+    public GameObject nowDandelion;
 
 
 
@@ -150,7 +151,8 @@ public class DandelionManagement : MonoBehaviour
         //Debug.Log("count"+count);
         if (ObjectList.Count == 0)
             return;
-        GameObject dandelion = ObjectList[0];
+        //GameObject dandelion = ObjectList[0];
+        GameObject dandelion = nowDandelion;
         if (isWidth==false)
         {
             BlownWidth = 999999.0f;
@@ -159,7 +161,7 @@ public class DandelionManagement : MonoBehaviour
         {
             if(Math.Abs(dandelion.transform.position.z-camPosz)<ZDistance)
             {
-                Debug.Log("isblown");
+                //Debug.Log("isblown");
                 //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
                 //ObjectList.RemoveAt(0);// リストの0番目を削除する
 
@@ -185,8 +187,8 @@ public class DandelionManagement : MonoBehaviour
 
                     Vector3 dir = dandelion.transform.position - camPos;
                     dandelion.GetComponent<DandelionController>().Blow(dir);
-                    Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-                    ObjectList.RemoveAt(0);// リストの0番目を削除する
+                    //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
+                    //ObjectList.RemoveAt(0);// リストの0番目を削除する
 
 
                     nowNotenumber = notenum;
@@ -201,8 +203,9 @@ public class DandelionManagement : MonoBehaviour
                     {
                         Vector3 dir = dandelion.transform.position - camPos;
                         dandelion.GetComponent<DandelionController>().Blow(dir);
-                        Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-                        ObjectList.RemoveAt(0);// リストの0番目を削除する
+                        //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
+                        //ObjectList.RemoveAt(0);// リストの0番目を削除する
+
                     }
                     nowNotenumber = notenum;
 
@@ -290,11 +293,15 @@ public class DandelionManagement : MonoBehaviour
 
     }
 
+    
+
+    /*
     public void CheckPassingDandelion(float Posz) //Posz:カメラの位置
     {
         if (ObjectList.Count == 0)
             return;
         GameObject dandelion = ObjectList[0];
+
         if(dandelion.transform.position.z < Posz)
         {
             //Debug.Log("notblown");
@@ -302,13 +309,15 @@ public class DandelionManagement : MonoBehaviour
             ObjectList.RemoveAt(0);// リストの0番目を削除する
         }
     }
+    */
+
 
     // Update is called once per frame
     void Update()
     {
         camPos = GameObject.FindWithTag("MainCamera").transform.position;
         camPosz = camPos.z;
-        CheckPassingDandelion(camPosz);
+        //CheckPassingDandelion(camPosz);
 
     }
 

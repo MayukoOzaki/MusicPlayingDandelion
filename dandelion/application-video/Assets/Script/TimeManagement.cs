@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimeManagement : MonoBehaviour
 {
     public NotePlayer noteplayer;
+    public DandelionManagement dandelionManagement;
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,8 @@ public class TimeManagement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Dandelion")
         {
+            dandelionManagement.SetCurrentDandelion(collision);
+
             float soundLength = collision.gameObject.GetComponent<NoteInfo>().soundLength;
             int i_pitch = collision.gameObject.GetComponent<NoteInfo>().pitch;
             uint pitch = (uint)i_pitch;
@@ -46,7 +49,9 @@ public class TimeManagement : MonoBehaviour
     {
         if (c.gameObject.tag == "Dandelion")
         {
+            Debug.Log("抜けた");
             Destroy(c.gameObject);
+
         }
     }
 }
