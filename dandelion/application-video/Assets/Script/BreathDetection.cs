@@ -63,6 +63,7 @@ public class BreathDetection : MonoBehaviour
 
 
         
+        
         if (eH > noSoundThreshold)
         {
             //Debug.Log(eH + "/" + eL + "/" + r);
@@ -75,29 +76,31 @@ public class BreathDetection : MonoBehaviour
                 {
                     strength = 127.0f;
                 }
-                Debug.Log("strength" + strength);
+                //Debug.Log("strength" + strength);
                 dandelionManagement.isBlown(1.0f, strength);
                 //dandelionManagement.isBlown(1.0f, 100f);
             }
             else
             {
-                //Debug.Log(eH + "/" + eL + "/" + r);
-                uint pitch = noteplayer.nowPitch;
                 dandelionManagement.isBlown(1.0f, 0);
+                //Debug.Log(eH + "/" + eL + "/" + r);
+                //uint pitch = noteplayer.nowPitch;
+                //dandelionManagement.isBlown(1.0f, 0);
                 //noteplayer.NoteOff(pitch);
-                //Debug.Log("1止めた11111111111111111111");
+                Debug.Log("1止めた11111111111111111111");
             }
         }
         else
         {
-        
-            uint pitch=noteplayer.nowPitch;
-            //noteplayer.NoteOff(pitch);
             dandelionManagement.isBlown(1.0f, 0);
+            //uint pitch=noteplayer.nowPitch;
+            //noteplayer.NoteOff(pitch);
+            //dandelionManagement.isBlown(1.0f, 0);
             //noteplayer.ExpressionChange(0);
-            //Debug.Log("2止めた222222222222222222222");
+            Debug.Log("2止めた222222222222222222222");
 
         }
+        
         
        
 

@@ -83,6 +83,7 @@ public class NotePlayer : MonoBehaviour
 
         
         NotePlayer.midiOutShortMsg(hMidiOut, on_data);
+        Debug.Log("強さ" + Velocity);
         Debug.Log("鳴らす"+on_data.ToString("X"));
         //Debug.Log("鳴らした");
         nowOn = true;

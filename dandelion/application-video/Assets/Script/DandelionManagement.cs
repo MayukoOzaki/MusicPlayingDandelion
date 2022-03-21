@@ -171,7 +171,7 @@ public class DandelionManagement : MonoBehaviour
                 //uint ToneColor = 0x0;
 
 
-                Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
+                //Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
 
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
                 bool nowOn = notePlayer.nowOn;
@@ -183,13 +183,31 @@ public class DandelionManagement : MonoBehaviour
                     notePlayer.ExpressionChange(velocity);
                     notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
                     //notePlayer.ExpressionChange(velocity);
+                    if (velocity != 0)
+                    {
+                        Vector3 dir = dandelion.transform.position - camPos;
+                        dandelion.GetComponent<DandelionController>().Blow(dir);
+                        Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
+                        ObjectList.RemoveAt(0);// リストの0番目を削除する
+                    }
 
                     nowNotenumber = notenum;
+
+
                 }
                 else
                 {
                     notePlayer.ExpressionChange(velocity);
+                    
+                    if (velocity != 0)
+                    {
+                        Vector3 dir = dandelion.transform.position - camPos;
+                        dandelion.GetComponent<DandelionController>().Blow(dir);
+                        Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
+                        ObjectList.RemoveAt(0);// リストの0番目を削除する
+                    }
                     nowNotenumber = notenum;
+
                 }
 
                 
@@ -232,6 +250,7 @@ public class DandelionManagement : MonoBehaviour
                 //
 
 
+                /*
                 Vector3 dir = dandelion.transform.position - camPos;
                 dandelion.GetComponent<DandelionController>().Blow(dir);
 
@@ -239,7 +258,7 @@ public class DandelionManagement : MonoBehaviour
 
                 Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
                 ObjectList.RemoveAt(0);// リストの0番目を削除する
-
+                */
                 
 
                 //同じ音番号の時はリターン音を再生しない。
