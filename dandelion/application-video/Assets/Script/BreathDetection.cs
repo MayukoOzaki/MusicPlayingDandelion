@@ -81,12 +81,12 @@ public class BreathDetection : MonoBehaviour
             }
             else
             {
-                Debug.Log("1止めた11111111111111111111");
+                //Debug.Log("1止めた11111111111111111111");
             }
         }
         else
         {
-            Debug.Log("2止めた222222222222222222222");
+            //Debug.Log("2止めた222222222222222222222");
         }
 
         dandelionManagement.isBlown(1.0f, strength);

@@ -44,13 +44,15 @@ public class TimeManagement : MonoBehaviour
         //Debug.Log(pitch);
     }
 
+    /*
     void OnTriggerExit(Collider c)
     {
         if (c.gameObject.tag == "Dandelion")
         {
-            Debug.Log("抜けた");
+            //Debug.Log("抜けた");
             //Destroy(c.gameObject);
 
         }
     }
+    */
 }
