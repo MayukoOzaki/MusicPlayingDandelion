@@ -37,6 +37,6 @@ public class DandelionController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         topSeeds.SetActive(false);
         yield return new WaitForSeconds(0.3f);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

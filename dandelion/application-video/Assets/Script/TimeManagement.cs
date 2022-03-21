@@ -5,32 +5,34 @@ using UnityEngine;
 public class TimeManagement : MonoBehaviour
 {
     public NotePlayer noteplayer;
-    
+    public DandelionManagement dandelionManagement;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        
+
+
     }
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Dandelion")
         {
+            dandelionManagement.SetTargetDandelion(collision.gameObject);
             float soundLength = collision.gameObject.GetComponent<NoteInfo>().soundLength;
             int i_pitch = collision.gameObject.GetComponent<NoteInfo>().pitch;
             uint pitch = (uint)i_pitch;
             //notePlayer.NoteOn(50, 100, 0);//テスト用
 
             StartCoroutine(StopNote(pitch, soundLength));
-
+            
         }
-    }   
+    }
 
     IEnumerator StopNote(uint pitch,float delay)
     {
@@ -46,7 +48,9 @@ public class TimeManagement : MonoBehaviour
     {
         if (c.gameObject.tag == "Dandelion")
         {
-            Destroy(c.gameObject);
+            Debug.Log("抜けた");
+            //Destroy(c.gameObject);
+
         }
     }
 }
