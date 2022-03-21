@@ -23,15 +23,14 @@ public class TimeManagement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Dandelion")
         {
-            dandelionManagement.SetCurrentDandelion(collision);
-
+            dandelionManagement.SetTargetDandelion(collision.gameObject);
             float soundLength = collision.gameObject.GetComponent<NoteInfo>().soundLength;
             int i_pitch = collision.gameObject.GetComponent<NoteInfo>().pitch;
             uint pitch = (uint)i_pitch;
             //notePlayer.NoteOn(50, 100, 0);//テスト用
 
             StartCoroutine(StopNote(pitch, soundLength));
-            dandelionManagement.SetTargetDandelion( collision.gameObject );
+            
         }
     }
 

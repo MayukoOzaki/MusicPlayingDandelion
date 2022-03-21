@@ -29,7 +29,6 @@ public class DandelionManagement : MonoBehaviour
     private float camPosz;
     private int nowNotenumber=0;
     private uint tonecolor=0x0;
-    public GameObject nowDandelion;
 
 
 
@@ -160,8 +159,10 @@ public class DandelionManagement : MonoBehaviour
         }
         if (Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
-            if (Math.Abs(dandelion.transform.position.z - camPosz) < ZDistance)
+            Debug.Log("制限１");
+            if (Math.Abs(dandelion.transform.position.z - camPosz) < ZDistance||true)
             {
+                Debug.Log("制限２");
                 //Debug.Log("isblown");
                 //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
                 //ObjectList.RemoveAt(0);// リストの0番目を削除する
