@@ -55,6 +55,10 @@ public class TimeManagement : MonoBehaviour
             gameloop.ChangeToEndScene();
 
         }
+        if (c.gameObject.tag == "Dandelion")
+        {
+            Destroy(c.gameObject);
+        }
     }
     
 }
