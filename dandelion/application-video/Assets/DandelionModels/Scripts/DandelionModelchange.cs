@@ -9,6 +9,7 @@ public class DandelionModelchange : MonoBehaviour
     public GameObject HeadOutside;
     public GameObject HeadModel;
     public float DistanceCamera;
+    bool Head=false;
     Transform Cameratransform;
     Transform Dandeliontransform;
 
@@ -34,8 +35,13 @@ public class DandelionModelchange : MonoBehaviour
         //距離が一定以上近くなったら簡易版のモデルを非表示にして、処理が重いモデルを表示する
         if (DistanceCamera < 30.0f)
         {
-            HeadOutside.SetActive(false);
-            HeadModel.SetActive(true);
+            if (Head==false)
+            {
+                HeadOutside.SetActive(false);
+                HeadModel.SetActive(true);
+                Head = true;
+            }
+           
         }
     }
 }

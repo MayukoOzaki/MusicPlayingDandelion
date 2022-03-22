@@ -26,6 +26,7 @@ public class DandelionManagement : MonoBehaviour
 
     public NotePlayer notePlayer;
     public HeadSizeChange headSizeChange;
+    public HeadsetSetup headsetSetup;
 
     private Vector3 camPos;
     private float camPosz;
@@ -239,10 +240,32 @@ public class DandelionManagement : MonoBehaviour
     }
     */
 
+    public void judgeAngle(GameObject dandelion)
+    {
+        float headsetangley = headsetSetup.headsetRotation.y;
+        Vector3 forward = Vector3.forward;
+
+        camPos = GameObject.FindWithTag("MainCamera").transform.position;
+        Vector3 camforward = GameObject.FindWithTag("MainCamera").transform.forward;
+        
+        Vector3 dandelionPos = dandelion.transform.position - camPos;
+        dandelionPos = dandelionPos.normalized;
+
+        Vector3 planeNormal = Vector3.up;
+
+        Vector3 planeFrom = Vector3.ProjectOnPlane(camforward, planeNormal);
+        Vector3 planeTo = Vector3.ProjectOnPlane(dandelionPos, planeNormal);
+        float signedAngle = Vector3.SignedAngle(planeFrom, planeTo, planeNormal);
+
+
+
+    }
 
     public void SetTargetDandelion(GameObject dandelion)
     {
         targetDandelion = dandelion;
+        
+
     }
 
 
