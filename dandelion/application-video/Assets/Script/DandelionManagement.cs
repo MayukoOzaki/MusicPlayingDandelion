@@ -240,26 +240,39 @@ public class DandelionManagement : MonoBehaviour
     }
     */
 
-    public void judgeAngle(GameObject dandelion)
+    public bool JudgeAngle(GameObject dandelion)
     {
-        float headsetangley = headsetSetup.headsetRotation.y;
+        float headsetangley = headsetSetup.HMDRotation.y;//0～360°
         Vector3 forward = Vector3.forward;
 
         camPos = GameObject.FindWithTag("MainCamera").transform.position;
-        Vector3 camforward = GameObject.FindWithTag("MainCamera").transform.forward;
+        Vector3 camforward = GameObject.FindWithTag("MainCamera").transform.forward;//カメラの正面
         
         Vector3 dandelionPos = dandelion.transform.position - camPos;
-        dandelionPos = dandelionPos.normalized;
+        dandelionPos = dandelionPos.normalized;//カメラからタンポポ
 
+        //カメラの正面のベクトルとカメラからタンポポベクトルの角度を求める
         Vector3 planeNormal = Vector3.up;
-
         Vector3 planeFrom = Vector3.ProjectOnPlane(camforward, planeNormal);
         Vector3 planeTo = Vector3.ProjectOnPlane(dandelionPos, planeNormal);
-        float signedAngle = Vector3.SignedAngle(planeFrom, planeTo, planeNormal);
+        float signedAngle = Vector3.SignedAngle(planeFrom, planeTo, planeNormal);//-180～180°
 
-
+        if (signedAngle < 0)
+        {
+            signedAngle = -(signedAngle) + 180f;
+        }
+        float diff = Mathf.Abs(headsetangley - signedAngle);
+        if (diff<=60f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     }
+
 
     public void SetTargetDandelion(GameObject dandelion)
     {

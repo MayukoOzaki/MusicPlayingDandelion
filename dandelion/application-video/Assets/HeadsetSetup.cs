@@ -6,8 +6,9 @@ using UnityEngine.XR;
 public class HeadsetSetup : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Vector3 headsetPos;
-    public Quaternion headsetRotation;
+    public Vector3 HMDPosition;
+    public Quaternion HMDRotationQ;
+    public Vector3 HMDRotation;
 
     void Start()
     {
@@ -29,9 +30,12 @@ public class HeadsetSetup : MonoBehaviour
 
     public void GetRotation()
     {
-        headsetPos = InputTracking.GetLocalPosition(XRNode.CenterEye);
-        headsetRotation = InputTracking.GetLocalRotation(XRNode.CenterEye);
-        Debug.Log(headsetPos);
-        Debug.Log(headsetRotation);
+        HMDPosition = InputTracking.GetLocalPosition(XRNode.CenterEye);
+        HMDRotationQ = InputTracking.GetLocalRotation(XRNode.CenterEye);
+        HMDRotation = HMDRotationQ.eulerAngles;
+        Debug.Log(HMDPosition);
+        Debug.Log(HMDRotationQ);
+        Debug.Log(HMDRotation);
+
     }
 }
