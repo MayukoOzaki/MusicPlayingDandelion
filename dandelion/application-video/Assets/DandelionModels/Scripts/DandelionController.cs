@@ -6,6 +6,7 @@ public class DandelionController : MonoBehaviour
 {
     public GameObject topSeeds;
     public ParticleSystem ps;
+    public GameObject headOutside;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +30,16 @@ public class DandelionController : MonoBehaviour
 
         ps.transform.LookAt(target);
         ps.Play();
+        //Debug.Log("Ží‚ð”ò‚Î‚µ‚½");
     }
 
     IEnumerator RemoveTop()
     {
         yield return new WaitForSeconds(0.2f);
         topSeeds.SetActive(false);
+        headOutside.SetActive(false);//ŽØ‚è
         yield return new WaitForSeconds(0.3f);
-        gameObject.SetActive(false);
+        //headOutside.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

@@ -7,7 +7,8 @@ public class CameraMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Rigidbody>().velocity = Vector3.forward;
+        Vector3 camvelocity = new Vector3(0f, 0f, 1.0f);
+        GetComponent<Rigidbody>().velocity = camvelocity;//Vector3.forward;
     }
 
     // Update is called once per frame
