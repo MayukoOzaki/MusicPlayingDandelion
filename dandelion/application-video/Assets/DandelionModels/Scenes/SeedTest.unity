@@ -3948,7 +3948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053160, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_RootOrder
@@ -8300,8 +8300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3d0c76c08af96478facd92f2a7c45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headsetPos: {x: 0, y: 0, z: 0}
-  headsetRotation: {x: 0, y: 0, z: 0, w: 0}
+  HMDPosition: {x: 0, y: 0, z: 0}
+  HMDRotationQ: {x: 0, y: 0, z: 0, w: 0}
+  HMDRotation: {x: 0, y: 0, z: 0}
 --- !u!4 &1706820632
 Transform:
   m_ObjectHideFlags: 0
@@ -10621,6 +10622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
+--- !u!1 &2335897917809570871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4985947148329692508, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+  m_PrefabInstance: {fileID: 7303539266847316331}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4821440825820846798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10860,13 +10866,17 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 81642993}
+    - target: {fileID: 7844135218990543650, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+      propertyPath: headOutside
+      value: 
+      objectReference: {fileID: 2335897917809570871}
     - target: {fileID: 9209936624954438640, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: m_Name
       value: Dandelion2_1
       objectReference: {fileID: 0}
     - target: {fileID: 9209936624954438640, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9209936624954438641, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: m_RootOrder
