@@ -6,8 +6,9 @@ public class DandelionModelchange : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Camera;
-    public GameObject HeadOutside;
     public GameObject HeadModel;
+    public GameObject Core;
+    public GameObject Stem;
     public float DistanceCamera;
     bool Head = false;
     Transform Cameratransform;
@@ -38,7 +39,6 @@ public class DandelionModelchange : MonoBehaviour
             if (Head==false)
             {
                 Core.SetActive(true);
-                HeadOutside.SetActive(false);
                 HeadModel.SetActive(true);
                 Stem.SetActive(true);
                 Head = true;

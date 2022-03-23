@@ -970,9 +970,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 81642993}
-  HeadModel: {fileID: 2064672849}
-  Stem: {fileID: 0}
-  Core: {fileID: 0}
+  HeadModel: {fileID: 1161447026}
+  Core: {fileID: 2028735341}
+  Stem: {fileID: 617169585}
   DistanceCamera: 0
 --- !u!4 &207861224 stripped
 Transform:
@@ -3100,6 +3100,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
   m_PrefabInstance: {fileID: 602707687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &617169585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1912665159622583244, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+  m_PrefabInstance: {fileID: 1243262703}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &626992402 stripped
 Transform:
@@ -5734,6 +5739,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
+--- !u!1 &1161447026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2335897917352102453, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+  m_PrefabInstance: {fileID: 1243262703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1173884980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
@@ -6163,7 +6173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1912665159664145560, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1912665159664145560, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
       propertyPath: m_LocalScale.x
@@ -9501,8 +9511,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 81642993}
   HeadModel: {fileID: 0}
-  Stem: {fileID: 0}
   Core: {fileID: 0}
+  Stem: {fileID: 0}
   DistanceCamera: 0
 --- !u!4 &1883849332 stripped
 Transform:
@@ -10016,6 +10026,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
   m_PrefabInstance: {fileID: 1809371755}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2028735341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1912665159124919248, guid: 81f9e6a1616f32f49bf45f1ec301a002, type: 3}
+  m_PrefabInstance: {fileID: 1243262703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2049836258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
@@ -10475,7 +10490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toneFile: {fileID: 4900000, guid: 5fdc1dcb51a498748b8a381ea380b72e, type: 3}
-  DandelionPrefab: {fileID: 1894865533}
+  DandelionPrefab: {fileID: 204261550}
   isWidth: 0
   BlownWidth: 5
   ZDistance: 5
