@@ -11,7 +11,7 @@ public class DandelionModelchange : MonoBehaviour
     public GameObject Stem;
     public GameObject Core;
     public float DistanceCamera;
-    bool Head = false;
+    bool Head=false;
     Transform Cameratransform;
     Transform Dandeliontransform;
 
@@ -23,18 +23,18 @@ public class DandelionModelchange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ƒJƒƒ‰‚ÌÀ•W
+        //ã‚«ãƒ¡ãƒ©ã®åº§æ¨™
         Cameratransform = Camera.transform;
         Vector3 Camerapos = Cameratransform.position;
 
-        //‚½‚ñ‚Û‚Û‚ÌÀ•W
+        //ãŸã‚“ã½ã½ã®åº§æ¨™
         Dandeliontransform = this.transform;
         Vector3 Dandelionpos = Dandeliontransform.position;
 
-        //ƒJƒƒ‰‚Æ‚½‚ñ‚Û‚ÛŠÔ‚Ì‹——£
+        //ã‚«ãƒ¡ãƒ©ã¨ãŸã‚“ã½ã½é–“ã®è·é›¢
         DistanceCamera = Dandelionpos.z - Camerapos.z;
 
-        //‹——£‚ªˆê’èˆÈã‹ß‚­‚È‚Á‚½‚çƒ‚ƒfƒ‹‚ğ•\¦‚·‚é
+        //è·é›¢ãŒä¸€å®šä»¥ä¸Šè¿‘ããªã£ãŸã‚‰ãƒ¢ãƒ‡ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
         if (DistanceCamera < 30.0f)
         {
             if (Head == false)
@@ -44,6 +44,7 @@ public class DandelionModelchange : MonoBehaviour
                 HeadModel.SetActive(true);
                 Head = true;
             }
+
         }
     }
 }

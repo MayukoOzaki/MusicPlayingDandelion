@@ -22,8 +22,11 @@ public class DandelionManagement : MonoBehaviour
 //    public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
     public GameObject targetDandelion;
+    public GameObject lastDandelion;
 
     public NotePlayer notePlayer;
+    public HeadSizeChange headSizeChange;
+    public HeadsetSetup headsetSetup;
 
     private Vector3 camPos;
     private float camPosz;
@@ -126,10 +129,16 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().soundLength = (float.Parse(toneDatas[r][1])- float.Parse(toneDatas[r][0]))-(0.25f*s);
                 dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
-      //          ObjectList.Add(dandelion);
+                dandelion.GetComponent<NoteInfo>().velocity = float.Parse(toneDatas[r][3]);
+                float velocity = float.Parse(toneDatas[r][3]);
+                //headSizeChange.ChangeHeadSize(velocity);
+                //          ObjectList.Add(dandelion);
                 posz += 0.25f;
+                lastDandelion = dandelion;
             }
+
             
+
 
 
 
@@ -231,10 +240,45 @@ public class DandelionManagement : MonoBehaviour
     }
     */
 
+    public bool JudgeAngle(GameObject dandelion)
+    {
+        float headsetangley = headsetSetup.HMDRotation.y;//0～360°
+        Vector3 forward = Vector3.forward;
+
+        camPos = GameObject.FindWithTag("MainCamera").transform.position;
+        Vector3 camforward = GameObject.FindWithTag("MainCamera").transform.forward;//カメラの正面
+        
+        Vector3 dandelionPos = dandelion.transform.position - camPos;
+        dandelionPos = dandelionPos.normalized;//カメラからタンポポ
+
+        //カメラの正面のベクトルとカメラからタンポポベクトルの角度を求める
+        Vector3 planeNormal = Vector3.up;
+        Vector3 planeFrom = Vector3.ProjectOnPlane(camforward, planeNormal);
+        Vector3 planeTo = Vector3.ProjectOnPlane(dandelionPos, planeNormal);
+        float signedAngle = Vector3.SignedAngle(planeFrom, planeTo, planeNormal);//-180～180°
+
+        if (signedAngle < 0)
+        {
+            signedAngle = -(signedAngle) + 180f;
+        }
+        float diff = Mathf.Abs(headsetangley - signedAngle);
+        if (diff<=60f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
 
     public void SetTargetDandelion(GameObject dandelion)
     {
         targetDandelion = dandelion;
+        
+
     }
 
 
