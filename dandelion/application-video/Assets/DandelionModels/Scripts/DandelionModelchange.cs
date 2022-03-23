@@ -10,7 +10,7 @@ public class DandelionModelchange : MonoBehaviour
     public GameObject Core;
     public GameObject Stem;
     public float DistanceCamera;
-    bool Head = false;
+    bool Head=false;
     Transform Cameratransform;
     Transform Dandeliontransform;
 
@@ -39,8 +39,8 @@ public class DandelionModelchange : MonoBehaviour
             if (Head==false)
             {
                 Core.SetActive(true);
+                HeadOutside.SetActive(false);
                 HeadModel.SetActive(true);
-                Stem.SetActive(true);
                 Head = true;
             }
            
