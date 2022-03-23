@@ -9,6 +9,7 @@ public class HeadsetSetup : MonoBehaviour
     public Vector3 HMDPosition;
     public Quaternion HMDRotationQ;
     public Vector3 HMDRotation;
+    public Vector3 camforward;
 
     void Start()
     {
@@ -33,9 +34,11 @@ public class HeadsetSetup : MonoBehaviour
         HMDPosition = InputTracking.GetLocalPosition(XRNode.CenterEye);
         HMDRotationQ = InputTracking.GetLocalRotation(XRNode.CenterEye);
         HMDRotation = HMDRotationQ.eulerAngles;
-        Debug.Log(HMDPosition);
-        Debug.Log(HMDRotationQ);
-        Debug.Log(HMDRotation);
+        //Debug.Log(HMDPosition);
+        //Debug.Log(HMDRotationQ);
+        //Debug.Log(HMDRotation);
+        camforward = GameObject.FindWithTag("MainCamera").transform.forward;
+        Debug.Log(camforward);
 
     }
 }
