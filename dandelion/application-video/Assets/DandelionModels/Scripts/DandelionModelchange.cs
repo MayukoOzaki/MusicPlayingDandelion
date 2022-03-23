@@ -11,13 +11,13 @@ public class DandelionModelchange : MonoBehaviour
     public GameObject Stem;
     public GameObject Core;
     public float DistanceCamera;
-    bool Head=false;
+    bool Head = false;
     Transform Cameratransform;
     Transform Dandeliontransform;
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -34,14 +34,14 @@ public class DandelionModelchange : MonoBehaviour
         //カメラとたんぽぽ間の距離
         DistanceCamera = Dandelionpos.z - Camerapos.z;
 
-        //距離が一定以上近くなったらモデルを表示する
+        //距離が一定以上近くなったらモデルを表示す
         if (DistanceCamera < 30.0f)
         {
             if (Head == false)
             {
-                Stem.SetActive(true);
                 Core.SetActive(true);
                 HeadModel.SetActive(true);
+                Stem.SetActive(true);
                 Head = true;
             }
 
