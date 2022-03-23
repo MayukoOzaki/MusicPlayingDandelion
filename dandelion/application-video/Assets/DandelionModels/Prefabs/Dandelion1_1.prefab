@@ -369,6 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c9d82bc3c84564abf10bc35fd37aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultScale: {x: 0, y: 0, z: 0}
+  localScale: {x: 0, y: 0, z: 0}
+  changeScale: {x: 0, y: 0, z: 0}
 --- !u!1 &2222612521605625633
 GameObject:
   m_ObjectHideFlags: 0

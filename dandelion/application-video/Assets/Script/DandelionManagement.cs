@@ -33,6 +33,8 @@ public class DandelionManagement : MonoBehaviour
     private int nowNotenumber=0;
     private uint tonecolor=0x0;
 
+    public Vector3 camforward;
+
 
 
 
@@ -248,13 +250,13 @@ public class DandelionManagement : MonoBehaviour
         camPos = GameObject.FindWithTag("MainCamera").transform.position;
         Vector3 camforward = GameObject.FindWithTag("MainCamera").transform.forward;//カメラの正面
         
-        Vector3 dandelionPos = dandelion.transform.position - camPos;
-        dandelionPos = dandelionPos.normalized;//カメラからタンポポ
+        Vector3 dandelionDir = dandelion.transform.position - camPos;
+        dandelionDir = dandelionDir.normalized;//カメラからタンポポ
 
         //カメラの正面のベクトルとカメラからタンポポベクトルの角度を求める
         Vector3 planeNormal = Vector3.up;
         Vector3 planeFrom = Vector3.ProjectOnPlane(camforward, planeNormal);
-        Vector3 planeTo = Vector3.ProjectOnPlane(dandelionPos, planeNormal);
+        Vector3 planeTo = Vector3.ProjectOnPlane(dandelionDir, planeNormal);
         float signedAngle = Vector3.SignedAngle(planeFrom, planeTo, planeNormal);//-180～180°
 
         if (signedAngle < 0)
