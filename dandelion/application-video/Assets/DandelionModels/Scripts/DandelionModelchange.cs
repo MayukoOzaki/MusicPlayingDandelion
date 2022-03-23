@@ -6,10 +6,8 @@ public class DandelionModelchange : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Camera;
-    //public GameObject HeadOutside;
+    public GameObject HeadOutside;
     public GameObject HeadModel;
-    public GameObject Stem;
-    public GameObject Core;
     public float DistanceCamera;
     bool Head=false;
     Transform Cameratransform;
@@ -17,34 +15,33 @@ public class DandelionModelchange : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ã‚«ãƒ¡ãƒ©ã®åº§æ¨™
+        //ƒJƒƒ‰‚ÌÀ•W
         Cameratransform = Camera.transform;
         Vector3 Camerapos = Cameratransform.position;
 
-        //ãŸã‚“ã½ã½ã®åº§æ¨™
+        //‚½‚ñ‚Û‚Û‚ÌÀ•W
         Dandeliontransform = this.transform;
         Vector3 Dandelionpos = Dandeliontransform.position;
 
-        //ã‚«ãƒ¡ãƒ©ã¨ãŸã‚“ã½ã½é–“ã®è·é›¢
+        //ƒJƒƒ‰‚Æ‚½‚ñ‚Û‚ÛŠÔ‚Ì‹——£
         DistanceCamera = Dandelionpos.z - Camerapos.z;
 
-        //è·é›¢ãŒä¸€å®šä»¥ä¸Šè¿‘ããªã£ãŸã‚‰ãƒ¢ãƒ‡ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
+        //‹——£‚ªˆê’èˆÈã‹ß‚­‚È‚Á‚½‚çŠÈˆÕ”Å‚Ìƒ‚ƒfƒ‹‚ğ”ñ•\¦‚É‚µ‚ÄAˆ—‚ªd‚¢ƒ‚ƒfƒ‹‚ğ•\¦‚·‚é
         if (DistanceCamera < 30.0f)
         {
-            if (Head == false)
+            if (Head==false)
             {
-                Stem.SetActive(true);
-                Core.SetActive(true);
+                HeadOutside.SetActive(false);
                 HeadModel.SetActive(true);
                 Head = true;
             }
-
+           
         }
     }
 }
