@@ -680,6 +680,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
+--- !u!1 &126110826 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9209936624954438640, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+  m_PrefabInstance: {fileID: 1904098347}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &126110827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126110826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff70927f59e1ba46b579e5feaf3b607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera: {fileID: 81642993}
+  HeadModel: {fileID: 913662688}
+  Stem: {fileID: 166371044}
+  Core: {fileID: 2045424786}
+  DistanceCamera: 0
 --- !u!1001 &136904873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -879,6 +901,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
   m_PrefabInstance: {fileID: 1558629761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &166371044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9209936625048028325, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+  m_PrefabInstance: {fileID: 1904098347}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &175571748 stripped
 Transform:
@@ -1539,6 +1566,10 @@ PrefabInstance:
     - target: {fileID: 2222612520811053160, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_Name
       value: Dandelion1_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222612520811053160, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_RootOrder
@@ -4370,6 +4401,11 @@ Transform:
   m_Father: {fileID: 1708428337}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &913662688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4985947148329692508, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+  m_PrefabInstance: {fileID: 1904098347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &914462015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9434,6 +9470,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
+--- !u!114 &1902097467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 311707818330863309, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+  m_PrefabInstance: {fileID: 277012406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c9d82bc3c84564abf10bc35fd37aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1904098347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9441,6 +9488,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9209936624473916601, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9209936624606257910, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9209936624954438640, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: m_Name
       value: Dandelion2_1
@@ -9493,7 +9548,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9209936625048028325, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7303539265385697899, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
 --- !u!4 &1917800795 stripped
 Transform:
@@ -9948,6 +10008,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047404184247142587, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
   m_PrefabInstance: {fileID: 1809371755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2045424786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9209936624473916601, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+  m_PrefabInstance: {fileID: 1904098347}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2049836258 stripped
 Transform:
@@ -10415,7 +10480,7 @@ MonoBehaviour:
   targetDandelion: {fileID: 0}
   lastDandelion: {fileID: 0}
   notePlayer: {fileID: 81642999}
-  headSizeChange: {fileID: 0}
+  headSizeChange: {fileID: 1902097467}
   headsetSetup: {fileID: 1706820631}
   dan: 0
 --- !u!4 &2131401524
