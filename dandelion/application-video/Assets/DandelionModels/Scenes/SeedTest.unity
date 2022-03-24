@@ -1569,7 +1569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053160, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_RootOrder
@@ -1613,6 +1613,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222612521038821177, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1844,6 +1848,11 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &326031405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2222612520811053160, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+  m_PrefabInstance: {fileID: 277012406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &327309959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9484,17 +9493,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bf2accc63e4326d3aa57dc4b520324b, type: 3}
---- !u!114 &1902097467 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 311707818330863309, guid: c092a4938ac625940b5b0de94461995e, type: 3}
-  m_PrefabInstance: {fileID: 277012406}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6c9d82bc3c84564abf10bc35fd37aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1904098347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9502,9 +9500,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4985947148329692508, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9209936624112039995, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 9209936624473916601, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: m_IsActive
@@ -9520,7 +9522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9209936624954438640, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9209936624954438641, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: m_RootOrder
@@ -10491,7 +10493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toneFile: {fileID: 4900000, guid: 5fdc1dcb51a498748b8a381ea380b72e, type: 3}
-  DandelionPrefab: {fileID: 126110826}
+  DandelionPrefab: {fileID: 326031405}
   isWidth: 0
   BlownWidth: 5
   ZDistance: 5
@@ -10499,8 +10501,6 @@ MonoBehaviour:
   lastDandelion: {fileID: 0}
   notePlayer: {fileID: 81642999}
   headsetSetup: {fileID: 1706820631}
-  headSizeChange: {fileID: 1902097467}
-  stemSizeChange: {fileID: 903591257}
   dan: 0
 --- !u!4 &2131401524
 Transform:
