@@ -25,8 +25,10 @@ public class DandelionManagement : MonoBehaviour
     public GameObject lastDandelion;
 
     public NotePlayer notePlayer;
-    public HeadSizeChange headSizeChange;
     public HeadsetSetup headsetSetup;
+    public HeadSizeChange headSizeChange;
+    public StemSizeChange stemSizeChange;
+
 
     private Vector3 camPos;
     private float camPosz;
@@ -134,6 +136,7 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().velocity = float.Parse(toneDatas[r][3]);
                 float velocity = float.Parse(toneDatas[r][3]);
                 headSizeChange.ChangeHeadSize(velocity);
+                stemSizeChange.ChangeStemSize(s);
                 //          ObjectList.Add(dandelion);
                 posz += 0.25f;
                 lastDandelion = dandelion;

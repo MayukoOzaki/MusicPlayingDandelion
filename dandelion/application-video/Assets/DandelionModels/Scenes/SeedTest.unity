@@ -4401,6 +4401,25 @@ Transform:
   m_Father: {fileID: 1708428337}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &903591253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2222612521038821181, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+  m_PrefabInstance: {fileID: 277012406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &903591257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903591253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d364b539d1cf546a729cec1f418aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultScale: {x: 0, y: 0, z: 0}
+  localScale: {x: 0, y: 0, z: 0}
 --- !u!1 &913662688 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4985947148329692508, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
@@ -10480,8 +10499,9 @@ MonoBehaviour:
   targetDandelion: {fileID: 0}
   lastDandelion: {fileID: 0}
   notePlayer: {fileID: 81642999}
-  headSizeChange: {fileID: 1902097467}
   headsetSetup: {fileID: 1706820631}
+  headSizeChange: {fileID: 1902097467}
+  stemSizeChange: {fileID: 903591257}
   dan: 0
 --- !u!4 &2131401524
 Transform:
