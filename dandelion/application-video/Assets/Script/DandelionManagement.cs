@@ -30,7 +30,7 @@ public class DandelionManagement : MonoBehaviour
 
     private Vector3 camPos;
     private float camPosz;
-    private int nowNotenumber=0;
+    public  int nowNotenumber=0;
     private uint tonecolor=0x0;
 
     public bool dan=false;
@@ -134,18 +134,18 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
                 dandelion.GetComponent<NoteInfo>().velocity = float.Parse(toneDatas[r][3]);
 
+                
                 float velocity = float.Parse(toneDatas[r][3]);
-                //GameObject head = dandelion.transform.Find("HeadOutside").gameObject;
-                //head.GetComponent<HeadSizeChange>().ChangeHeadSize(velocity);
+                GameObject head = dandelion.transform.Find("HeadOutside").gameObject;
+                head.GetComponent<HeadSizeChange>().ChangeHeadSize(velocity);
 
-                //GameObject stem = dandelion.transform.Find("Stem").gameObject;
-                //stem.GetComponent<StemSizeChange>().ChangeStemSize(s);
-                //Vector3 danPos = dandelion.transform.position;
-                //danPos.y = (danPos.y+stem.GetComponent<StemSizeChange>().defaultScale.y - 0.105f)*2;
-                //dandelion.transform.position = danPos;
+                GameObject stem = dandelion.transform.Find("Stem").gameObject;
+                stem.GetComponent<StemSizeChange>().ChangeStemSize(s);
+                Vector3 danPos = dandelion.transform.position;
+                danPos.y = (danPos.y+stem.GetComponent<StemSizeChange>().defaultScale.y - 0.105f)*2;
+                dandelion.transform.position = danPos;
+                
 
-                //headSizeChange.ChangeHeadSize(velocity);
-                //stemSizeChange.ChangeStemSize(s);
 
                 //          ObjectList.Add(dandelion);
                 posz += 0.25f;
@@ -209,8 +209,9 @@ public class DandelionManagement : MonoBehaviour
                     dandelion.GetComponent<DandelionController>().Blow(dir);
                     if (notenum > nowNotenumber)
                     {
-                        notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
                         nowNotenumber = notenum;
+                        notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                        //nowNotenumber = notenum;
                     }
                 }
                 
@@ -250,7 +251,7 @@ public class DandelionManagement : MonoBehaviour
 
         float diff = Vector3.Angle(camforward, dandelionDir);
 
-        Debug.Log(diff);
+       // Debug.Log(diff);
 
         
         if (diff<=45.0f)

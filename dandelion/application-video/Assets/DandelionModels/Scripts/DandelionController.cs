@@ -26,12 +26,23 @@ public class DandelionController : MonoBehaviour
 
     public void Blow(Vector3 dir)
     {
-        StartCoroutine(RemoveTop());
-        Vector3 target = topSeeds.transform.position + dir;
-        target.y = topSeeds.transform.position.y;
+        if (isBlow==false)
+        {
+            StartCoroutine(RemoveTop());
+            Vector3 target = topSeeds.transform.position + dir;
+            target.y = topSeeds.transform.position.y;
 
-        ps.transform.LookAt(target);
-        ps.Play();
+            ps.transform.LookAt(target);
+            ps.Play();
+            isBlow = true;
+        }
+        /*
+        else
+        {
+
+        }
+        */
+        
         //Debug.Log("Ží‚ð”ò‚Î‚µ‚½");
     }
 

@@ -28,7 +28,11 @@ public class NotePlayer : MonoBehaviour
     public uint nowPitch;//今音を出したピッチ
     public bool nowOn = false;//音を出した
 
+    public bool sameTone = false;//前と同じ音
+
     private int otocou = 0;
+
+    public DandelionManagement dandelionManagement;
 
 
 
@@ -83,8 +87,8 @@ public class NotePlayer : MonoBehaviour
 
         
         NotePlayer.midiOutShortMsg(hMidiOut, on_data);
-        Debug.Log("強さ1" +"/"+ Velocity);
-        //Debug.Log("鳴らす"+on_data.ToString("X"));
+        //Debug.Log("強さ1" +"/"+ Velocity);
+        Debug.Log("鳴らす"+on_data.ToString("X")+"固有番号"+dandelionManagement.nowNotenumber);
         //Debug.Log("鳴らした");
         nowOn = true;
 
@@ -122,7 +126,7 @@ public class NotePlayer : MonoBehaviour
         uint Velocity = 0x0;
         uint off = 0x90;
         uint off_data = (off << 0) + (Pitch << 8) + (Velocity << 16);
-        //Debug.Log("止めた"+off_data.ToString("X"));
+        Debug.Log("止めた"+off_data.ToString("X") + "固有番号" + dandelionManagement.nowNotenumber);
         NotePlayer.midiOutShortMsg(hMidiOut, off_data);
         nowOn = false;
         //Debug.Log("止めた");
