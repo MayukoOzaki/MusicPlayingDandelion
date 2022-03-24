@@ -7,6 +7,8 @@ public class DandelionController : MonoBehaviour
     public GameObject topSeeds;
     public ParticleSystem ps;
     public GameObject headOutside;
+    public bool isBlow = false;
+
     // Start is called before the first frame update
     void Start()
     {

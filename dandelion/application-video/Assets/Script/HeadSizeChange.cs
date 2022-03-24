@@ -35,6 +35,7 @@ public class HeadSizeChange : MonoBehaviour
     public void ChangeHeadSize(float velocity)
     {
         //Transform tf = gameObject.GetComponent<Transform>();
+        //transform.localScale= new Vector3(1.0f, 1.01f, 1.0f);
 
         defaultScale = transform.lossyScale;
         localScale = transform.localScale;

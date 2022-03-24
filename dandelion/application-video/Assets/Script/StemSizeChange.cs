@@ -12,7 +12,7 @@ public class StemSizeChange : MonoBehaviour
     {
         /*
         defaultScale = new Vector3(0.021f, 0.205f, 0.021f);// transform.lossyScale; //0.021, 0.105, 0.021 ワールド
-        localScale = transform.localScale;//0.1, 0.1, 0.1
+        localScale = transform.localScale;//0.1, 0.5, 0.1
 
         Vector3 lossScale = transform.lossyScale;// 0.021, 0.105, 0.021 ワールド
         //transform.localScale = new Vector3(localScale.x / lossScale.x * defaultScale.x, localScale.y / lossScale.y * defaultScale.y, localScale.z / lossScale.z * defaultScale.z);
@@ -27,18 +27,17 @@ public class StemSizeChange : MonoBehaviour
 
     public void ChangeStemSize(int number)
     {
-        //Transform tf = gameObject.GetComponent<Transform>();
         float num = (float)number;
+
+        //transform.localScale = new Vector3(0.1f, 0.5f, 0.1f);
+        //transform.position = new Vector3(0f, 0f, 0f);
 
         defaultScale = transform.lossyScale;
         localScale = transform.localScale;
         Vector3 lossScale = transform.lossyScale;
 
-        float dey = 0f;
-        dey= defaultScale.y + (0.01f * num);
+        float dey= defaultScale.y + (0.01f * num);
         defaultScale.y = dey;
-
-        //Debug.Log(dex+"/"+dey+"/"+dez);
 
         transform.localScale = new Vector3(localScale.x / lossScale.x * defaultScale.x, localScale.y / lossScale.y * defaultScale.y, localScale.z / lossScale.z * defaultScale.z);
 
@@ -46,6 +45,10 @@ public class StemSizeChange : MonoBehaviour
         localScale = transform.localScale;
 
 
+        Vector3 stemPos = transform.position;
+        float addPosy = (defaultScale.y - 0.105f);
+        stemPos.y = stemPos.y - addPosy;
+        transform.position = stemPos;
 
     }
 }

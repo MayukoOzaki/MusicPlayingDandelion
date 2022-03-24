@@ -26,8 +26,6 @@ public class DandelionManagement : MonoBehaviour
 
     public NotePlayer notePlayer;
     public HeadsetSetup headsetSetup;
-    public HeadSizeChange headSizeChange;
-    public StemSizeChange stemSizeChange;
 
 
     private Vector3 camPos;
@@ -125,6 +123,7 @@ public class DandelionManagement : MonoBehaviour
             
             for (int s = 0; s <= quantity-1; s++)
             {
+          
                 Vector3 pos = new Vector3(posx, 0f, posz);
                 GameObject dandelion = Instantiate(DandelionPrefab, pos, Quaternion.identity);
                 dandelion.GetComponent<NoteInfo>().pitch = int.Parse(toneDatas[r][2]);
@@ -134,9 +133,20 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
                 dandelion.GetComponent<NoteInfo>().velocity = float.Parse(toneDatas[r][3]);
+
                 float velocity = float.Parse(toneDatas[r][3]);
-                headSizeChange.ChangeHeadSize(velocity);
-                stemSizeChange.ChangeStemSize(s);
+                GameObject head = dandelion.transform.Find("HeadOutside").gameObject;
+                head.GetComponent<HeadSizeChange>().ChangeHeadSize(velocity);
+
+                GameObject stem = dandelion.transform.Find("Stem").gameObject;
+                stem.GetComponent<StemSizeChange>().ChangeStemSize(s);
+                Vector3 danPos = dandelion.transform.position;
+                danPos.y = (danPos.y+stem.GetComponent<StemSizeChange>().defaultScale.y - 0.105f)*2;
+                dandelion.transform.position = danPos;
+
+                //headSizeChange.ChangeHeadSize(velocity);
+                //stemSizeChange.ChangeStemSize(s);
+
                 //          ObjectList.Add(dandelion);
                 posz += 0.25f;
                 lastDandelion = dandelion;
@@ -238,15 +248,12 @@ public class DandelionManagement : MonoBehaviour
         Vector3 dandelionDir = dandelion.transform.position - camPos;
         dandelionDir = dandelionDir.normalized;//カメラからタンポポ
 
-
-        camforward.y = 0f;
-        dandelionDir.y = 0f;
         float diff = Vector3.Angle(camforward, dandelionDir);
 
         Debug.Log(diff);
 
         
-        if (diff<=45f)//60f)
+        if (diff<=45.0f)
         {
             return true;
         }
