@@ -6,6 +6,7 @@ public class HeadSizeChange : MonoBehaviour
 {
     public Vector3 defaultScale;
     public Vector3 localScale;
+
     //public Vector3 changeScale;
     // Start is called before the first frame update
     void Start()
@@ -13,12 +14,16 @@ public class HeadSizeChange : MonoBehaviour
         /*
         defaultScale = new Vector3(0.21f,0.21f,0.21f); //transform.lossyScale;//0.21, 0.21, 0.21 ワールド
         localScale=transform.localScale;//1, 1, 1
+        */
 
+        /*
+        defaultScale =new Vector3(0.21f,0.21f,0.21f);
         Vector3 lossScale = transform.lossyScale;// 0.21, 0.21, 0.21 ワールド
-
-
+        localScale = transform.localScale;
         transform.localScale = new Vector3(localScale.x / lossScale.x * defaultScale.x,localScale.y / lossScale.y * defaultScale.y,localScale.z / lossScale.z * defaultScale.z);
         */
+
+        
     }
 
     // Update is called once per frame
