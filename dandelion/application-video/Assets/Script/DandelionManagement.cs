@@ -25,15 +25,15 @@ public class DandelionManagement : MonoBehaviour
     public GameObject lastDandelion;
 
     public NotePlayer notePlayer;
-    public HeadSizeChange headSizeChange;
     public HeadsetSetup headsetSetup;
+
 
     private Vector3 camPos;
     private float camPosz;
-    private int nowNotenumber=0;
+    public  int nowNotenumber=0;
     private uint tonecolor=0x0;
 
-    public Vector3 camforward;
+    public bool dan=false;
 
 
 
@@ -123,6 +123,7 @@ public class DandelionManagement : MonoBehaviour
             
             for (int s = 0; s <= quantity-1; s++)
             {
+          
                 Vector3 pos = new Vector3(posx, 0f, posz);
                 GameObject dandelion = Instantiate(DandelionPrefab, pos, Quaternion.identity);
                 dandelion.GetComponent<NoteInfo>().pitch = int.Parse(toneDatas[r][2]);
@@ -132,8 +133,20 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
                 dandelion.GetComponent<NoteInfo>().velocity = float.Parse(toneDatas[r][3]);
+
+                
                 float velocity = float.Parse(toneDatas[r][3]);
-                //headSizeChange.ChangeHeadSize(velocity);
+                GameObject head = dandelion.transform.Find("HeadOutside").gameObject;
+                head.GetComponent<HeadSizeChange>().ChangeHeadSize(velocity);
+
+                GameObject stem = dandelion.transform.Find("Stem").gameObject;
+                stem.GetComponent<StemSizeChange>().ChangeStemSize(s);
+                Vector3 danPos = dandelion.transform.position;
+                danPos.y = (danPos.y+stem.GetComponent<StemSizeChange>().defaultScale.y - 0.105f)*2;
+                dandelion.transform.position = danPos;
+                
+
+
                 //          ObjectList.Add(dandelion);
                 posz += 0.25f;
                 lastDandelion = dandelion;
@@ -169,7 +182,7 @@ public class DandelionManagement : MonoBehaviour
         {
             BlownWidth = 999999.0f;
         }
-        if (Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
+        if (JudgeAngle(targetDandelion))//(Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
             //Debug.Log("制限１");
             if (Math.Abs(dandelion.transform.position.z - camPosz) < ZDistance||true)
@@ -187,36 +200,21 @@ public class DandelionManagement : MonoBehaviour
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
                 bool nowOn = notePlayer.nowOn;
 
-                if (notenum > nowNotenumber && velocity > 0)
+
+
+                notePlayer.ExpressionChange(velocity);
+                if (velocity > 0)
                 {
-                    notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
-                    notePlayer.ExpressionChange(velocity);
                     Vector3 dir = dandelion.transform.position - camPos;
                     dandelion.GetComponent<DandelionController>().Blow(dir);
-
-                    //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-                    //ObjectList.RemoveAt(0);// リストの0番目を削除する
-
-
-                    nowNotenumber = notenum;
-
-
-                }
-                else
-                {
-                    notePlayer.ExpressionChange(velocity);
-
-                    if (velocity != 0)
+                    if (notenum > nowNotenumber)
                     {
-                        Vector3 dir = dandelion.transform.position - camPos;
-                        dandelion.GetComponent<DandelionController>().Blow(dir);
-                        //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
-                        //ObjectList.RemoveAt(0);// リストの0番目を削除する
-                        
+                        nowNotenumber = notenum;
+                        notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                        //nowNotenumber = notenum;
                     }
-                    //nowNotenumber = notenum;
-
                 }
+                
                 
 
 
@@ -244,27 +242,19 @@ public class DandelionManagement : MonoBehaviour
 
     public bool JudgeAngle(GameObject dandelion)
     {
-        float headsetangley = headsetSetup.HMDRotation.y;//0～360°
-        Vector3 forward = Vector3.forward;
 
-        camPos = GameObject.FindWithTag("MainCamera").transform.position;
-        Vector3 camforward = GameObject.FindWithTag("MainCamera").transform.forward;//カメラの正面
+        Vector3 camPos = headsetSetup.camPos;
+        Vector3 camforward = headsetSetup.camforward;//カメラの正面
         
         Vector3 dandelionDir = dandelion.transform.position - camPos;
         dandelionDir = dandelionDir.normalized;//カメラからタンポポ
 
-        //カメラの正面のベクトルとカメラからタンポポベクトルの角度を求める
-        Vector3 planeNormal = Vector3.up;
-        Vector3 planeFrom = Vector3.ProjectOnPlane(camforward, planeNormal);
-        Vector3 planeTo = Vector3.ProjectOnPlane(dandelionDir, planeNormal);
-        float signedAngle = Vector3.SignedAngle(planeFrom, planeTo, planeNormal);//-180～180°
+        float diff = Vector3.Angle(camforward, dandelionDir);
 
-        if (signedAngle < 0)
-        {
-            signedAngle = -(signedAngle) + 180f;
-        }
-        float diff = Mathf.Abs(headsetangley - signedAngle);
-        if (diff<=60f)
+       // Debug.Log(diff);
+
+        
+        if (diff<=45.0f)
         {
             return true;
         }
@@ -279,7 +269,7 @@ public class DandelionManagement : MonoBehaviour
     public void SetTargetDandelion(GameObject dandelion)
     {
         targetDandelion = dandelion;
-        
+        //dan = true;
 
     }
 
@@ -288,6 +278,13 @@ public class DandelionManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+        if (dan==true)
+        {
+            JudgeAngle(targetDandelion);
+        }
+        */
+        
         /*
         camPos = GameObject.FindWithTag("MainCamera").transform.position;
         camPosz = camPos.z;
