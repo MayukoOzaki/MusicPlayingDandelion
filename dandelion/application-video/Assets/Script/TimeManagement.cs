@@ -38,9 +38,10 @@ public class TimeManagement : MonoBehaviour
     IEnumerator StopNote(uint pitch,float delay)
     {
         //noteplayer.NoteOn(pitch, 100, 0);
-        delay=delay-0.1f;
+        delay = delay;   // -0.1f;
         yield return new WaitForSeconds(delay);
-        noteplayer.NoteOff(pitch);
+        //noteplayer.NoteOff(pitch);
+
         //Debug.Log("コライダーが止めた");
         //Debug.Log()
         //Debug.Log(pitch);

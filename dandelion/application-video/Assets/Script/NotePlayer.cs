@@ -34,6 +34,8 @@ public class NotePlayer : MonoBehaviour
 
     public DandelionManagement dandelionManagement;
 
+    private Dictionary<uint, int> currentNotes = new Dictionary<uint, int>();
+
 
 
 
@@ -85,17 +87,26 @@ public class NotePlayer : MonoBehaviour
         uint on = 0x90;
         uint on_data = (on << 0) + (Pitch << 8) + (Velocity << 16);
 
-        
+        int value;
+        bool hasValue = currentNotes.TryGetValue(Pitch, out value);
+        if (hasValue)
+        {
+            NoteOff(Pitch);
+        }
         NotePlayer.midiOutShortMsg(hMidiOut, on_data);
-        //Debug.Log("強さ1" +"/"+ Velocity);
+        currentNotes.Add(Pitch, dandelionManagement.nowNotenumber);
+
+        
         Debug.Log("鳴らす"+on_data.ToString("X")+"固有番号"+dandelionManagement.nowNotenumber);
+
+        //Debug.Log("強さ1" +"/"+ Velocity);
         //Debug.Log("鳴らした");
-        nowOn = true;
-
         //Debug.Log(Pitch+"/"+Velocity+"/"+ToneColor);
-
-        otocou += 1;
         //Debug.Log("音を鳴らした"+otocou);
+
+        nowOn = true;
+        otocou += 1;
+        
         
 
 
@@ -126,10 +137,26 @@ public class NotePlayer : MonoBehaviour
         uint Velocity = 0x0;
         uint off = 0x90;
         uint off_data = (off << 0) + (Pitch << 8) + (Velocity << 16);
-        Debug.Log("止めた"+off_data.ToString("X") + "固有番号" + dandelionManagement.nowNotenumber);
-        NotePlayer.midiOutShortMsg(hMidiOut, off_data);
-        nowOn = false;
-        //Debug.Log("止めた");
+
+        int notenumber = dandelionManagement.nowNotenumber;
+        int value;
+        bool hasValue = currentNotes.TryGetValue(Pitch, out value);
+        if (hasValue)
+        {
+            if(value==notenumber)
+            {
+                NotePlayer.midiOutShortMsg(hMidiOut, off_data);
+                currentNotes.Remove(Pitch); //辞書から消去
+
+                Debug.Log("止めた" + off_data.ToString("X") + "固有番号" + notenumber);
+                nowOn = false;
+
+            }
+        }
+
+        //NotePlayer.midiOutShortMsg(hMidiOut, off_data);
+        //Debug.Log("止めた" + off_data.ToString("X") + "固有番号" + dandelionManagement.nowNotenumber);
+        //Debug.Log("止めた")
 
     }
 
