@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5f7cfe88e44334442adb44e2dd4b9cd3, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1576,6 +1576,14 @@ PrefabInstance:
     - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_RootOrder
       value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8257,7 +8265,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -9524,7 +9532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9209936624954438640, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9209936624954438641, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
       propertyPath: m_RootOrder
@@ -10494,7 +10502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d358e0045f9d9645a47cfb0050f132b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toneFile: {fileID: 4900000, guid: 8ee666b785cb41e429ca31facc93f5cb, type: 3}
+  toneFile: {fileID: 4900000, guid: 5fdc1dcb51a498748b8a381ea380b72e, type: 3}
   DandelionPrefab: {fileID: 1644106649}
   isWidth: 0
   BlownWidth: 5

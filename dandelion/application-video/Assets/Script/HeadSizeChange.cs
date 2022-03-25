@@ -41,13 +41,13 @@ public class HeadSizeChange : MonoBehaviour
         localScale = transform.localScale;
         Vector3 lossScale = transform.lossyScale;
 
-        float dex = velocity * 0.0059f - 0.18f;
+        float dex = velocity * 0.0058f - 0.15f;
         defaultScale.x = dex;
 
-        float dey = velocity * 0.0059f - 0.18f;
+        float dey = velocity * 0.0058f - 0.15f;
         defaultScale.y = dey;
 
-        float dez = velocity * 0.0059f - 0.18f;
+        float dez = velocity * 0.0058f - 0.15f;
         defaultScale.z = dez;
 
         //Debug.Log(dex+"/"+dey+"/"+dez);

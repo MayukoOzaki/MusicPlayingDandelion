@@ -98,7 +98,7 @@ public class NotePlayer : MonoBehaviour
         currentNotes.Add(Pitch, dandelionManagement.nowNotenumber);
 
         
-        Debug.Log("鳴らす"+on_data.ToString("X")+"固有番号"+dandelionManagement.nowNotenumber);
+        //Debug.Log("鳴らす"+on_data.ToString("X")+"固有番号"+dandelionManagement.nowNotenumber);
 
         //Debug.Log("強さ1" +"/"+ Velocity);
         //Debug.Log("鳴らした");
@@ -148,7 +148,7 @@ public class NotePlayer : MonoBehaviour
                 NotePlayer.midiOutShortMsg(hMidiOut, off_data);
                 currentNotes.Remove(Pitch); //辞書から消去
 
-                Debug.Log("止めた" + off_data.ToString("X") + "固有番号" + notenumber);
+                //Debug.Log("止めた" + off_data.ToString("X") + "固有番号" + notenumber);
                 nowOn = false;
 
             }
