@@ -7,6 +7,7 @@ public class TimeManagement : MonoBehaviour
     public NotePlayer noteplayer;
     public DandelionManagement dandelionManagement;
     public GameLoop gameloop;
+   // private int noteNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -29,18 +30,18 @@ public class TimeManagement : MonoBehaviour
             int i_pitch = collision.gameObject.GetComponent<NoteInfo>().pitch;
             uint pitch = (uint)i_pitch;
             //notePlayer.NoteOn(50, 100, 0);//テスト用
-
-            StartCoroutine(StopNote(pitch, soundLength));
+            int noteNumber = collision.GetComponent<NoteInfo>().noteNumber;
+            StartCoroutine(StopNote(pitch, soundLength,noteNumber));
             
         }
     }
 
-    IEnumerator StopNote(uint pitch,float delay)
+    IEnumerator StopNote(uint pitch,float delay,int noteNumber)
     {
         //noteplayer.NoteOn(pitch, 100, 0);
         delay = delay;   // -0.1f;
         yield return new WaitForSeconds(delay);
-        //noteplayer.NoteOff(pitch);
+        noteplayer.NoteOff(pitch,noteNumber);
 
         //Debug.Log("コライダーが止めた");
         //Debug.Log()

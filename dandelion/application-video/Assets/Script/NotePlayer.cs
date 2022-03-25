@@ -87,11 +87,12 @@ public class NotePlayer : MonoBehaviour
         uint on = 0x90;
         uint on_data = (on << 0) + (Pitch << 8) + (Velocity << 16);
 
+
         int value;
         bool hasValue = currentNotes.TryGetValue(Pitch, out value);
         if (hasValue)
         {
-            NoteOff(Pitch);
+            NoteOff(Pitch, value);
         }
         NotePlayer.midiOutShortMsg(hMidiOut, on_data);
         currentNotes.Add(Pitch, dandelionManagement.nowNotenumber);
@@ -132,13 +133,12 @@ public class NotePlayer : MonoBehaviour
         //NotePlayer.midiOutShortMsg(hMidiOut, off_data);
     //}
 
-    public void NoteOff(uint Pitch)//strengthが０の時に呼び出される
+    public void NoteOff(uint Pitch, int notenumber)//strengthが０の時に呼び出される
     {
         uint Velocity = 0x0;
         uint off = 0x90;
         uint off_data = (off << 0) + (Pitch << 8) + (Velocity << 16);
 
-        int notenumber = dandelionManagement.nowNotenumber;
         int value;
         bool hasValue = currentNotes.TryGetValue(Pitch, out value);
         if (hasValue)
