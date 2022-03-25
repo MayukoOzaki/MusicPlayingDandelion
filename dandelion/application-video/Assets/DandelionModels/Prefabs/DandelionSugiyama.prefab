@@ -391,6 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topSeeds: {fileID: 2335897917352102453}
   ps: {fileID: 1912665160506810194}
+  headOutside: {fileID: 0}
 --- !u!114 &684711175346656329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +399,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912665159664145561}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ec554776838ea206af584c0e6e45d85, type: 3}
   m_Name: 
@@ -435,6 +436,7 @@ MonoBehaviour:
   soundLength: 0
   noteNumber: 0
   toneColor: 0
+  velocity: 0
 --- !u!1 &2335897917352102453
 GameObject:
   m_ObjectHideFlags: 0
@@ -5324,6 +5326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topSeeds: {fileID: 0}
   ps: {fileID: 4298510826602196387}
+  headOutside: {fileID: 0}
 --- !u!1001 &6403364898349134542
 PrefabInstance:
   m_ObjectHideFlags: 0
