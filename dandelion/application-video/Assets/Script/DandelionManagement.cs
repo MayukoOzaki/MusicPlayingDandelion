@@ -182,7 +182,7 @@ public class DandelionManagement : MonoBehaviour
         {
             BlownWidth = 999999.0f;
         }
-        if (JudgeAngle(targetDandelion))//(Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
+        if (JudgeAngle(targetDandelion)||true)//(Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
             //Debug.Log("制限１");
             if (Math.Abs(dandelion.transform.position.z - camPosz) < ZDistance||true)
@@ -201,7 +201,10 @@ public class DandelionManagement : MonoBehaviour
                 bool nowOn = notePlayer.nowOn;
 
 
-
+                //if (velocity==0)
+                //{
+                    //notePlayer.SmoothChange();
+                //}
                 notePlayer.ExpressionChange(velocity);
                 if (velocity > 0)
                 {

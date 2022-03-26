@@ -27,6 +27,7 @@ public class NotePlayer : MonoBehaviour
 
     public uint nowPitch;//今音を出したピッチ
     public bool nowOn = false;//音を出した
+    public uint nowVolume;//今の音量
 
     public bool sameTone = false;//前と同じ音
 
@@ -56,6 +57,7 @@ public class NotePlayer : MonoBehaviour
     public void NoteOn(uint Pitch, uint Velocity, uint ToneColor)//吹いたときに呼び出される　Pitch:ピッチ Velocity:強さ ToneColor:音色
     {
         nowPitch = Pitch;
+        nowVolume = Velocity;
 
 
         //▼音色選択
@@ -162,14 +164,35 @@ public class NotePlayer : MonoBehaviour
 
     public void ExpressionChange(uint Volume)
     {
+        nowVolume = Volume;
         uint exppression=0xB0;
         uint byte2 = 0x0b;
         uint expression_data= (exppression << 0) + (byte2 << 8) + (Volume << 16);
-
         ///Debug.Log("変えた");
         NotePlayer.midiOutShortMsg(hMidiOut, expression_data);
-        //Debug.Log("強さ2" +"/"+ Volume);
+        Debug.Log("強さ2" +"/"+ Volume);
         //Debug.Log("変えた" + expression_data.ToString("X"));
+    }
+
+    public void SmoothChange()
+    {
+        uint volume = nowVolume;
+        int cou = (int)nowVolume / 10;
+        for (int r = 1; r <= cou; r++)
+        {
+            volume = volume - 10;
+            ExpressionChange(volume);
+        }
+
+        /*
+        uint volume = nowVolume - 10;
+
+        if (nowVolume <0)
+        {
+            volume = 0;
+        }
+        */
+        
     }
 
     void EndPerformance()
