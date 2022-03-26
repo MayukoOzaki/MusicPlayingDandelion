@@ -203,7 +203,7 @@ public class DandelionManagement : MonoBehaviour
 
                 if (velocity==0)
                 {
-                    notePlayer.SmoothChange();
+                    notePlayer.SmoothChangeZero();
                 }
                 else
                 {
