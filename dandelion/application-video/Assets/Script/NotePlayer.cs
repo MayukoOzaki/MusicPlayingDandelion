@@ -152,6 +152,7 @@ public class NotePlayer : MonoBehaviour
 
                 //Debug.Log("止めた" + off_data.ToString("X") + "固有番号" + notenumber);
                 nowOn = false;
+                //nowVolume = 0;
 
             }
         }
@@ -176,23 +177,18 @@ public class NotePlayer : MonoBehaviour
 
     public void SmoothChange()
     {
-        uint volume = nowVolume;
-        int cou = (int)nowVolume / 10;
-        for (int r = 1; r <= cou; r++)
-        {
-            volume = volume - 10;
-            ExpressionChange(volume);
-        }
-
-        /*
-        uint volume = nowVolume - 10;
-
-        if (nowVolume <0)
+        uint volume = 0;
+        if (nowVolume<=1)
         {
             volume = 0;
         }
-        */
-        
+        else
+        {
+            volume = nowVolume - 1;
+        }
+
+        ExpressionChange(volume);
+        Debug.Log("SmootyChange");
     }
 
     void EndPerformance()

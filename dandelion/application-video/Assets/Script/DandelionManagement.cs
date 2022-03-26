@@ -201,11 +201,15 @@ public class DandelionManagement : MonoBehaviour
                 bool nowOn = notePlayer.nowOn;
 
 
-                //if (velocity==0)
-                //{
-                    //notePlayer.SmoothChange();
-                //}
-                notePlayer.ExpressionChange(velocity);
+                if (velocity==0)
+                {
+                    notePlayer.SmoothChange();
+                }
+                else
+                {
+                    notePlayer.ExpressionChange(velocity);
+                }
+                //notePlayer.ExpressionChange(velocity);
                 if (velocity > 0)
                 {
                     Vector3 dir = dandelion.transform.position - camPos;
