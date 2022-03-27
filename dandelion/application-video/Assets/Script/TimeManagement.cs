@@ -7,7 +7,9 @@ public class TimeManagement : MonoBehaviour
     public NotePlayer noteplayer;
     public DandelionManagement dandelionManagement;
     public GameLoop gameloop;
-   // private int noteNumber;
+
+    public GameObject particleObject;
+    // private int noteNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,7 @@ public class TimeManagement : MonoBehaviour
     IEnumerator StopNote(uint pitch,float delay,int noteNumber)
     {
         //noteplayer.NoteOn(pitch, 100, 0);
-        delay = delay;   // -0.1f;
+        //delay = delay;   // -0.1f;
         yield return new WaitForSeconds(delay);
         noteplayer.NoteOff(pitch,noteNumber);
 
@@ -55,7 +57,18 @@ public class TimeManagement : MonoBehaviour
         {
             //Debug.Log("抜けた");
             //Destroy(c.gameObject);
-            gameloop.ChangeToEndScene();
+            GameObject camera = transform.root.gameObject;
+            Vector3 velocity = new Vector3(0f, 0f, 0f);
+            camera.GetComponent<Rigidbody>().velocity = velocity;
+
+            Vector3 particlePos = transform.position;
+            particlePos.y = 5.0f;
+
+            Instantiate(particleObject, particlePos, Quaternion.identity);
+            gameloop.Invoke("ChangeToEndScene", 5.0f);
+            
+
+            //gameloop.ChangeToEndScene();
 
         }
         if (c.gameObject.tag == "Dandelion")

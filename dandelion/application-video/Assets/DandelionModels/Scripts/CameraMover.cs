@@ -16,4 +16,11 @@ public class CameraMover : MonoBehaviour
     {
 
     }
+
+
+    public void StopCamera()
+    {
+        Vector3 velocity = new Vector3(0f, 0f, 0f);
+        GetComponent<Rigidbody>().velocity = velocity;
+    }
 }

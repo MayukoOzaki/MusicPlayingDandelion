@@ -182,7 +182,7 @@ public class DandelionManagement : MonoBehaviour
         {
             BlownWidth = 999999.0f;
         }
-        if (JudgeAngle(targetDandelion)||true)//(Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
+        if (JudgeAngle(targetDandelion))//(Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
             //Debug.Log("制限１");
             if (Math.Abs(dandelion.transform.position.z - camPosz) < ZDistance||true)
@@ -199,7 +199,7 @@ public class DandelionManagement : MonoBehaviour
 
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
                 bool nowOn = notePlayer.nowOn;
-
+                //Debug.Log("吹いた強さ"+velocity);
 
                 if (velocity==0)
                 {
@@ -207,6 +207,7 @@ public class DandelionManagement : MonoBehaviour
                 }
                 else
                 {
+                    notePlayer.SmoothChange(velocity);
                     notePlayer.ExpressionChange(velocity);
                 }
                 //notePlayer.ExpressionChange(velocity);

@@ -171,8 +171,8 @@ public class NotePlayer : MonoBehaviour
         uint expression_data= (exppression << 0) + (byte2 << 8) + (Volume << 16);
         ///Debug.Log("変えた");
         NotePlayer.midiOutShortMsg(hMidiOut, expression_data);
-        //Debug.Log("強さ2" +"/"+ Volume);
-        //Debug.Log("変えた" + expression_data.ToString("X"));
+        Debug.Log("強さ2" +"/"+ Volume);
+        Debug.Log("変えた" + expression_data.ToString("X"));
     }
 
     public void SmoothChangeZero()
@@ -188,7 +188,7 @@ public class NotePlayer : MonoBehaviour
         }
 
         ExpressionChange(volume);
-        //Debug.Log("SmootyChangeZero");
+        //Debug.Log("SmoothChangeZero");
     }
 
     
@@ -199,23 +199,18 @@ public class NotePlayer : MonoBehaviour
         int diff = Math.Abs((int)nowVolume - (int)Velocity);
         if (nowVolume>Velocity)
         {
+            
+            Debug.Log("SmoothChange");
+
             for (int r = 1; r <= diff; r++)
             {
                 uint d = (uint)r;
-                ExpressionChange(volume-d);
-                Debug.Log("SmootyChange");
+                ExpressionChange(volume - d);
+                //Debug.Log("SmoothChange");
             }
+            
         }
-        else if(nowVolume < Velocity)
-        {
-            for (int r = 1; r <= diff; r++)
-            {
-                uint d = (uint)r;
-                ExpressionChange(volume + d);
-                Debug.Log("SmootyChange");
-            }
-        }
-      
+       
     }
     
     
