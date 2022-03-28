@@ -61,6 +61,8 @@ public class TimeManagement : MonoBehaviour
             Vector3 velocity = new Vector3(0f, 0f, 0f);
             camera.GetComponent<Rigidbody>().velocity = velocity;
 
+            GetComponent<AudioSource>().Play();
+
             Vector3 particlePos = transform.position;
             particlePos.y = 5.0f;
 
