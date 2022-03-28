@@ -208,7 +208,8 @@ public class DandelionManagement : MonoBehaviour
                 else
                 {
                     notePlayer.SmoothChange(velocity);
-                    notePlayer.ExpressionChange(velocity);
+                    velocity = notePlayer.nowVolume;
+                    //notePlayer.ExpressionChange(velocity);
                 }
                 //notePlayer.ExpressionChange(velocity);
                 if (velocity > 0)

@@ -201,14 +201,20 @@ public class NotePlayer : MonoBehaviour
         {
             
             Debug.Log("SmoothChange");
-
-            for (int r = 1; r <= diff; r++)
+            int num = 1;
+            if (diff>4)
             {
-                uint d = (uint)r;
-                ExpressionChange(volume - d);
-                //Debug.Log("SmoothChange");
+                num = (int)(diff / 4);
             }
+
+            uint d = (uint)num;
+
+            ExpressionChange(volume - d);
             
+        }
+        else
+        {
+            ExpressionChange(Velocity);
         }
        
     }
