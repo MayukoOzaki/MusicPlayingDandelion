@@ -69,7 +69,10 @@ public class BreathDetection : MonoBehaviour
             {
                 //Debug.Log("BREATH");
                 //Debug.Log(eH + "/" + eL + "/" + r);
-                strength = 19.14f*Mathf.Log10(eH) +184.86f;
+                //strength=15.41f*Mathf.Log10(eH) +173.59f; //65 
+                strength=14.17f*Mathf.Log10(eH) +169.84f; //70
+                //strength = 19.14f*Mathf.Log10(eH) +184.86f;//50
+
                 if (strength > 127.0f)
                 {
                     strength = 127.0f;

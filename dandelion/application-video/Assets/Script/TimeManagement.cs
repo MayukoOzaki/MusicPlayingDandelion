@@ -7,7 +7,10 @@ public class TimeManagement : MonoBehaviour
     public NotePlayer noteplayer;
     public DandelionManagement dandelionManagement;
     public GameLoop gameloop;
-   // private int noteNumber;
+
+    public GameObject particleObject;
+    private GameObject nowDandelion=null;
+    // private int noteNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -25,21 +28,36 @@ public class TimeManagement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Dandelion")
         {
+            //Turn off emission of previous object
+            if(nowDandelion!=null)
+            {
+                GameObject nowhead = nowDandelion.transform.Find("HeadOutside").gameObject;
+                nowhead.gameObject.transform.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+            }
+            
+
             dandelionManagement.SetTargetDandelion(collision.gameObject);
+
             float soundLength = collision.gameObject.GetComponent<NoteInfo>().soundLength;
             int i_pitch = collision.gameObject.GetComponent<NoteInfo>().pitch;
             uint pitch = (uint)i_pitch;
             //notePlayer.NoteOn(50, 100, 0);//テスト用
             int noteNumber = collision.GetComponent<NoteInfo>().noteNumber;
             StartCoroutine(StopNote(pitch, soundLength,noteNumber));
-            
+
+            //Turn on emission of the current object
+            GameObject head = collision.transform.Find("HeadOutside").gameObject;
+            head.gameObject.transform.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+            head.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
+            nowDandelion = collision.gameObject;
+
         }
     }
 
     IEnumerator StopNote(uint pitch,float delay,int noteNumber)
     {
         //noteplayer.NoteOn(pitch, 100, 0);
-        delay = delay;   // -0.1f;
+        //delay = delay;   // -0.1f;
         yield return new WaitForSeconds(delay);
         noteplayer.NoteOff(pitch,noteNumber);
 
@@ -55,7 +73,20 @@ public class TimeManagement : MonoBehaviour
         {
             //Debug.Log("抜けた");
             //Destroy(c.gameObject);
-            gameloop.ChangeToEndScene();
+            GameObject camera = transform.root.gameObject;
+            Vector3 velocity = new Vector3(0f, 0f, 0f);
+            camera.GetComponent<Rigidbody>().velocity = velocity;
+
+            GetComponent<AudioSource>().Play();
+
+            Vector3 particlePos = transform.position;
+            particlePos.y = 5.0f;
+
+            Instantiate(particleObject, particlePos, Quaternion.identity);
+            gameloop.Invoke("ChangeToEndScene", 5.0f);
+            
+
+            //gameloop.ChangeToEndScene();
 
         }
         if (c.gameObject.tag == "Dandelion")

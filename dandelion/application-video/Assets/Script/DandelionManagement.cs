@@ -136,8 +136,8 @@ public class DandelionManagement : MonoBehaviour
 
                 
                 float velocity = float.Parse(toneDatas[r][3]);
-                GameObject head = dandelion.transform.Find("HeadOutside").gameObject;
-                head.GetComponent<HeadSizeChange>().ChangeHeadSize(velocity);
+                //GameObject head = dandelion.transform.Find("HeadOutside").gameObject;
+                //head.GetComponent<HeadSizeChange>().ChangeHeadSize(velocity);
 
                 GameObject stem = dandelion.transform.Find("Stem").gameObject;
                 stem.GetComponent<StemSizeChange>().ChangeStemSize(s);
@@ -199,10 +199,19 @@ public class DandelionManagement : MonoBehaviour
 
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
                 bool nowOn = notePlayer.nowOn;
+                //Debug.Log("吹いた強さ"+velocity);
 
-
-
-                notePlayer.ExpressionChange(velocity);
+                if (velocity==0)
+                {
+                    notePlayer.SmoothChangeZero();
+                }
+                else
+                {
+                    notePlayer.SmoothChange(velocity);
+                    velocity = notePlayer.nowVolume;
+                    //notePlayer.ExpressionChange(velocity);
+                }
+                //notePlayer.ExpressionChange(velocity);
                 if (velocity > 0)
                 {
                     Vector3 dir = dandelion.transform.position - camPos;

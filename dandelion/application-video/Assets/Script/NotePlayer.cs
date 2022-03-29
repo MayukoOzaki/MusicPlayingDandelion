@@ -27,6 +27,7 @@ public class NotePlayer : MonoBehaviour
 
     public uint nowPitch;//今音を出したピッチ
     public bool nowOn = false;//音を出した
+    public uint nowVolume;//今の音量
 
     public bool sameTone = false;//前と同じ音
 
@@ -56,6 +57,7 @@ public class NotePlayer : MonoBehaviour
     public void NoteOn(uint Pitch, uint Velocity, uint ToneColor)//吹いたときに呼び出される　Pitch:ピッチ Velocity:強さ ToneColor:音色
     {
         nowPitch = Pitch;
+        nowVolume = Velocity;
 
 
         //▼音色選択
@@ -100,7 +102,7 @@ public class NotePlayer : MonoBehaviour
         
         //Debug.Log("鳴らす"+on_data.ToString("X")+"固有番号"+dandelionManagement.nowNotenumber);
 
-        //Debug.Log("強さ1" +"/"+ Velocity);
+        Debug.Log("強さ1" +"/"+ Velocity);
         //Debug.Log("鳴らした");
         //Debug.Log(Pitch+"/"+Velocity+"/"+ToneColor);
         //Debug.Log("音を鳴らした"+otocou);
@@ -150,6 +152,7 @@ public class NotePlayer : MonoBehaviour
 
                 //Debug.Log("止めた" + off_data.ToString("X") + "固有番号" + notenumber);
                 nowOn = false;
+                //nowVolume = 0;
 
             }
         }
@@ -162,15 +165,62 @@ public class NotePlayer : MonoBehaviour
 
     public void ExpressionChange(uint Volume)
     {
+        nowVolume = Volume;
         uint exppression=0xB0;
         uint byte2 = 0x0b;
         uint expression_data= (exppression << 0) + (byte2 << 8) + (Volume << 16);
-
         ///Debug.Log("変えた");
         NotePlayer.midiOutShortMsg(hMidiOut, expression_data);
-        //Debug.Log("強さ2" +"/"+ Volume);
-        //Debug.Log("変えた" + expression_data.ToString("X"));
+        Debug.Log("強さ2" +"/"+ Volume);
+        Debug.Log("変えた" + expression_data.ToString("X"));
     }
+
+    public void SmoothChangeZero()
+    {
+        uint volume = 0;
+        if (nowVolume<=1)
+        {
+            volume = 0;
+        }
+        else
+        {
+            volume = nowVolume - 1;
+        }
+
+        ExpressionChange(volume);
+        //Debug.Log("SmoothChangeZero");
+    }
+
+    
+    public void SmoothChange(uint Velocity)
+    {
+        uint volume = nowVolume;
+
+        int diff = Math.Abs((int)nowVolume - (int)Velocity);
+        if (nowVolume>Velocity)
+        {
+            
+            Debug.Log("SmoothChange");
+            int num = 1;
+            if (diff>4)
+            {
+                num = (int)(diff / 4);
+            }
+
+            uint d = (uint)num;
+
+            ExpressionChange(volume - d);
+            
+        }
+        else
+        {
+            ExpressionChange(Velocity);
+        }
+       
+    }
+    
+    
+
 
     void EndPerformance()
     {
