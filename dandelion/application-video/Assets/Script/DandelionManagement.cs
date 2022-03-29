@@ -136,8 +136,8 @@ public class DandelionManagement : MonoBehaviour
 
                 
                 float velocity = float.Parse(toneDatas[r][3]);
-                GameObject head = dandelion.transform.Find("HeadOutside").gameObject;
-                head.GetComponent<HeadSizeChange>().ChangeHeadSize(velocity);
+                //GameObject head = dandelion.transform.Find("HeadOutside").gameObject;
+                //head.GetComponent<HeadSizeChange>().ChangeHeadSize(velocity);
 
                 GameObject stem = dandelion.transform.Find("Stem").gameObject;
                 stem.GetComponent<StemSizeChange>().ChangeStemSize(s);
