@@ -30,8 +30,9 @@ public class DandelionManagement : MonoBehaviour
     public HeadsetSetup headsetSetup;
 
 
-    private Vector3 camPos;
-    private float camPosz;
+    private Vector3 maincamPos;
+    private float maincamPosz;
+
     public  int nowNotenumber=0;
     private uint tonecolor=0x0;
 
@@ -192,7 +193,7 @@ public class DandelionManagement : MonoBehaviour
         if (JudgeAngle(targetDandelion))//(Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
         {
             //Debug.Log("制限１");
-            if (Math.Abs(dandelion.transform.position.z - camPosz) < ZDistance||true)
+            if (Math.Abs(dandelion.transform.position.z - maincamPosz) < ZDistance||true)
             {
                 //Debug.Log("制限２");
                 //Debug.Log("isblown");
@@ -221,6 +222,7 @@ public class DandelionManagement : MonoBehaviour
                 //notePlayer.ExpressionChange(velocity);
                 if (velocity > 0)
                 {
+                    Vector3 camPos = headsetSetup.camPos;
                     Vector3 dir = dandelion.transform.position - camPos;
                     dandelion.GetComponent<DandelionController>().Blow(dir);
                     if (notenum > nowNotenumber)
@@ -339,14 +341,11 @@ public class DandelionManagement : MonoBehaviour
             JudgeAngle(targetDandelion);
         }
         */
-        
-        /*
-        camPos = GameObject.FindWithTag("MainCamera").transform.position;
-        camPosz = camPos.z;
+             
+        maincamPos = GameObject.FindWithTag("MainCamera").transform.position;
+        maincamPosz = maincamPos.z;
 
         //CheckPassingDandelion(camPosz);
-
-        */
 
     }
 
