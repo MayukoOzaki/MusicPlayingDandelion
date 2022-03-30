@@ -32,7 +32,9 @@ public class TimeManagement : MonoBehaviour
             if(nowDandelion!=null)
             {
                 GameObject nowhead = nowDandelion.transform.Find("HeadOutside").gameObject;
+                nowhead.gameObject.transform.GetComponent<HeadColorChange>().coroutineOn = false;
                 nowhead.gameObject.transform.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+
             }
             
 
@@ -49,6 +51,7 @@ public class TimeManagement : MonoBehaviour
             GameObject head = collision.transform.Find("HeadOutside").gameObject;
             head.gameObject.transform.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
             head.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
+            head.gameObject.transform.GetComponent<HeadColorChange>().coroutineOn = true;
             nowDandelion = collision.gameObject;
 
         }
