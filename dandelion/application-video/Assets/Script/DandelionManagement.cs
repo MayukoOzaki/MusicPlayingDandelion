@@ -16,6 +16,8 @@ public class DandelionManagement : MonoBehaviour
     public float BlownWidth = 5.0f;
     public float ZDistance = 0.1f;
 
+    
+
 
     int numSounds = 270;//270;
 
@@ -34,6 +36,11 @@ public class DandelionManagement : MonoBehaviour
     private uint tonecolor=0x0;
 
     public bool dan=false;
+
+    public string nowArrow = null;//null, right, left
+    public GameObject rArrow;
+    public GameObject lArrow;
+
 
 
 
@@ -224,10 +231,11 @@ public class DandelionManagement : MonoBehaviour
                     }
                 }
                 
-                
-
-
             }
+        }
+        else
+        {
+            
         }
     }
   
@@ -265,10 +273,48 @@ public class DandelionManagement : MonoBehaviour
         
         if (diff<=45.0f)
         {
+            if (nowArrow == "right")
+            {
+                rArrow.gameObject.SetActive(false);
+            }
+            else if(nowArrow=="left")
+            {
+                lArrow.gameObject.SetActive(false);
+            }
+            nowArrow = null;
+            
             return true;
         }
         else
         {
+
+            Vector3 cross=Vector3.Cross(camforward, dandelionDir).normalized;
+            if (cross.y>=0)
+            {
+                if(nowArrow == "right")
+                {
+                    rArrow.gameObject.SetActive(false);
+                }
+                if (nowArrow != "left")
+                {
+                    lArrow.gameObject.SetActive(true);
+                    nowArrow = "left";
+                }
+
+            }
+            else
+            {
+                if (nowArrow == "left")
+                {
+                    lArrow.gameObject.SetActive(false);
+                }
+                if (nowArrow != "right")
+                {
+                    rArrow.gameObject.SetActive(true);
+                    nowArrow = "right";
+                }
+
+            }
             return false;
         }
 
