@@ -29,7 +29,7 @@ public class DandelionController : MonoBehaviour
         if (isBlow==false)
         {
             StartCoroutine(RemoveTop());
-            Vector3 target = topSeeds.transform.position + dir;
+            Vector3 target = dir;//topSeeds.transform.position + dir;
             target.y = topSeeds.transform.position.y;
 
             ps.transform.LookAt(target);
