@@ -17,7 +17,10 @@ public class ChangeScene : MonoBehaviour
         if (Input.GetKey(KeyCode.Return)){
             SceneManager.LoadScene("SeedTest");
         }
+        if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            SceneManager.LoadScene("SeedTest");
+        }
+
     }
-
-
 }

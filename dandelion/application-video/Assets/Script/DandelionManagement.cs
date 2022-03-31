@@ -142,6 +142,7 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
                 dandelion.GetComponent<NoteInfo>().velocity = float.Parse(toneDatas[r][3]);
 
+
                 
                 float velocity = float.Parse(toneDatas[r][3]);
                 //GameObject head = dandelion.transform.Find("HeadOutside").gameObject;
