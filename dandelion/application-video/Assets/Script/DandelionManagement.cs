@@ -207,6 +207,9 @@ public class DandelionManagement : MonoBehaviour
 
                 int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
                 bool nowOn = notePlayer.nowOn;
+
+                
+
                 //Debug.Log("吹いた強さ"+velocity);
 
                 if (velocity==0)
@@ -215,12 +218,23 @@ public class DandelionManagement : MonoBehaviour
                 }
                 else
                 {
+                    int value = JudgeDistance(dandelion);
+                    velocity = velocity + (uint)value;
+                    if (velocity > 127)
+                    {
+                        velocity = 127;
+                    }
+                    else if(velocity<0)
+                    {
+                        velocity = 0;
+                    }
+                    Debug.Log(value+"/"+(int)velocity);
                     notePlayer.SmoothChange(velocity);
-                    velocity = notePlayer.nowVolume;
+                    //velocity = notePlayer.nowVolume;
                     //notePlayer.ExpressionChange(velocity);
                 }
                 //notePlayer.ExpressionChange(velocity);
-                if (velocity > 0)
+                if (notePlayer.nowVolume > 0)
                 {
                     Vector3 camPos = headsetSetup.camPos;
                     Vector3 dir = dandelion.transform.position - camPos;
@@ -228,7 +242,7 @@ public class DandelionManagement : MonoBehaviour
                     if (notenum > nowNotenumber)
                     {
                         nowNotenumber = notenum;
-                        notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                        notePlayer.NoteOn(pitch, notePlayer.nowVolume, ToneColor);//音再生
                         //nowNotenumber = notenum;
                     }
                 }
@@ -320,6 +334,18 @@ public class DandelionManagement : MonoBehaviour
             return false;
         }
 
+    }
+
+    public int JudgeDistance(GameObject dandelion)
+    {
+        Vector3 posDandelion = dandelion.transform.position;
+        Vector3 camPos = headsetSetup.camPos;
+        float dis = Vector3.Distance(posDandelion, camPos);
+        //Debug.Log("距離 : " + dis);
+        //short 0, middle1.5, long 3.0
+
+        int value = (int)(-dis * 18.67 + 28);
+        return value;
     }
 
 
