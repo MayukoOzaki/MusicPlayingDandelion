@@ -13,8 +13,8 @@ public class DandelionManagement : MonoBehaviour
 
     public GameObject DandelionPrefab;
     public bool isWidth = true;
-    public float BlownWidth = 5.0f;
-    public float ZDistance = 0.1f;
+    public float BlownWidth = 3.0f;
+    //public float ZDistance = 0.1f;
 
 
 
@@ -30,8 +30,9 @@ public class DandelionManagement : MonoBehaviour
     public HeadsetSetup headsetSetup;
 
 
-    private Vector3 camPos;
-    private float camPosz;
+    private Vector3 maincamPos;
+    private float maincamPosz;
+
     public  int nowNotenumber=0;
     private uint tonecolor=0x0;
 
@@ -142,7 +143,6 @@ public class DandelionManagement : MonoBehaviour
                 dandelion.GetComponent<NoteInfo>().noteNumber = notenum;
                 dandelion.GetComponent<NoteInfo>().toneColor = tonecolor;
                 dandelion.GetComponent<NoteInfo>().velocity = float.Parse(toneDatas[r][3]);
-
                 changeSeedColor(dandelion,nowInstrument);
 
                 float velocity = float.Parse(toneDatas[r][3]);
@@ -177,43 +177,43 @@ public class DandelionManagement : MonoBehaviour
     {
         GameObject Seed = dandelion.transform.Find("HeadCore/Seed").gameObject;
         ParticleSystem.MainModule par = Seed.GetComponent<ParticleSystem>().main;
-        Color test = new Color(1.0f, 50.0f, 0.0f, 1.0f);
+        Color test = new Color32(1, 50, 0, 1);
         par.startColor = test;
         switch(Instrument)
         {
             case "Piano":
             {
-                Color color = new Color(255.0f, 255.0f, 255.0f, 1.0f);
+                Color color = new Color32(255, 255, 255, 255);//white
                 par.startColor = color;
                 break;
             }
             case "Trumpet":
             {
-                Color color = new Color(1.0f, 50.0f, 0.0f, 1.0f);
-                par.startColor = color;
+                Color color = new Color32(255, 255, 0, 255);//Yellow/ /1.0f, 50.0f, 0.0f, 1.0f)
+                    par.startColor = color;
                 break;
             }
             case "Flute":
             {
-                Color color = new Color(28.0f, 31.0f, 254.0f, 1.0f);
+                Color color = new Color32(28, 31, 254, 255);//blue
                 par.startColor = color;
                 break;
             }
             case "Clarinet":
             {
-                Color color = new Color(220.0f, 60.0f, 220.0f, 1.0f);
+                Color color = new Color32(220, 60, 220, 255);//Pink
                 par.startColor = color;
                 break;
             }
             case "AssaultSaxophone":
             {
-                Color color = new Color(0.0f, 255.0f, 0.0f, 1.0f);
+                Color color = new Color32(0, 255, 0, 255);//Green
                 par.startColor = color;
                 break;
             }
             case "Oboe":
             {
-                Color color = new Color(255.0f, 0.0f, 0.0f, 1.0f);
+                Color color = new Color32(255, 0, 0, 255);//red
                 par.startColor = color;
                 break;
             }
@@ -227,34 +227,87 @@ public class DandelionManagement : MonoBehaviour
     {
         //int count = ObjectList.Count;
         //Debug.Log("count"+count);
+        //GameObject dandelion = ObjectList[0];
+
         if (targetDandelion == null)
             return;
-        //GameObject dandelion = ObjectList[0];
 
 
         GameObject dandelion = targetDandelion;
+
+        uint pitch = (uint)dandelion.GetComponent<NoteInfo>().pitch;
+        uint velocity = (uint)Strength;
+        uint ToneColor = dandelion.GetComponent<NoteInfo>().toneColor;
+        int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
+        //Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
+        bool nowOn = notePlayer.nowOn;
+        Vector3 camPos = headsetSetup.camPos;
+        float camPosx = camPos.x;
 
         if (isWidth == false)
         {
             BlownWidth = 999999.0f;
         }
-        if (JudgeAngle(targetDandelion))//(Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
+
+        if (velocity == 0)
         {
+            notePlayer.SmoothChangeZero();
+        }
+        else
+        {
+            if (JudgeAngle(targetDandelion))
+            {
+                if (Vector3.Distance(dandelion.transform.position, camPos) < BlownWidth)
+                {
+                    int value = JudgeDistance(dandelion);
+                    velocity = velocity + (uint)value;
+                    if (velocity > 127)
+                    {
+                        velocity = 127;
+                    }
+                    else if (velocity < 0)
+                    {
+                        velocity = 0;
+                    }
+                    Debug.Log(value + "/" + (int)velocity);
+                    notePlayer.SmoothChange(velocity);
+
+                    Vector3 dir = dandelion.transform.position - camPos;
+                    dandelion.GetComponent<DandelionController>().Blow(dir);
+
+                    if (notenum > nowNotenumber)
+                    {
+                        nowNotenumber = notenum;
+                        notePlayer.NoteOn(pitch, notePlayer.nowVolume, ToneColor);//音再生
+                    }
+                }
+                else
+                {
+                    notePlayer.SmoothChangeZero();
+                }
+            }
+            else
+            {
+                notePlayer.SmoothChangeZero();
+            }
+        }
+    }
+
+        /*
+        if (JudgeAngle(targetDandelion))
+        {
+
             //Debug.Log("制限１");
-            if (Math.Abs(dandelion.transform.position.z - camPosz) < ZDistance||true)
+            if (Math.Abs(dandelion.transform.position.z - maincamPosz) < ZDistance||true)
             {
                 //Debug.Log("制限２");
                 //Debug.Log("isblown");
                 //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
                 //ObjectList.RemoveAt(0);// リストの0番目を削除する
 
-                uint pitch = (uint)dandelion.GetComponent<NoteInfo>().pitch;
-                uint velocity = (uint)Strength;
-                uint ToneColor = dandelion.GetComponent<NoteInfo>().toneColor;
-                //Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
+                
+                
 
-                int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
-                bool nowOn = notePlayer.nowOn;
                 //Debug.Log("吹いた強さ"+velocity);
 
                 if (velocity==0)
@@ -263,19 +316,31 @@ public class DandelionManagement : MonoBehaviour
                 }
                 else
                 {
+                    int value = JudgeDistance(dandelion);
+                    velocity = velocity + (uint)value;
+                    if (velocity > 127)
+                    {
+                        velocity = 127;
+                    }
+                    else if(velocity<0)
+                    {
+                        velocity = 0;
+                    }
+                    Debug.Log(value+"/"+(int)velocity);
                     notePlayer.SmoothChange(velocity);
-                    velocity = notePlayer.nowVolume;
+                    //velocity = notePlayer.nowVolume;
                     //notePlayer.ExpressionChange(velocity);
                 }
                 //notePlayer.ExpressionChange(velocity);
-                if (velocity > 0)
+                if (notePlayer.nowVolume > 0)
                 {
+                    Vector3 camPos = headsetSetup.camPos;
                     Vector3 dir = dandelion.transform.position - camPos;
                     dandelion.GetComponent<DandelionController>().Blow(dir);
                     if (notenum > nowNotenumber)
                     {
                         nowNotenumber = notenum;
-                        notePlayer.NoteOn(pitch, velocity, ToneColor);//音再生
+                        notePlayer.NoteOn(pitch, notePlayer.nowVolume, ToneColor);//音再生
                         //nowNotenumber = notenum;
                     }
                 }
@@ -286,8 +351,8 @@ public class DandelionManagement : MonoBehaviour
         {
 
         }
-    }
 
+        */
 
 /*
 
@@ -369,6 +434,18 @@ public class DandelionManagement : MonoBehaviour
 
     }
 
+    public int JudgeDistance(GameObject dandelion)
+    {
+        Vector3 posDandelion = dandelion.transform.position;
+        Vector3 camPos = headsetSetup.camPos;
+        float dis = Vector3.Distance(posDandelion, camPos);
+        //Debug.Log("距離 : " + dis);
+        //short 0, middle1.5, long 3.0
+
+        int value = (int)(-dis * 18.67 + 28);
+        return value;
+    }
+
 
     public void SetTargetDandelion(GameObject dandelion)
     {
@@ -388,14 +465,11 @@ public class DandelionManagement : MonoBehaviour
             JudgeAngle(targetDandelion);
         }
         */
-
-        /*
-        camPos = GameObject.FindWithTag("MainCamera").transform.position;
-        camPosz = camPos.z;
+             
+        //maincamPos = GameObject.FindWithTag("MainCamera").transform.position;
+        //maincamPosz = maincamPos.z;
 
         //CheckPassingDandelion(camPosz);
-
-        */
 
     }
 

@@ -115,7 +115,7 @@ public class BreathDetection : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.O))
         {
-            dandelionManagement.isBlown(1.0f, 63f);
+            dandelionManagement.isBlown(1.0f, 70f);  //63
         }
         if (Input.GetKey(KeyCode.I))
         {

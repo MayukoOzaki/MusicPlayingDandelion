@@ -17,5 +17,9 @@ public class SwitchScene : MonoBehaviour
         if (Input.GetKey(KeyCode.Space)){
             SceneManager.LoadScene("TitleScene");
         }
+        if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
     }
 }
