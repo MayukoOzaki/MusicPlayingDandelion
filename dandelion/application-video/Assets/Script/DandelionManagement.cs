@@ -12,7 +12,7 @@ public class DandelionManagement : MonoBehaviour
     List<string[]> toneDatas = new List<string[]>();
 
     public GameObject DandelionPrefab;
-    public bool isWidth = true;
+    //public bool isWidth = true;
     public float BlownWidth = 2.5f;
     //public float ZDistance = 0.1f;
 
@@ -244,10 +244,12 @@ public class DandelionManagement : MonoBehaviour
         Vector3 camPos = headsetSetup.camPos;
         float camPosx = camPos.x;
 
+        /*
         if (isWidth == false)
         {
             BlownWidth = 999999.0f;
         }
+        */
 
         if (velocity == 0)
         {
@@ -257,7 +259,9 @@ public class DandelionManagement : MonoBehaviour
         {
             if (JudgeAngle(targetDandelion))
             {
-                if (Vector3.Distance(dandelion.transform.position, camPos) < BlownWidth)
+                //Debug.Log("距離："+Vector3.Distance(dandelion.transform.position, camPos));
+                float distance = Vector3.Distance(dandelion.transform.position, camPos);
+                if (distance < BlownWidth)
                 {
                     int value = JudgeDistance(dandelion);
                     velocity = velocity + (uint)value;
@@ -439,7 +443,7 @@ public class DandelionManagement : MonoBehaviour
         Vector3 posDandelion = dandelion.transform.position;
         Vector3 camPos = headsetSetup.camPos;
         float dis = Vector3.Distance(posDandelion, camPos);
-        Debug.Log("距離 : " + dis);
+        //Debug.Log("距離 : " + dis);
         //short 0, middle1.25, long 2.5
 
         int value = (int)(-dis * 22.4 + 28);
