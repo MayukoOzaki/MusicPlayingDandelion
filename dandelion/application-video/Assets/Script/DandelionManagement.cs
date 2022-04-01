@@ -13,8 +13,8 @@ public class DandelionManagement : MonoBehaviour
 
     public GameObject DandelionPrefab;
     public bool isWidth = true;
-    public float BlownWidth = 5.0f;
-    public float ZDistance = 0.1f;
+    public float BlownWidth = 3.0f;
+    //public float ZDistance = 0.1f;
 
     
 
@@ -180,19 +180,76 @@ public class DandelionManagement : MonoBehaviour
     {
         //int count = ObjectList.Count;
         //Debug.Log("count"+count);
+        //GameObject dandelion = ObjectList[0];
+
         if (targetDandelion == null)
             return;
-        //GameObject dandelion = ObjectList[0];
 
 
         GameObject dandelion = targetDandelion;
+
+        uint pitch = (uint)dandelion.GetComponent<NoteInfo>().pitch;
+        uint velocity = (uint)Strength;
+        uint ToneColor = dandelion.GetComponent<NoteInfo>().toneColor;
+        int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
+        //Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
+        bool nowOn = notePlayer.nowOn;
+        Vector3 camPos = headsetSetup.camPos;
+        float camPosx = camPos.x;
 
         if (isWidth == false)
         {
             BlownWidth = 999999.0f;
         }
-        if (JudgeAngle(targetDandelion))//(Mathf.Abs(dandelion.transform.position.x - Posx) < BlownWidth)
+
+        if (velocity == 0)
         {
+            notePlayer.SmoothChangeZero();
+        }
+        else
+        {
+            if (JudgeAngle(targetDandelion))
+            {
+                if (Vector3.Distance(dandelion.transform.position, camPos) < BlownWidth)
+                {
+                    int value = JudgeDistance(dandelion);
+                    velocity = velocity + (uint)value;
+                    if (velocity > 127)
+                    {
+                        velocity = 127;
+                    }
+                    else if (velocity < 0)
+                    {
+                        velocity = 0;
+                    }
+                    Debug.Log(value + "/" + (int)velocity);
+                    notePlayer.SmoothChange(velocity);
+
+                    Vector3 dir = dandelion.transform.position - camPos;
+                    dandelion.GetComponent<DandelionController>().Blow(dir);
+
+                    if (notenum > nowNotenumber)
+                    {
+                        nowNotenumber = notenum;
+                        notePlayer.NoteOn(pitch, notePlayer.nowVolume, ToneColor);//音再生
+                    }
+                }
+                else
+                {
+                    notePlayer.SmoothChangeZero();
+                }
+            }
+            else
+            {
+                notePlayer.SmoothChangeZero();
+            }
+        }
+    }
+
+        /*
+        if (JudgeAngle(targetDandelion))
+        {
+
             //Debug.Log("制限１");
             if (Math.Abs(dandelion.transform.position.z - maincamPosz) < ZDistance||true)
             {
@@ -201,14 +258,7 @@ public class DandelionManagement : MonoBehaviour
                 //Destroy(ObjectList[0]);// リストの0番目のオブジェクトを消す
                 //ObjectList.RemoveAt(0);// リストの0番目を削除する
 
-                uint pitch = (uint)dandelion.GetComponent<NoteInfo>().pitch;
-                uint velocity = (uint)Strength;
-                uint ToneColor = dandelion.GetComponent<NoteInfo>().toneColor;
-                //Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
-
-                int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
-                bool nowOn = notePlayer.nowOn;
-
+                
                 
 
                 //Debug.Log("吹いた強さ"+velocity);
@@ -254,7 +304,8 @@ public class DandelionManagement : MonoBehaviour
         {
             
         }
-    }
+        */
+    
   
 
 /*
