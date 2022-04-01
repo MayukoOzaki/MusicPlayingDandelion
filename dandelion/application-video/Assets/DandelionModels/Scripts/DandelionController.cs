@@ -8,6 +8,7 @@ public class DandelionController : MonoBehaviour
     public ParticleSystem ps;
     public GameObject headOutside;
     public bool isBlow = false;
+    public GameObject particleObject;
 
     // Start is called before the first frame update
     void Start()
@@ -42,15 +43,15 @@ public class DandelionController : MonoBehaviour
 
         }
         */
-        
-        //Debug.Log("Ží‚ð”ò‚Î‚µ‚½");
+
+        //Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î‚ï¿½ï¿½ï¿½");
     }
 
     IEnumerator RemoveTop()
     {
         yield return new WaitForSeconds(0.2f);
         topSeeds.SetActive(false);
-        headOutside.SetActive(false);//ŽØ‚è
+        headOutside.SetActive(false);//ï¿½Ø‚ï¿½
         yield return new WaitForSeconds(0.3f);
         //headOutside.SetActive(false);
         //gameObject.SetActive(false);
