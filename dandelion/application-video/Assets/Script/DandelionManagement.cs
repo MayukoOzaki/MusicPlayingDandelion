@@ -13,7 +13,7 @@ public class DandelionManagement : MonoBehaviour
 
     public GameObject DandelionPrefab;
     public bool isWidth = true;
-    public float BlownWidth = 3.0f;
+    public float BlownWidth = 2.5f;
     //public float ZDistance = 0.1f;
 
 
@@ -269,7 +269,7 @@ public class DandelionManagement : MonoBehaviour
                     {
                         velocity = 0;
                     }
-                    Debug.Log(value + "/" + (int)velocity);
+                    //Debug.Log(value + "/" + (int)velocity);
                     notePlayer.SmoothChange(velocity);
 
                     Vector3 dir = dandelion.transform.position - camPos;
@@ -439,10 +439,10 @@ public class DandelionManagement : MonoBehaviour
         Vector3 posDandelion = dandelion.transform.position;
         Vector3 camPos = headsetSetup.camPos;
         float dis = Vector3.Distance(posDandelion, camPos);
-        //Debug.Log("距離 : " + dis);
-        //short 0, middle1.5, long 3.0
+        Debug.Log("距離 : " + dis);
+        //short 0, middle1.25, long 2.5
 
-        int value = (int)(-dis * 18.67 + 28);
+        int value = (int)(-dis * 22.4 + 28);
         return value;
     }
 
