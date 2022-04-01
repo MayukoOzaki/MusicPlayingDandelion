@@ -177,43 +177,43 @@ public class DandelionManagement : MonoBehaviour
     {
         GameObject Seed = dandelion.transform.Find("HeadCore/Seed").gameObject;
         ParticleSystem.MainModule par = Seed.GetComponent<ParticleSystem>().main;
-        Color test = new Color(1.0f, 50.0f, 0.0f, 1.0f);
+        Color test = new Color32(1, 50, 0, 1);
         par.startColor = test;
         switch(Instrument)
         {
             case "Piano":
             {
-                Color color = new Color(255.0f, 255.0f, 255.0f, 1.0f);
+                Color color = new Color32(255, 255, 255, 255);//white
                 par.startColor = color;
                 break;
             }
             case "Trumpet":
             {
-                Color color = new Color(1.0f, 50.0f, 0.0f, 1.0f);
-                par.startColor = color;
+                Color color = new Color32(255, 255, 0, 255);//Yellow/ /1.0f, 50.0f, 0.0f, 1.0f)
+                    par.startColor = color;
                 break;
             }
             case "Flute":
             {
-                Color color = new Color(28.0f, 31.0f, 254.0f, 1.0f);
+                Color color = new Color32(28, 31, 254, 255);//blue
                 par.startColor = color;
                 break;
             }
             case "Clarinet":
             {
-                Color color = new Color(220.0f, 60.0f, 220.0f, 1.0f);
+                Color color = new Color32(220, 60, 220, 255);//Pink
                 par.startColor = color;
                 break;
             }
             case "AssaultSaxophone":
             {
-                Color color = new Color(0.0f, 255.0f, 0.0f, 1.0f);
+                Color color = new Color32(0, 255, 0, 255);//Green
                 par.startColor = color;
                 break;
             }
             case "Oboe":
             {
-                Color color = new Color(255.0f, 0.0f, 0.0f, 1.0f);
+                Color color = new Color32(255, 0, 0, 255);//red
                 par.startColor = color;
                 break;
             }
