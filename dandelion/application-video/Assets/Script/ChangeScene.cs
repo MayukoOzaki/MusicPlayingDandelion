@@ -8,7 +8,7 @@ public class ChangeScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Invoke("Change", 3.0f);
     }
 
     // Update is called once per frame
@@ -22,5 +22,10 @@ public class ChangeScene : MonoBehaviour
             SceneManager.LoadScene("SeedTest");
         }
 
+    }
+
+    void Change()
+    {
+        SceneManager.LoadScene("SeedTest");
     }
 }

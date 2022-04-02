@@ -8,7 +8,7 @@ public class SwitchScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Invoke("Switch", 3.0f);
     }
 
     // Update is called once per frame
@@ -21,5 +21,10 @@ public class SwitchScene : MonoBehaviour
         {
             SceneManager.LoadScene("TitleScene");
         }
+    }
+
+    void Switch()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 }
