@@ -1641,21 +1641,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dandelion1_1
       objectReference: {fileID: 0}
-    - target: {fileID: 2222612520811053160, guid: c092a4938ac625940b5b0de94461995e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_RootOrder
       value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1695,10 +1683,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053161, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2222612521038821177, guid: c092a4938ac625940b5b0de94461995e, type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4484,25 +4468,6 @@ Transform:
   m_Father: {fileID: 1708428337}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &903591253 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2222612521038821181, guid: c092a4938ac625940b5b0de94461995e, type: 3}
-  m_PrefabInstance: {fileID: 277012406}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &903591257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903591253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84d364b539d1cf546a729cec1f418aa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultScale: {x: 0, y: 0, z: 0}
-  localScale: {x: 0, y: 0, z: 0}
 --- !u!1 &913662688 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4985947148329692508, guid: 01bb2a6a1f6f9174ca8701f5b88007ac, type: 3}
@@ -7380,6 +7345,8 @@ MonoBehaviour:
   dandelionManagement: {fileID: 2131401523}
   gameloop: {fileID: 109299094}
   particleObject: {fileID: 2205853289102238787, guid: 2a00b59d7b9797a45825494dab3038e9, type: 3}
+  rArrow: {fileID: 1347769288}
+  lArrow: {fileID: 1013078972}
 --- !u!4 &1423324978
 Transform:
   m_ObjectHideFlags: 0

@@ -42,6 +42,10 @@ public class DandelionManagement : MonoBehaviour
     public GameObject rArrow;
     public GameObject lArrow;
 
+    
+    
+
+
 
 
     //DandelionManagement
@@ -280,6 +284,7 @@ public class DandelionManagement : MonoBehaviour
 
                     Vector3 dir = dandelion.transform.position - camPos;
                     dandelion.GetComponent<DandelionController>().Blow(dir);
+                    
 
                     if (notenum > nowNotenumber)
                     {
@@ -387,11 +392,16 @@ public class DandelionManagement : MonoBehaviour
         dandelionDir = dandelionDir.normalized;//カメラからタンポポ
 
         float diff = Vector3.Angle(camforward, dandelionDir);
+        bool danBlown = false;
+        if (dandelion.GetComponent<DandelionController>().isBlow==true)
+        {
+           danBlown = true;
+        }
 
-       // Debug.Log(diff);
 
+        // Debug.Log(diff);
 
-        if (diff<=45.0f)
+        if (diff<=45.0f || danBlown == true)
         {
             if (nowArrow == "right")
             {

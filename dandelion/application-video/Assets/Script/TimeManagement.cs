@@ -10,6 +10,10 @@ public class TimeManagement : MonoBehaviour
 
     public GameObject particleObject;
     private GameObject nowDandelion=null;
+
+    public GameObject rArrow;
+    public GameObject lArrow;
+
     // private int noteNumber;
 
     // Start is called before the first frame update
@@ -76,9 +80,13 @@ public class TimeManagement : MonoBehaviour
         {
             //Debug.Log("抜けた");
             //Destroy(c.gameObject);
+            lArrow.gameObject.SetActive(false);
+            rArrow.gameObject.SetActive(false);
+
             GameObject camera = transform.root.gameObject;
             Vector3 velocity = new Vector3(0f, 0f, 0f);
             camera.GetComponent<Rigidbody>().velocity = velocity;
+
 
             GetComponent<AudioSource>().Play();
 
