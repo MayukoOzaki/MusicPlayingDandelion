@@ -12,14 +12,14 @@ public class DandelionManagement : MonoBehaviour
     List<string[]> toneDatas = new List<string[]>();
 
     public GameObject DandelionPrefab;
-    public bool isWidth = true;
-    public float BlownWidth = 3.0f;
+    //public bool isWidth = true;
+    public float BlownWidth = 2.5f;
     //public float ZDistance = 0.1f;
 
 
 
 
-    int numSounds = 270;//270;
+    int numSounds = 270;
 
 //    public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
@@ -41,6 +41,10 @@ public class DandelionManagement : MonoBehaviour
     public string nowArrow = null;//null, right, left
     public GameObject rArrow;
     public GameObject lArrow;
+
+    
+    
+
 
 
 
@@ -244,10 +248,12 @@ public class DandelionManagement : MonoBehaviour
         Vector3 camPos = headsetSetup.camPos;
         float camPosx = camPos.x;
 
+        /*
         if (isWidth == false)
         {
             BlownWidth = 999999.0f;
         }
+        */
 
         if (velocity == 0)
         {
@@ -257,8 +263,12 @@ public class DandelionManagement : MonoBehaviour
         {
             if (JudgeAngle(targetDandelion))
             {
-                if (Vector3.Distance(dandelion.transform.position, camPos) < BlownWidth)
+                //Debug.Log("距離："+Vector3.Distance(dandelion.transform.position, camPos));
+                float distance = Vector3.Distance(dandelion.transform.position, camPos);
+                if (distance < BlownWidth)
                 {
+                    Debug.Log("制限：" + BlownWidth);
+                    Debug.Log("距離：" + Vector3.Distance(dandelion.transform.position, camPos));
                     int value = JudgeDistance(dandelion);
                     velocity = velocity + (uint)value;
                     if (velocity > 127)
@@ -269,11 +279,12 @@ public class DandelionManagement : MonoBehaviour
                     {
                         velocity = 0;
                     }
-                    Debug.Log(value + "/" + (int)velocity);
+                    //Debug.Log(value + "/" + (int)velocity);
                     notePlayer.SmoothChange(velocity);
 
                     Vector3 dir = dandelion.transform.position - camPos;
                     dandelion.GetComponent<DandelionController>().Blow(dir);
+                    
 
                     if (notenum > nowNotenumber)
                     {
@@ -381,11 +392,16 @@ public class DandelionManagement : MonoBehaviour
         dandelionDir = dandelionDir.normalized;//カメラからタンポポ
 
         float diff = Vector3.Angle(camforward, dandelionDir);
+        bool danBlown = false;
+        if (dandelion.GetComponent<DandelionController>().isBlow==true)
+        {
+           danBlown = true;
+        }
 
-       // Debug.Log(diff);
 
+        // Debug.Log(diff);
 
-        if (diff<=45.0f)
+        if (diff<=45.0f || danBlown == true)
         {
             if (nowArrow == "right")
             {
@@ -440,9 +456,9 @@ public class DandelionManagement : MonoBehaviour
         Vector3 camPos = headsetSetup.camPos;
         float dis = Vector3.Distance(posDandelion, camPos);
         //Debug.Log("距離 : " + dis);
-        //short 0, middle1.5, long 3.0
+        //short 0, middle1.25, long 2.5
 
-        int value = (int)(-dis * 18.67 + 28);
+        int value = (int)(-dis * 22.4 + 28);
         return value;
     }
 

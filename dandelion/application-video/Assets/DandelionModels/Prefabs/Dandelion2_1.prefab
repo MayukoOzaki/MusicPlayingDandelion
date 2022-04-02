@@ -4890,6 +4890,8 @@ MonoBehaviour:
   topSeeds: {fileID: 0}
   ps: {fileID: 6844348380664269514}
   headOutside: {fileID: 0}
+  isBlow: 0
+  particleObject: {fileID: 0}
 --- !u!1 &7637893055889515470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5002,7 +5004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9209936624473916613
 Transform:
   m_ObjectHideFlags: 0
@@ -5084,7 +5086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2507356887806013079
 Transform:
   m_ObjectHideFlags: 0
@@ -5161,14 +5163,15 @@ GameObject:
   - component: {fileID: 816655365987050481}
   - component: {fileID: 4169136765448193640}
   - component: {fileID: 7303539265385697898}
-  - component: {fileID: 7303539265385697899}
+  - component: {fileID: 126110827}
+  - component: {fileID: 1020779910203380915}
   m_Layer: 0
   m_Name: Dandelion2_1
   m_TagString: Dandelion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9209936624954438641
 Transform:
   m_ObjectHideFlags: 0
@@ -5202,6 +5205,8 @@ MonoBehaviour:
   topSeeds: {fileID: 4985947148329692508}
   ps: {fileID: 9209936624112039995}
   headOutside: {fileID: 4985947148329692508}
+  isBlow: 0
+  particleObject: {fileID: 0}
 --- !u!136 &816655365987050481
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5248,7 +5253,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7303539265385697899
+--- !u!114 &126110827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5257,12 +5262,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 9209936624954438640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30bd4dc06a329142b858baa69f2024f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ff70927f59e1ba46b579e5feaf3b607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 0}
-  HeadOutside: {fileID: 9209936624606257910}
   HeadModel: {fileID: 4985947148329692508}
+  Stem: {fileID: 9209936625048028325}
+  Core: {fileID: 9209936624473916601}
+  DistanceCamera: 0
+--- !u!114 &1020779910203380915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9209936624954438640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff70927f59e1ba46b579e5feaf3b607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera: {fileID: 0}
+  HeadModel: {fileID: 4985947148329692508}
+  Stem: {fileID: 9209936625048028325}
+  Core: {fileID: 9209936624473916601}
   DistanceCamera: 0
 --- !u!1 &9209936625048028325
 GameObject:
@@ -5275,13 +5298,15 @@ GameObject:
   - component: {fileID: 9209936625048028321}
   - component: {fileID: 9209936625048028320}
   - component: {fileID: 9209936625048028327}
+  - component: {fileID: 166371048}
+  - component: {fileID: 8406885145271761652}
   m_Layer: 0
   m_Name: Stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9209936625048028321
 Transform:
   m_ObjectHideFlags: 0
@@ -5345,6 +5370,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &166371048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9209936625048028325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d364b539d1cf546a729cec1f418aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultScale: {x: 0, y: 0, z: 0}
+  localScale: {x: 0, y: 0, z: 0}
+--- !u!114 &8406885145271761652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9209936625048028325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d364b539d1cf546a729cec1f418aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultScale: {x: 0, y: 0, z: 0}
+  localScale: {x: 0, y: 0, z: 0}
 --- !u!1001 &4433283894011680167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5438,13 +5491,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bfdcfa74fef52c63a057d38724b04d2, type: 3}
---- !u!4 &9209936624112040004 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4780136314018737635, guid: 6bfdcfa74fef52c63a057d38724b04d2, type: 3}
-  m_PrefabInstance: {fileID: 4433283894011680167}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &9209936624112039995 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4780136314018737564, guid: 6bfdcfa74fef52c63a057d38724b04d2, type: 3}
+  m_PrefabInstance: {fileID: 4433283894011680167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9209936624112040004 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4780136314018737635, guid: 6bfdcfa74fef52c63a057d38724b04d2, type: 3}
   m_PrefabInstance: {fileID: 4433283894011680167}
   m_PrefabAsset: {fileID: 0}

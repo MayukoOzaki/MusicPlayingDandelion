@@ -148,6 +148,8 @@ MonoBehaviour:
   topSeeds: {fileID: 2610309171128803012}
   ps: {fileID: 2222612519498632099}
   headOutside: {fileID: 2222612521201144174}
+  isBlow: 0
+  particleObject: {fileID: 0}
 --- !u!136 &7664384830159753321
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -205,6 +207,8 @@ GameObject:
   - component: {fileID: 2222612521038821177}
   - component: {fileID: 2222612521038821176}
   - component: {fileID: 2222612521038821183}
+  - component: {fileID: 903591257}
+  - component: {fileID: 6569846122578898737}
   m_Layer: 0
   m_Name: Stem
   m_TagString: Untagged
@@ -275,6 +279,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &903591257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222612521038821181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d364b539d1cf546a729cec1f418aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultScale: {x: 0, y: 0, z: 0}
+  localScale: {x: 0, y: 0, z: 0}
+--- !u!114 &6569846122578898737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222612521038821181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d364b539d1cf546a729cec1f418aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultScale: {x: 0, y: 0, z: 0}
+  localScale: {x: 0, y: 0, z: 0}
 --- !u!1 &2222612521201144174
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultScale: {x: 0, y: 0, z: 0}
   localScale: {x: 0, y: 0, z: 0}
-  changeScale: {x: 0, y: 0, z: 0}
 --- !u!1 &2222612521605625633
 GameObject:
   m_ObjectHideFlags: 0
@@ -5344,6 +5375,8 @@ MonoBehaviour:
   topSeeds: {fileID: 0}
   ps: {fileID: 4608317430119283026}
   headOutside: {fileID: 0}
+  isBlow: 0
+  particleObject: {fileID: 0}
 --- !u!1001 &6669332871607838271
 PrefabInstance:
   m_ObjectHideFlags: 0

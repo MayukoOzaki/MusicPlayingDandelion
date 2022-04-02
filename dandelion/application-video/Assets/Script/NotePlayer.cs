@@ -102,7 +102,7 @@ public class NotePlayer : MonoBehaviour
         
         //Debug.Log("鳴らす"+on_data.ToString("X")+"固有番号"+dandelionManagement.nowNotenumber);
 
-        Debug.Log("強さ1" +"/"+ Velocity);
+        //Debug.Log("強さ1" +"/"+ Velocity);
         //Debug.Log("鳴らした");
         //Debug.Log(Pitch+"/"+Velocity+"/"+ToneColor);
         //Debug.Log("音を鳴らした"+otocou);
