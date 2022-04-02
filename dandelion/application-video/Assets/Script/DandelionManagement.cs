@@ -19,7 +19,7 @@ public class DandelionManagement : MonoBehaviour
 
 
 
-    int numSounds = 270;//270;
+    int numSounds = 270;
 
 //    public List<GameObject> ObjectList = new List<GameObject>(); //たんぽぽlist
 
@@ -263,6 +263,8 @@ public class DandelionManagement : MonoBehaviour
                 float distance = Vector3.Distance(dandelion.transform.position, camPos);
                 if (distance < BlownWidth)
                 {
+                    Debug.Log("制限：" + BlownWidth);
+                    Debug.Log("距離：" + Vector3.Distance(dandelion.transform.position, camPos));
                     int value = JudgeDistance(dandelion);
                     velocity = velocity + (uint)value;
                     if (velocity > 127)
