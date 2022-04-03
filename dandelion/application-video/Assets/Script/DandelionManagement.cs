@@ -257,6 +257,7 @@ public class DandelionManagement : MonoBehaviour
 
         if (velocity == 0)
         {
+            bool arrow=JudgeAngle(targetDandelion);
             notePlayer.SmoothChangeZero();
         }
         else
