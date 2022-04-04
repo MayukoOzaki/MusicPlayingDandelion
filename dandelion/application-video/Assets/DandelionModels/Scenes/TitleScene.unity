@@ -494,7 +494,7 @@ MonoBehaviour:
   nowOn: 0
   nowVolume: 0
   sameTone: 0
-  tutodandelionManagement: {fileID: 0}
+  tutodandelionManagement: {fileID: 2081827044}
 --- !u!1 &399772113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,9 +1059,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2222612519498632156, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222612519498632156, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222612519498632156, guid: c092a4938ac625940b5b0de94461995e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053160, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_Name
-      value: Dandelion1_1
+      value: TutoDandelion
       objectReference: {fileID: 0}
     - target: {fileID: 2222612520811053160, guid: c092a4938ac625940b5b0de94461995e, type: 3}
       propertyPath: m_TagString
@@ -2332,5 +2344,5 @@ MonoBehaviour:
   - {fileID: 1220467465}
   headsetSetup: {fileID: 995894728}
   notePlayer: {fileID: 341898358}
-  BlownWidth: 10
+  BlownWidth: 15
   nowNotenumber: 0
