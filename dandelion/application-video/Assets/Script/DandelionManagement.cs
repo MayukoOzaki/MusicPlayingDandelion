@@ -86,7 +86,7 @@ public class DandelionManagement : MonoBehaviour
         {
             //横の位置 c4:60
             //-1:0-11 0:12-23 1:24-35 2:36-47 3:48:59 4:60-71 5:72-83 6:84-95 7:96-107
-            float posx = (float.Parse(toneDatas[r][2])-60.0f) * 0.05f;
+            float posx = (float.Parse(toneDatas[r][2])-72.0f) * 0.05f;
             //縦の位置
             //float posz = float.Parse(toneDatas[r][0]);
             //個数
