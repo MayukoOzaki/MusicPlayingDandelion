@@ -23,10 +23,10 @@ public class ChangeScene : MonoBehaviour
         }
 
     }
-    /*
-    void Change()
+    
+    public void Change()
     {
         SceneManager.LoadScene("SeedTest");
     }
-    */
+    
 }

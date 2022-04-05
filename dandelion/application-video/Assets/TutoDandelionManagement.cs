@@ -10,7 +10,6 @@ public class TutoDandelionManagement : MonoBehaviour
     public List<GameObject> ObjectList = new List<GameObject>();
 
     public HeadsetSetup headsetSetup;
-    public TutoNotePlayer notePlayer;
     public float BlownWidth = 10f;
     public int nowNotenumber = 0;
 
@@ -34,23 +33,15 @@ public class TutoDandelionManagement : MonoBehaviour
 
         GameObject dandelion = ObjectList[0];
 
-
-        uint pitch = (uint)dandelion.GetComponent<NoteInfo>().pitch;
         uint velocity = (uint)Strength;
-        uint ToneColor = dandelion.GetComponent<NoteInfo>().toneColor;
         int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
-        //Debug.Log(dandelion.GetComponent<NoteInfo>().noteNumber);
-        bool nowOn = notePlayer.nowOn;
+        
         Vector3 camPos = headsetSetup.camPos;
         float camPosx = camPos.x;
 
         
 
-        if (velocity == 0)
-        {
-            notePlayer.SmoothChangeZero();
-        }
-        else
+        if (velocity>0)
         {
             if (JudgeAngle(dandelion))
             {
@@ -58,40 +49,14 @@ public class TutoDandelionManagement : MonoBehaviour
                 float distance = Vector3.Distance(dandelion.transform.position, camPos);
                 if (distance < BlownWidth)
                 {
-                    //Debug.Log("êßå¿ÅF" + BlownWidth);
-                    //Debug.Log("ãóó£ÅF" + Vector3.Distance(dandelion.transform.position, camPos));
-                    int value = JudgeDistance(dandelion);
-                    velocity = velocity + (uint)value;
-                    if (velocity > 127)
-                    {
-                        velocity = 127;
-                    }
-                    else if (velocity < 0)
-                    {
-                        velocity = 0;
-                    }
-                    //Debug.Log(value + "/" + (int)velocity);
-                    notePlayer.SmoothChange(velocity);
 
                     Vector3 dir = dandelion.transform.position - camPos;
-                    dandelion.GetComponent<DandelionController>().Blow(dir);
-
-
-                    if (notenum > nowNotenumber)
-                    {
-                        nowNotenumber = notenum;
-                        notePlayer.NoteOn(pitch, notePlayer.nowVolume, ToneColor);//âπçƒê∂
-                    }
-                }
-                else
-                {
-                    notePlayer.SmoothChangeZero();
+                    dandelion.GetComponent<TutoDandelionController>().Blow(dir);
+                    nowNotenumber = notenum;
+                    
                 }
             }
-            else
-            {
-                notePlayer.SmoothChangeZero();
-            }
+            
         }
     }
 
