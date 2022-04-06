@@ -55,10 +55,10 @@ public class TutoBreathDetection : MonoBehaviour
         r = eH / eL;
 
         float strength = 0;
-        if (eH > noSoundThreshold)
+        if (eH > noSoundThreshold)//min breath check
         {
             //Debug.Log(eH + "/" + eL + "/" + r);
-            if (r > breathDetectionThreshold)
+            if (r > breathDetectionThreshold)//on vice check
             {
                 //Debug.Log("BREATH");
                 //Debug.Log(eH + "/" + eL + "/" + r);
