@@ -2327,8 +2327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1305d07a1e07af047ba73f9bcc9905a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectList:
-  - {fileID: 1220467465}
+  dandelion: {fileID: 1220467465}
   headsetSetup: {fileID: 995894728}
   BlownWidth: 15
   nowNotenumber: 0
