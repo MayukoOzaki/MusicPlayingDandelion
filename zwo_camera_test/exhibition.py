@@ -1,4 +1,4 @@
-import zwoasi as asi
+﻿import zwoasi as asi
 import cv2
 import subprocess
 import numpy as np
@@ -11,19 +11,19 @@ import random
 #from PIL import Image, ImageDraw
 
 # 検出した頂点のうちどのくらいの割合を揺らぎ検出点に使うか
-POINT_RATIO = 0.001
+POINT_RATIO = 0.01#0.001
 # 二次曲線フィッティングに使う点の数
-XRANGE = 3
+XRANGE =5 #5 #11#5 #7 #3
 # 画面内の検出エリアの横方向の割合
 W_RATIO = 0.5
 # 画面内の検出エリアの縦方向の割合
 H_RATIO = 0.8
 
-p =2121856 #1228800  # 921600 #2073600 #312664
+p =2121856 #2121856 #1228800  # 921600 #2073600 #312664
 #1280×960
-wide = 1936
+wide = 1936#1280
 #1280
-high = 1096
+high = 1096#960
 #720
 #p = 1228800
 
@@ -96,6 +96,10 @@ camera.default_timeout = timeout
 
 print('Capturing a single color frame')
 camera.set_image_type(asi.ASI_IMG_RGB24)
+
+#camera.set(cv2.CAP_PROP_FRAME_WIDTH, wide)  # カメラ画像の横幅を1920#1280に設定#646
+#camera.set(cv2.CAP_PROP_FRAME_HEIGHT, high)  # カメラ画像の縦幅を1080720に設定#484
+
 """
 while True:
     data = camera.get_video_data()
@@ -179,6 +183,7 @@ def reset_standard():  # 基準画像リセット
         before = now
 
     #print("basetop")
+    #print(basetop)
 
     ql = []
     for q in range(len(basetop)-1):
@@ -257,6 +262,7 @@ while(True):
     key = cv2.waitKey(1)
     if key == ord('s'):
         reset_standard()
+        bef_toplist=None#リセットしたときのエラー
         color1 = np.array([255., 255., 255.])
         for tyouten in basetop2:  # basetop[::100]:
             yy = int((tyouten//wide)+1)

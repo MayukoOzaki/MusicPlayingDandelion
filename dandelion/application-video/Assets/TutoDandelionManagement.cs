@@ -7,10 +7,11 @@ using System.Text;
 
 public class TutoDandelionManagement : MonoBehaviour
 {
-    public List<GameObject> ObjectList = new List<GameObject>();
+    //public List<GameObject> ObjectList = new List<GameObject>();
+    public GameObject dandelion;
 
     public HeadsetSetup headsetSetup;
-    public float BlownWidth = 10f;
+    public float BlownWidth = 15f;
     public int nowNotenumber = 0;
 
 
@@ -28,10 +29,12 @@ public class TutoDandelionManagement : MonoBehaviour
 
     public void isBlown(float Strength) //Posx:êÅÇ¢ÇΩà íuÅ@Strength:êÅÇ¢ÇΩã≠Ç≥
     {
+        /*
         if (ObjectList.Count == 0)
             return;
 
         GameObject dandelion = ObjectList[0];
+        */
 
         uint velocity = (uint)Strength;
         int notenum = dandelion.GetComponent<NoteInfo>().noteNumber;
