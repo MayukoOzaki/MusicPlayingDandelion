@@ -48,8 +48,10 @@ public class TutoDandelionManagement : MonoBehaviour
         {
             if (JudgeAngle(dandelion))
             {
+                //Debug.Log("äpìxOK");
                 //Debug.Log("ãóó£ÅF"+Vector3.Distance(dandelion.transform.position, camPos));
                 float distance = Vector3.Distance(dandelion.transform.position, camPos);
+                //Debug.Log("ãóó£ÅF" +distance+"êßå¿"+BlownWidth);
                 if (distance < BlownWidth)
                 {
 

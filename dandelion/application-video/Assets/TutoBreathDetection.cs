@@ -32,6 +32,7 @@ public class TutoBreathDetection : MonoBehaviour
             aud.Play(); //マイクをオーディオソースとして実行(Play)開始
 
             //CreateFile1();
+            Debug.Log("マイク設定完了");
         }
 
     }
@@ -41,13 +42,18 @@ public class TutoBreathDetection : MonoBehaviour
     {
         aud.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
         // Call DandelionManagement::isBlown based on spectrum data
+        Debug.Log("spectrumを取得");
 
         float eL = 0;
         float eH = 0;
         float r;
 
         for (int i = 1; i <= 16; i++)
+        {
+            //Debug.Log(spectrum[i]);
             eL += spectrum[i] * spectrum[i];
+        }
+            //eL += spectrum[i] * spectrum[i];
 
         for (int i = 17; i <= 32; i++)
             eH += spectrum[i] * spectrum[i];
@@ -84,7 +90,7 @@ public class TutoBreathDetection : MonoBehaviour
         {
             //Debug.Log("2止めた222222222222222222222");
         }
-
+        Debug.Log("息の強さ:"+strength);
         tutoDandelionManagement.isBlown(strength);
 
 
