@@ -42,7 +42,7 @@ public class TutoBreathDetection : MonoBehaviour
     {
         aud.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
         // Call DandelionManagement::isBlown based on spectrum data
-        Debug.Log("spectrum‚ðŽæ“¾");
+        //Debug.Log("spectrum‚ðŽæ“¾");
 
         float eL = 0;
         float eH = 0;
@@ -60,12 +60,15 @@ public class TutoBreathDetection : MonoBehaviour
 
         r = eH / eL;
 
+        //Debug.Log(eH + "/" + eL + "/" + r);
         float strength = 0;
         if (eH > noSoundThreshold)//min breath check
         {
+            //Debug.Log("noSoundThreshold");
             //Debug.Log(eH + "/" + eL + "/" + r);
             if (r > breathDetectionThreshold)//on vice check
             {
+                //Debug.Log("reathDetectionThreshold");
                 //Debug.Log("BREATH");
                 //Debug.Log(eH + "/" + eL + "/" + r);
                 //strength=15.41f*Mathf.Log10(eH) +173.59f; //65 
@@ -90,7 +93,7 @@ public class TutoBreathDetection : MonoBehaviour
         {
             //Debug.Log("2Ž~‚ß‚½222222222222222222222");
         }
-        Debug.Log("‘§‚Ì‹­‚³:"+strength);
+        //Debug.Log("‘§‚Ì‹­‚³:"+strength);
         tutoDandelionManagement.isBlown(strength);
 
 
