@@ -24,9 +24,12 @@ public class ChangeScene : MonoBehaviour
 
     }
     
+    /*
     public void Change()
     {
         SceneManager.LoadScene("SeedTest");
     }
+    */
+
     
 }
